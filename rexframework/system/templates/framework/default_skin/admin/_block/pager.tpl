@@ -1,0 +1,1 @@
+{pager current=$pager.current pages=$pager.pages}

@@ -1,0 +1,210 @@
+/*bell popup*/
+.bell-background{
+    background-color: #000000;
+    display: none;
+    height: 100%;
+    opacity: 0.5;
+    filter: alpha(opacity = 50);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0px;
+    z-index: 11000;
+}
+.close-bell{
+    background: url("../img/close.png") no-repeat;
+    color: #FF0000;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width:28px;
+    height:28px;
+}
+.close-bell:hover{
+    background: url("../img/close.png") repeat 28px 0;
+}
+.text-bell{
+    color: #4E4E4E;
+    float: left;
+    font-size: 13px;
+    margin: 5px 0 0 10px;
+    text-align: left;
+    font-weight: bold;
+}
+.name-bell{
+    text-align: center;
+    line-height: 18px;
+    padding-right: 30px;
+}
+.inpbell{
+    width: 348px;
+    margin-left: 10px;
+    padding: 5px 10px;
+}
+.bell_button {
+    border: none;
+    padding: 6px 25px;
+    display: block;
+    margin: 20px auto 0;
+}
+.left-bells-form-text,
+.left-quick-order-form-text{
+    margin-left: 10px;
+}
+.login_bell {
+    background: url("../img/all-contact.png") no-repeat;
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 11px;
+    height: 15px;
+    line-height: 14px;
+    margin-left: 17px;
+    padding: 7px 40px 6px 0;
+    position: absolute;
+    right: 240px;
+    text-align: center;
+    text-shadow: none;
+    top: 3px;
+    width: 157px;
+    z-index: 999;
+}
+.order_bell {
+    background: url("../img/btn-one-click.png") no-repeat;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 15px;
+    height: 29px;
+    line-height: 21px;
+    margin: 6px 6px 0 0;
+    padding-top: 6px;
+    text-align: center;
+    text-shadow: 0 1px 1px #009ed1, 0 1px 1px #009ed1; /*none;*/
+    top: 3px;
+    width: 319px;
+}
+.order_bell:hover{
+    background: url("../img/btn-one-click-hover.png") no-repeat;
+    cursor: pointer;
+}
+.bells_form{
+    padding: 10px;
+    display: none;
+    position: fixed;
+    left: 50%;
+    margin-left: -150px;
+    max-width: 400px;
+    top: 200px;
+    /*height: 290px;*/
+    background-color: #EFEFEF;
+    z-index: 11001;
+    border: 1px solid #0172F6;
+    border-radius: 5px;
+    transition: all 0.6s ease 0.1s;
+}
+.bell-text {
+    color: red;
+    margin-bottom: 10px;
+}
+.contact-name-error,
+.contact-email-error,
+.contact-text-error,
+.bell-name-error,
+.bell-phone-error,
+.quick-order-phone-error,
+.captcha-form-error {
+    font-size: 10px;
+    color: red;
+    opacity:0;
+}
+@media screen and (max-width: 500px) {
+    .inpbell {
+        width: 200px;
+    }
+}
+@media screen and (max-width:640px){
+    .order_bell {
+        background: url(../img/btn-one-click-small.png) no-repeat;
+        background-size: 100% 100%;
+        height: 22px;
+        line-height: 16px;
+        margin: 0;
+        width: 253px;
+    }
+    .order_bell:hover {
+        background: url(../img/btn-one-click-hover-small.png) no-repeat;
+        background-size: 100% 100%;
+    }
+    .razmer img {position: relative;}
+    .contact_page_content img.hide-img {display: none;}
+    .bells_form {
+        box-sizing: border-box;
+        height: auto;
+        left: 0 !important;
+        margin: 0;
+        right: 0 !important;
+        top: 10px !important;
+        transform: none !important;
+        width: 100%;
+        min-width: 320px;
+    }
+}
+/*form styles*/
+.star {
+    color: red;
+}
+
+.submit-form,
+.submit-form-error,
+.quick-order-submit-form,
+.quick-order-submit-form-error {
+    display: none;
+}
+
+.header_search form {
+    display: flex;
+    width: 100%;
+}
+/*-------*/
+/*fixes for new elements*/
+.header_cart {
+    position: relative;
+    transition: 0.3s color;
+}
+.header_cart:hover {
+    color: #80db1c;
+}
+.header_cart > a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+/*products slick slides*/
+.my-slider_product .slick-track {
+    align-items: stretch;
+}
+
+.my-slider_product .slick-slide {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+}
+
+.my-slider_product .product_entity {
+    height: 100%;
+    position: relative;
+    padding-bottom: 36px;
+}
+
+.my-slider_product .product_btns-holder {
+    position: absolute;
+    bottom: 5px;
+    width: calc(100% - 10px);
+}
+/**/
+.home-content p {
+    margin-left: 0 !important;
+}

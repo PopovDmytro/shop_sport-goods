@@ -1,0 +1,40 @@
+/*Xajax*/
+#xxajax_loading {
+	visibility: hidden;
+	position: absolute;
+    display: block;
+	right:0px;
+	top: 0px;
+	padding: 2px 2px 2px 20px;
+}
+#xxajax_error {
+	visibility: hidden;
+	position: absolute;
+	right:0px;
+	top: 0px;
+	background-color: #ff3333;
+	border: 1px solid #000000;
+}
+
+#xxajax_dump {
+	visibility: hidden;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	background-color: #FFD;
+	text-align: left;
+	border: 1px solid #000000;
+}
+
+#xxajax_lock {
+    visibility: hidden;
+    position: absolute;
+    display: block;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #456;
+    opacity: 0.5;
+    filter: alpha(opacity=50); 
+}

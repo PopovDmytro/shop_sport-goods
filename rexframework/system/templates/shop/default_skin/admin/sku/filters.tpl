@@ -1,0 +1,1 @@
+<input class="filter" name="product_id" type="hidden" value="{$product_id}" id="product_id">

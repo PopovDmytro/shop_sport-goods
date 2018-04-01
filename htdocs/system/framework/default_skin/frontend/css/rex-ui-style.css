@@ -1,0 +1,200 @@
+.data td{
+    padding:2px 10px;
+    font-weight:normal !important;
+}
+.records{
+    padding: 8px;
+}
+.head1{
+    padding:5px 10px;
+}
+.add_cl{
+    padding:10px;
+}
+.add_btn{
+    width:30px;
+    float:right;
+}
+.data2 {
+    margin-top: 1px;
+    width: 400px;
+}
+.data th {
+    /*background: none repeat scroll 0 0 #E7F3F8;*/
+    font-weight: normal;
+    text-align: left;
+    padding: 0px 5px;
+}
+#dg {
+    /*background: none repeat scroll 0 0 #E7F3F8 !important;*/
+}
+.data {
+    /*background: none repeat scroll 0 0 #FFFFFF;*/
+}
+.data .link a {
+    display: block;
+    text-decoration: none;
+}
+.data .link a:hover {
+    /*background: none repeat scroll 0 0 #FFFFFF;*/
+    text-decoration: none;
+}
+.data .Odd td {
+    /*background: none repeat scroll 0 0 #F5F7F8;*/
+}
+.data .Even td {
+    /*background: none repeat scroll 0 0 #F0F6F9;*/
+}
+
+.table_wrapper {
+    font-size: 11px;
+    margin: 0 auto;
+    width: 100%;
+}
+.table_wrapper_inner {
+}
+.table_wrapper td, .table_wrapper th {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    /*border-color: #D3E5ED;*/
+    border-color: #dfdfdf;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+}
+.table_wrapper th, .table_wrapper th a {
+    font-size: 13px;
+    font-weight: bold;
+}
+.table_wrapper th a:link, .table_wrapper th a:visited, .table_wrapper th a:hover, .table_wrapper th a:active {
+    background-position: right center;
+    background-repeat: no-repeat;
+    /*color: #1F476F;*/
+    /*color:#000000;*/
+    display: inline-block;
+    padding: 0;
+}
+
+.table_wrapper tr.second td {
+    background: #F3F9FB;
+}
+ul#icons li {
+    float: left;
+    list-style: none outside none;
+    margin: 2px;
+    padding: 4px 0;
+    position: relative;
+}
+span.ui-icon {
+    float: left;
+    margin: 0 4px;
+}
+#icons {
+    margin: 0;
+   /* min-width: 155px;*/
+    padding: 0;
+}
+/*.ui-helper-clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}*/
+ul#icons {
+    margin: 0;
+    padding: 0;
+}
+.ui-widget {
+    font-size: 1.1em;
+}
+/*.ui-helper-clearfix {
+    display: block;
+}*/
+ul#icons li {
+    float: left;
+    list-style: none outside none;
+    margin: 2px;
+    padding: 4px 0;
+    position: relative;
+}
+input[type="text"], input[type="password"], input[type="pass"] {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    outline-style: none;
+   /* padding: 3px 0 3px 2px;*/
+    width: 196px;
+}
+textarea {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  font-size: 12px;
+  padding: 3px 0 3px 2px;
+}
+
+input.search{
+    height: 20px !important;
+}
+input, textarea,  select.ui-state-default {
+    background: none repeat scroll 0 0 #F4F4F4 !important;
+}
+ul#icons span.ui-icon {
+    float: left;
+    margin: 0 4px;
+}
+.data .order_table{
+    margin: 0px;
+}
+.data .order_table .ui-icon{
+    margin-top: 2px;
+}
+.data .order_table td{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+}
+.data th.ui-state-default{
+    border-width: 0 1px 1px 0;
+}
+.data tr.Even {
+    /*background: #f9f9f9;*/
+      background: hsla(207, 0%, 100%, .1);
+
+}
+.data tr.Odd {
+    /*background: #efefef;*/
+       background: hsla(207, 0%, 0%, .04);
+}
+.dg_pager_container{
+    padding: 0 8px 8px 8px;
+}
+.dg_pager_container a, .dg_pager_container span{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.ui-dialog .ui-dialog-content{
+    padding: 0px;
+}
+.ui-widget-content .ui-accordion-header{
+    background: none;
+}
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family: inherit;
+}
+.ui-dialog-content.ui-widget-content {
+    height: auto !important;
+    width: auto !important;
+}
+.ui-dialog.ui-widget.ui-widget-content {
+    height: auto !important;
+    /*width: auto !important;*/
+}

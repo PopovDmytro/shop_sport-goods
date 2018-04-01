@@ -1,0 +1,292 @@
+@charset "utf-8";
+* {color: red !}
+html{
+    margin: 0px;
+    padding:0px;
+}
+
+body {
+    margin: 0px;
+    padding:0 50px 30px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-color: #fff;
+    /*background: url("../images/footer-bg.png") repeat-x bottom;*/
+}
+
+.content li, p {
+    font-size: 13px;
+    line-height: 160%;
+    margin-bottom: 10px;
+}
+
+.content li {
+    list-style: square;
+    margin-left: 15px;
+}
+
+ul, li, ol, dt, dd, dl, table, div, span {
+  margin:0;
+  padding:0;
+  font-size:11px;
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+  margin:0;
+  padding:0;
+  margin-bottom:4px;
+  line-height:200%;
+  font-weight:normal;
+  text-indent:20px;
+}
+
+h1{
+
+}
+
+h2{
+    color: #fff;
+    font-weight: bold;
+    
+}
+
+h3{
+    font-weight: bold;
+    line-height: 100%;
+    text-indent:23px;
+    padding-top:7px;
+    padding-bottom:10px;
+    color: #fff;
+    margin: 0;
+}
+
+h4{
+
+}
+
+h5{
+
+}
+
+h6{
+
+}
+
+/*p{
+  
+  margin-bottom:5px;
+  line-height:150%;
+  margin-bottom: 10px;
+  text-indent:20px;
+}*/
+
+p.center{
+  text-indent:0px;
+}
+
+ul, ol, ul li, ol li{
+  font-size:11px;
+}
+
+center{
+  font-size:11px;
+}
+
+a{
+  text-decoration:underline;
+  color:#000000;
+}
+
+a:hover{
+  text-decoration:none;
+  color:#000000;
+}
+
+a img{
+  border:none;
+}
+
+.clear{
+    clear: both;
+}
+
+.container{
+    width: 100%;
+}
+
+/*  HEADER  */
+.header{
+    width: 100%;
+    height: 84px;
+    background: /*url("../images/hd-bg-l.jpg")*/ left #32b90e no-repeat;
+}
+
+.logo-box{
+    width: 286px;
+    margin-left: 5px;
+    float: left;
+}
+
+.hd-right{
+    width: 5px;
+    height: 84px;
+    /*background: url("../images/hd-bg-r.jpg") no-repeat;*/
+    float: right;
+}
+
+/* MAIN */
+.main{
+    padding-top: 11px;
+}
+
+.sidebar{
+    width: 241px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.sidebar-box{
+    width: 100%;
+    padding-bottom: 11px;
+}
+
+.sidebar-box-title{
+    width: 223px;
+    background: /*url("../images/sidebar-topline.jpg")*/ top #32b90e no-repeat;
+    height: 23px;
+    padding-top: 7px;
+    padding-left: 18px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.content {
+    /*float: right;*/
+    padding: 10px;
+    margin-left: 241px;
+}
+
+.sidebar-box-content{
+    width: 211px;
+    background: #9addaa;
+    padding: 5px 15px;
+}
+
+.sidebar-box-content ul li{
+    list-style: none;
+    font-size: 13px;
+    padding: 5px 0;
+}
+
+.sidebar-box-content ul li a{
+    text-decoration: none;
+}
+
+.sidebar-box-content ul li a:hover{
+    text-decoration: underline;
+}
+
+/* FOOTER */
+
+/* FOOTER */
+.footer{
+    margin-bottom: 15px;
+    width: 100%;
+    height: 42px;
+    /*background: url("footer-b.jpg") left #32b90e no-repeat;*/
+    float: left;
+}
+.left_foter {
+    width: 5px;
+    height: 42px;
+    /*background: url("../images/footer-b-.jpg") left top no-repeat;*/
+        background: /*url("../images/footer-bg-l.jpg")*/ left #32b90e no-repeat;
+}
+
+.sc_1 {
+    width: 90px;
+    height: 42px;
+}
+.sc_2 {
+    height: 42px;
+    width: 90px;
+}
+
+.footer-logo-box{
+    width: 155px;
+    height: 42px;
+   background-color: #32B90E;
+}
+
+.footer-logo-box span{
+    font-size: 12px;
+    color: #fff;
+    float:left;
+    padding-top: 13px;
+}
+.footer-logo-box a { float:left; }
+
+.footer-center{
+    background-color: #32B90E;
+}
+.right_footer {
+    float:right;
+    margin-left: 5px;
+}
+
+.footer ul{
+    margin: 0 auto;
+}
+
+.footer ul li{
+    padding-top: 13px;
+    display: inline;
+    padding: 0 5px;
+}
+
+.footer ul li a{
+    color: #fff;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.footer ul li a:hover{
+    text-decoration: underline;
+}
+
+.footer-right{
+    width: 5px;
+    height: 42px;
+    /*background: url("../images/footer-c.jpg") no-repeat;*/
+        /*background: url("../images/footer-bg-r.jpg") no-repeat;*/
+}
+
+
+/* MENU */
+.menu{
+    width: 100%;
+    padding: 25px 0;
+}
+
+.menu ul{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.menu ul li{
+    padding: 0 10px;
+    display: inline;
+}
+
+.menu ul li a{
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.menu ul li a:hover{
+    text-decoration: none;
+}

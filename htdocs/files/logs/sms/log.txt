@@ -1,0 +1,149 @@
+[2018-02-23 11:52:26] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 11:59:01] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 11:59:52] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:00:48] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:01:32] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:05:56] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:06:56] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:08:44] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:11:04] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:11:30] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:12:34] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":123456,"login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:15:02] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(095)2135430","msg":"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c TEST TEST (2640) \u043e\u0444\u043e\u0440\u043c\u0438\u043b \u0437\u0430\u043a\u0430\u0437 \u2116 3295","login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 12:39:29] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":"814873","login":"admin@volleymag.com.ua","password":"adminvolleymag"}
+[2018-02-23 15:04:29] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":"320171"}
+[2018-02-23 15:06:54] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":"561063"}
+[2018-02-23 15:20:56] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":"246581"}
+[2018-02-23 15:22:20] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":"991564"}
+[2018-02-23 15:22:22] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":"293827"}
+[2018-02-23 15:23:36] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(097)926-32-84","msg":"363809"}
+[2018-02-23 15:52:47] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(095)2135430","msg":"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c TEST TEST (2640) \u043e\u0444\u043e\u0440\u043c\u0438\u043b \u0437\u0430\u043a\u0430\u0437 \u2116 3296"}
+[2018-02-23 16:06:29] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(095)2135430","msg":"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c TEST TEST (2640) \u043e\u0444\u043e\u0440\u043c\u0438\u043b \u0437\u0430\u043a\u0430\u0437 \u2116 3297"}
+[2018-02-23 16:07:39] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(095)2135430","msg":"Пользователь TEST TEST (2640) оформил заказ № 3298"}
+[2018-02-23 16:55:52] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(095)2135430","msg":"Пользователь TEST TEST (2640) оформил заказ № 3299"}
+[2018-02-23 17:09:35] Atompark error: Ошибка в имени отправителя. Massage data: {"nmb":"+38(095)2135430","msg":"Пользователь TEST TEST (2640) оформил заказ № 3305"}
+[2018-02-23 17:10:29] Config exceptionConfig key Atompark.brand_names not exist[2018-02-23 17:13:52] Config exceptionConfig key Atompark.brand_names not exist[2018-02-23 17:13:52] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":"+38(095)2135430","msg":"Пользователь TEST TEST (2640) оформил заказ № 3307"}
+[2018-02-26 09:32:55] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:32:55] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 09:34:55] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:34:55] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 09:36:25] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:36:25] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 09:37:19] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:37:19] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 09:39:58] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:39:58] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 09:40:47] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:40:47] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 09:41:45] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:41:45] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:43:33] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:43:33] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:45:36] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:45:36] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 09:46:05] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:46:05] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 09:46:28] Config exceptionConfig key Atompark.brand_names not exist
+[2018-02-26 09:46:29] Atompark error: Неправильный логин и/или пароль. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 09:48:59] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:49:01] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:51:56] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:53:59] SMS send. Massage data: {"nmb":"+38(095)2135430","msg":"Пользователь TEST TEST (2640) оформил заказ № 3308"}
+[2018-02-26 09:56:06] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:57:32] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:58:03] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:58:14] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:58:27] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:59:18] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:59:50] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 09:59:59] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 10:01:50] Atompark error: Нет верных номеров получателей. Massage data: {"nmb":true,"msg":123456}
+[2018-02-26 10:18:58] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 10:19:00] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":123456}
+[2018-02-26 10:19:41] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"235742"}
+[2018-02-26 10:19:42] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"847711"}
+[2018-02-26 10:20:06] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"856536"}
+[2018-02-26 10:24:17] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"012456"}
+[2018-02-26 10:28:30] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"752854"}
+[2018-02-26 10:28:52] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"555771"}
+[2018-02-26 10:29:17] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"800429"}
+[2018-02-26 10:29:19] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"733371"}
+[2018-02-26 10:29:36] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"015055"}
+[2018-02-26 10:39:51] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"380959"}
+[2018-02-26 10:39:57] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"154352"}
+[2018-02-26 10:40:17] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"083407"}
+[2018-02-26 10:41:53] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"901376"}
+[2018-02-26 10:41:56] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"973531"}
+[2018-02-26 10:41:57] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"987778"}
+[2018-02-26 10:42:29] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"960716"}
+[2018-02-26 10:50:30] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"494478"}
+[2018-02-26 10:50:32] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"971812"}
+[2018-02-26 10:50:42] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"331841"}
+[2018-02-26 10:52:16] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"949580"}
+[2018-02-26 10:55:17] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"365129"}
+[2018-02-26 10:55:27] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"997163"}
+[2018-02-26 10:55:46] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"491335"}
+[2018-02-26 10:55:49] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"385751"}
+[2018-02-26 10:56:20] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"927947"}
+[2018-02-26 10:58:17] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"220826"}
+[2018-02-26 11:01:56] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"870576"}
+[2018-02-26 11:08:00] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"229073"}
+[2018-02-26 11:09:35] SMS send. Massage data: {"nmb":"+380979263284","msg":"725801"}
+[2018-02-26 11:11:33] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"077564"}
+[2018-02-26 11:13:50] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"960690"}
+[2018-02-26 11:14:11] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"777030"}
+[2018-02-26 11:14:15] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"032827"}
+[2018-02-26 11:20:07] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"764972"}
+[2018-02-26 11:21:09] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"396433"}
+[2018-02-26 11:21:11] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"040349"}
+[2018-02-26 11:21:37] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"971696"}
+[2018-02-26 11:21:38] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"149309"}
+[2018-02-26 11:21:40] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"312870"}
+[2018-02-26 11:24:21] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"539470"}
+[2018-02-26 11:24:52] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"984873"}
+[2018-02-26 11:25:22] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"004695"}
+[2018-02-26 11:27:21] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"843938"}
+[2018-02-26 11:27:23] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"802772"}
+[2018-02-26 11:28:50] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"453667"}
+[2018-02-26 11:30:05] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"951660"}
+[2018-02-26 11:30:07] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"853085"}
+[2018-02-26 11:31:00] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"262430"}
+[2018-02-26 11:31:02] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"050275"}
+[2018-02-26 11:31:14] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"077631"}
+[2018-02-26 11:35:40] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"124588"}
+[2018-02-26 11:35:57] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"994146"}
+[2018-02-26 11:36:21] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"333937"}
+[2018-02-26 11:36:24] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"870099"}
+[2018-02-26 11:37:50] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"278832"}
+[2018-02-26 11:38:15] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"604199"}
+[2018-02-26 11:39:32] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"631731"}
+[2018-02-26 11:39:41] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"278056"}
+[2018-02-26 11:40:11] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"558529"}
+[2018-02-26 11:41:01] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"399511"}
+[2018-02-26 11:41:19] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"854537"}
+[2018-02-26 11:47:50] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"724704"}
+[2018-02-26 11:47:52] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"529765"}
+[2018-02-26 11:49:42] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"142545"}
+[2018-02-26 11:50:49] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"230441"}
+[2018-02-26 11:50:51] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"861225"}
+[2018-02-26 11:51:33] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"369476"}
+[2018-02-26 11:54:49] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"830881"}
+[2018-02-26 11:54:49] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"288722"}
+[2018-02-26 11:55:22] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"020023"}
+[2018-02-26 11:56:50] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"949046"}
+[2018-02-26 11:57:17] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"539775"}
+[2018-02-26 11:58:51] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"464375"}
+[2018-02-26 11:58:53] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"150593"}
+[2018-02-26 11:58:53] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"098160"}
+[2018-02-26 11:58:53] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"095398"}
+[2018-02-26 11:59:55] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"017624"}
+[2018-02-26 12:01:26] SMS send. Massage data: {"nmb":"+380979263284","msg":"872958"}
+[2018-02-26 12:05:45] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"000338"}
+[2018-02-26 12:11:37] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"859323"}
+[2018-02-26 12:13:36] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"518833"}
+[2018-02-26 12:33:36] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"504324"}
+[2018-02-26 12:34:47] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"705420"}
+[2018-02-26 13:03:47] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"146664"}
+[2018-02-26 13:15:30] SMS send. Massage data: {"nmb":"+380979263284","msg":"930196"}
+[2018-02-26 13:15:59] SMS send. Massage data: {"nmb":"+38(097)926-32-84","msg":"445286"}
+[2018-02-26 13:16:36] SMS send. Massage data: {"nmb":"+38(095)2135430","msg":"Пользователь TEST TEST (2640) оформил заказ № 3309"}

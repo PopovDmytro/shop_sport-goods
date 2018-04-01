@@ -1,0 +1,1 @@
+2013-03-26 18:06:08: imagepng(): Unable to open '/home/users/alvis/uk.rexframework.ru/rexframework/controllers/qrcode/temp/test.png' for writing: Permission denied
