@@ -20,7 +20,9 @@
     <div class="row align-center">
         <div class="column small-12">
             <h1 class="section-title section-title--blue">Новинки</h1>
-            {include file="pcatalog/product.block.inc.tpl" productList=$new_productList imageList=$new_imageList categoryList=$new_categoryList prodColor=$new_color}
+            <div class="my-slider my-slider_product">
+                {include file="pcatalog/product.block.inc.tpl" productList=$new_productList imageList=$new_imageList categoryList=$new_categoryList prodColor=$new_color}
+            </div>
             <div class="link-btn-holder text-center">
                 <a href="{url mod=product act=archive feature=new}" class="common_link-btn btn btn--blue">Смотреть все</a>
             </div>
@@ -31,7 +33,9 @@
     <div class="row align-center">
         <div class="column small-12">
             <h1 class="section-title section-title--blue">Лидеры продаж</h1>
-            {include file="pcatalog/product.block.inc.tpl" productList=$bestseller_productList imageList=$bestseller_imageList categoryList=$bestseller_categoryList prodColor=$bestseller_color}
+            <div class="my-slider my-slider_product">
+                {include file="pcatalog/product.block.inc.tpl" productList=$bestseller_productList imageList=$bestseller_imageList categoryList=$bestseller_categoryList prodColor=$bestseller_color}
+            </div>
             <div class="link-btn-holder text-center">
                 <a href="{url mod=product act=archive feature=bestseller}" class="common_link-btn btn btn--blue">Смотреть все</a>
             </div>

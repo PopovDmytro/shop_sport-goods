@@ -1,6 +1,6 @@
 {assign var=iteration value=0}
 <input type="hidden" id="count_next" value="{$count_next}">
-<h1>
+{*<h1>
     {if $task eq 'nakolenniki' and $brand_alias eq 'mizuno'}
         Наколенники Mizuno
     {elseif $task eq 'mjachi' and $brand_alias eq 'mikasa'}
@@ -14,7 +14,7 @@
     {else}
         {if $pcatalog->name_single}{$pcatalog->name_single}{else}{$pcatalog->name}{/if}
     {/if}
-</h1>
+</h1>*}
 {foreach from=$productList key=key item=featured name=product_list}
     {assign var=product_id value=$featured.id}
     {assign var=product_name value=$featured.name}
@@ -25,7 +25,7 @@
     {assign var=featuredCategory value=$categoryList.$product_id}
     {assign var=prodColoritem value=$prodColor.$product_id}
 
-        <li class="parent-list">
+        <div class="parent-list product_slide">
             <div class="img-box">
                 <a href="{url mod=product act=default task=$product_id cat_alias=$featuredCategory.alias}" class="wrapper">
                     {if $imageList.$product_id}
@@ -94,6 +94,7 @@
                             <a href="{url mod=product act=default cat_alias=$featuredCategory->alias task=$product_id}" class="more">Подробнее</a>
                         </div>
                     </div>
+
                     {if $prodColoritem}
                         <div class="photo-block" {if $prodColoritem|count < 6}id="nosliders" {/if}>
                             <ul class="photo-list slider6">
@@ -117,7 +118,8 @@
                             </ul>
                         </div>
                     {/if}
+
                 </div>
             </div>
-        </li>
+        </div>
 {/foreach}

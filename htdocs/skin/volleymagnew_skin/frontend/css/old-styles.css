@@ -168,6 +168,11 @@
 }
 /*-------*/
 /*fixes for new elements*/
+/*header cart*/
+.basket-holder {
+    display: flex;
+
+}
 .header_cart {
     position: relative;
     transition: 0.3s color;
@@ -204,7 +209,30 @@
     bottom: 5px;
     width: calc(100% - 10px);
 }
+.product-btn--cart:focus {
+    color: #ffffff;
+}
 /**/
 .home-content p {
     margin-left: 0 !important;
 }
+/*breadcrumbs */
+.breadcrumbs_list li,
+.breadcrumbs_list li a {
+    line-height: 22px;
+}
+/*slider price*/
+.categories_range-slider .slider-handle {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.categories_range-slider .slider {
+    margin-right: 20px;
+}
+
+.ui-slider-range.ui-widget-header {
+    background-color: #80db1c;
+    height: .5rem;
+    position: relative;
+}
+

@@ -1,28 +1,10 @@
-{assign var=iteration value=0}
-<input type="hidden" id="count_next" value="{$count_next}">
-{*<h1>
-    {if $task eq 'nakolenniki' and $brand_alias eq 'mizuno'}
-        Наколенники Mizuno
-    {elseif $task eq 'mjachi' and $brand_alias eq 'mikasa'}
-        Мячи Mikasa
-    {elseif $task eq 'mjachi' and $brand_alias eq 'select'}
-        Футзальные и футбольные мячи Select
-    {elseif $task eq 'obyv-dlja-bega' and $brand_alias eq 'asics'}
-        Кроссовки Asics для бега
-    {elseif $task eq 'obyv-dlja-bega' and $brand_alias eq 'mizuno'}
-        Кроссовки Mizuno для бега
-    {else}
-        {if $pcatalog->name_single}{$pcatalog->name_single}{else}{$pcatalog->name}{/if}
-    {/if}
-</h1>*}
-<div class="my-slider my-slider_product">
 {foreach from=$productList key=key item=featured name=product_list}
     {assign var=product_id value=$featured.id}
     {assign var=product_name value=$featured.name}
     {assign var=currBrand value=$brandList.$product_id}
     {assign var=featuredCategory value=$categoryList.$product_id}
     {assign var=prodColoritem value=$prodColor.$product_id}
-        <div class="my-sliders_slide product_slide">
+        <div class="column product_slide">
             <div class="product_entity">
                 <a href="{url mod=product act=default task=$product_id cat_alias=$featuredCategory.alias}" class="block-link">
                     <div class="img-holder">
@@ -59,12 +41,12 @@
                         <input type="hidden" name="cart[submit]" value="Купить">
                         <input type="hidden" name="cart[count]" id="info-product-count" value="1" />
 
-                        <button type="button" class="product-btn product-btn--cart">
+                        <a href="javascript:void(0);" class="product-btn product-btn--cart button-cart buy">
                             <span class="text-holder">
                                 {img src='main-page/cart_icon.png' class='btn-icon cart-icon'}В корзину
                             </span>
-                        </button>
-                        <a href="javascript:void(0)" pid="{$featured.id}" class="product-btn product-btn--compare compare_{$featured.id} {if $isset_compare}comp-added{/if}">
+                        </a>
+                        <a href="javascript:void(0)" pid="{$featured.id}" class="product-btn product-btn--compare pa_compare compare_{$featured.id} compare button-cart-active {if $isset_compare}comp-added{/if}">
                             {img src='main-page/compare_icon.png' class='compare-icon'}
                         </a>
                     </div>
@@ -98,4 +80,3 @@
             </div>
         </div>
 {/foreach}
-</div>

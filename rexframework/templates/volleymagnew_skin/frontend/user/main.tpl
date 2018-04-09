@@ -1,8 +1,23 @@
-<ul class="breadcrumbs">
-    <li><a href="{url mod=home}">Главная</a></li>
-    <li><a href="{url mod=user id=$user->id}">Профиль</a></li>
-    <li>Редактирование настроек: <a href="{url mod=user act=default id=$userentity.id}">{$userentity.login}</a></li>
-</ul>
+<div class="breadcrumbs-block row">
+    <div class="columns small-12">
+        <ul class="breadcrumbs_list no-bullet">
+            <li class="breadcrumbs_item">
+                <a href="{url mod=home}" class="breadcrumbs_link">
+                    <i aria-hidden="true" class="fa fa-home"></i>Главная
+                </a>
+            </li>
+            <li class="breadcrumbs_item">
+                <a href="{url mod=user id=$user->id}" class="breadcrumbs_link">Профиль</a>
+            </li>
+            <li class="breadcrumbs_item">
+                Редактирование настроек:
+                <a href="{url mod=user act=default id=$userentity.id}" class="breadcrumbs_link">&nbsp;{$userentity.login}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
 <div class="product-def">
     {include file="user/intobox.text.tpl"}
     <div class="into-box">

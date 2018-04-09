@@ -551,7 +551,9 @@ function addProdByRexSubmit(divWithForm) {
                 $.rex('cart', 'cart', {}, function (data) {
                     if (data !== false) {
                         $('.basket-holder').each(function () {
-                            $(this).replaceWith(data)
+                            $(this).replaceWith(data);
+
+                            console.log(data);
                         });
                         cart_button.html('В корзине!').attr('href', '/cart/').addClass('cart-added');
                         basket_right.addClass('adding');
@@ -686,17 +688,17 @@ function generateLightbox() {
 
 $(function () {
     if (parseInt(ajax_paging) == 1) {
-        $(document).on('click.getAjaxPaging', 'div.ajax-paging', function () {
+        $(document).on('click.getAjaxPaging', '.ajax-paging', function () {
             var $link = $('div.pagination li.pagination_div').next('.pagin-item');
             var number_page = $link.find('a').html();
             $.post($link.find('a').attr('href'), {rex_request: 1}, function (data) {
                 var json_response = $.parseJSON(data);
                 if (json_response !== false) {
-                    $('#products-contents > ul > li:last').after(json_response.content.content);
+                    $('#products-contents .product_slide:last').after(json_response.content.content);
                     $link.removeClass('pagin-item').addClass('pagination_div active').html('<b>' + number_page + '</b>');
                     var countNext = parseInt(json_response.content.count_next);
                     hideShowNext(countNext);
-                    sliders();
+                    // sliders();
                     changeSku();
                 }
             });
@@ -771,7 +773,7 @@ function Views() {
                 changeSku();
             }
         });
-        sliders();
+        // sliders();
     });
 }
 

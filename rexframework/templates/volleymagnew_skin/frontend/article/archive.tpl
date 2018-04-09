@@ -46,26 +46,26 @@
 
         {*TODO need to be changed pagination html*}
         <div class="pagination round" align="center" style="visibility: visible;">
-		            {if $pager_article && $pager_count neq 1}
-                        <ul>
-						    {foreach from=$pager_article->pages key=key item=item}
-							    {if $pager_article->currentPage == $item}
-								    <li class="pagination_div active">
-                                        <b>{$item}</b>
-                                    </li>
-							    {elseif $item eq 1}
-                                    <li class="pagin-item">
-								        <a href="{url mod=article act=archive}">{$item}</a>
-                                    </li>
-							    {else}
-                                    <li class="pagin-item">
-								        <a href="{url mod=article act=archive task=$item}">{$item}</a>
-                                    </li>
-							    {/if}			
-						    {/foreach}
-                        </ul>
-					{/if}
-		        </div>
+            {if $pager_article && $pager_count neq 1}
+                <ul>
+                    {foreach from=$pager_article->pages key=key item=item}
+                        {if $pager_article->currentPage == $item}
+                            <li class="pagination_div active">
+                                <b>{$item}</b>
+                            </li>
+                        {elseif $item eq 1}
+                            <li class="pagin-item">
+                                <a href="{url mod=article act=archive}">{$item}</a>
+                            </li>
+                        {else}
+                            <li class="pagin-item">
+                                <a href="{url mod=article act=archive task=$item}">{$item}</a>
+                            </li>
+                        {/if}
+                    {/foreach}
+                </ul>
+            {/if}
+        </div>
         {*---*}
     </section>
 {/if}

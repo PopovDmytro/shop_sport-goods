@@ -1,7 +1,19 @@
-<ul class="breadcrumbs">
-    <li><a href="{url mod=home}">Главная</a></li>
-    <li>Поиск: {$q}</li>
-</ul>
+<div class="breadcrumbs-block row">
+    <div class="columns small-12">
+        <ul class="breadcrumbs_list no-bullet">
+            <li class="breadcrumbs_item">
+                <a href="{url mod=home}" class="breadcrumbs_link">
+                    <i aria-hidden="true" class="fa fa-home"></i>Главная
+                </a>
+            </li>
+            <li class="breadcrumbs_item active">
+                <a href="javascript:void(0)" class="breadcrumbs_link">Поиск: {$q}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
 <div id="products-contents">
     {if $notFound}
         <h2>Поиск не дал результатов. Попробуйте изменить запрос.</h2>

@@ -2,15 +2,26 @@
 {include file="home/404.tpl"}
 {else}
 {assign var=product_id value=$product->id}
-<ul class="breadcrumbs">
-    <li><a href="{url mod=home}">Главная</a></li>
-    {strip}
-        {foreach from=$navCategoryList key=key item=category name=navBar}
-            <li><a href="{url mod=pCatalog act=default task=$category.alias}">{$category.name}</a></li>
-        {/foreach}
-        {*<li>{$product->name|truncate:40:'...'}</li>*}
-    {/strip}
-</ul>
+<div class="breadcrumbs-block row">
+    <div class="columns small-12">
+        <ul class="breadcrumbs_list no-bullet">
+            <li class="breadcrumbs_item">
+                <a href="{url mod=home}" class="breadcrumbs_link">
+                    <i aria-hidden="true" class="fa fa-home"></i>Главная
+                </a>
+            </li>
+            {strip}
+                {foreach from=$navCategoryList key=key item=category name=navBar}
+                    <li class="breadcrumbs_item active">
+                        <a href="{url mod=pCatalog act=default task=$category.alias}" class="breadcrumbs_link">{$category.name}</a>
+                    </li>
+                {/foreach}
+            {/strip}
+        </ul>
+    </div>
+</div>
+
+
 <div class="product-page">
     {include file='product/razmer.tpl'}
     <div class="block-background"></div>

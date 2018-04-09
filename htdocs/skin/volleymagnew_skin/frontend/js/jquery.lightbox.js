@@ -1,7 +1,7 @@
 /*!
- * jquery.lightbox.js
+ * jquery.lightbox.js v1.3
  * https://github.com/duncanmcdougall/Responsive-Lightbox
- * Copyright 2013 Duncan McDougall and other contributors; @license Creative Commons Attribution 2.5
+ * Copyright 2016 Duncan McDougall and other contributors; @license Creative Commons Attribution 2.5
  *
  * Options: 
  * margin - int - default 50. Minimum margin around the image
@@ -31,31 +31,28 @@
             current: null,
             locked: false,
             caption: null,
-			
+
             init: function (items) {
                 plugin.items = items;
-				plugin.selector = "lightbox-"+Math.random().toString().replace('.','');
                 var id = 'lightbox-' + Math.floor((Math.random() * 100000) + 1);
-                if (!plugin.lightbox) {
-                    $('body').append(
-                      '<div id="'+id+'" class="lightbox" style="display:none;">'+
-                      '<a href="#" class="lightbox-close lightbox-button"></a>' +
-                      '<div class="lightbox-nav">'+
-                      '<a href="#" class="lightbox-previous lightbox-button"></a>' +
-                      '<a href="#" class="lightbox-next lightbox-button"></a>' +
-                      '</div>' +
-                      '<div href="#" class="lightbox-caption"><p></p></div>' +
-                      '</div>'
-                    );
 
-                    plugin.lightbox = $("#"+id);
-                    plugin.caption = $('.lightbox-caption', plugin.lightbox);
-                }
+                $('body').append(
+                    '<div id="' + id + '" class="lightbox" style="display:none;">' +
+                    '<a href="#" class="lightbox__close lightbox__button"></a>' +
+                    '<a href="#" class="lightbox__nav lightbox__nav--prev lightbox__button"></a>' +
+                    '<a href="#" class="lightbox__nav lightbox__nav--next lightbox__button"></a>' +
+                    '<div href="#" class="lightbox__caption"><p></p></div>' +
+                    '</div>'
+                );
+
+                plugin.lightbox = $("#" + id);
+
+                plugin.caption = $('.lightbox__caption', plugin.lightbox);
 
                 if (plugin.items.length > 1 && opts.nav) {
-                    $('.lightbox-nav', plugin.lightbox).show();
+                    $('.lightbox__nav', plugin.lightbox).show();
                 } else {
-                    $('.lightbox-nav', plugin.lightbox).hide();
+                    $('.lightbox__nav', plugin.lightbox).hide();
                 }
 
                 plugin.bindEvents();
@@ -63,16 +60,16 @@
             },
 
             loadImage: function () {
-                if(opts.blur) {
+                if (opts.blur) {
                     $("body").addClass("blurred");
                 }
                 $("img", plugin.lightbox).remove();
-                plugin.lightbox.fadeIn('fast').append('<span class="lightbox-loading"></span>');
+                plugin.lightbox.fadeIn('fast').append('<span class="lightbox__loading"></span>');
 
                 var img = $('<img src="' + $(plugin.current).attr('href') + '" draggable="false">');
 
-                $(img).load(function () {
-                    $('.lightbox-loading').remove();
+                $(img).on('load', function () {
+                    $('.lightbox__loading').remove();
                     plugin.lightbox.append(img);
                     plugin.image = $("img", plugin.lightbox).hide();
                     plugin.resizeImage();
@@ -82,10 +79,10 @@
 
             setCaption: function () {
                 var caption = $(plugin.current).data('caption');
-                if(!!caption && caption.length > 0) {
+                if (!!caption && caption.length > 0) {
                     plugin.caption.fadeIn();
                     $('p', plugin.caption).text(caption);
-                }else{
+                } else {
                     plugin.caption.hide();
                 }
             },
@@ -107,10 +104,11 @@
                     iHeight = wHeight;
                     iWidth = Math.round(iWidth * ratio);
                 }
+
                 plugin.image.width(iWidth).height(iHeight).css({
-						'top': ($(window).height() - plugin.image.outerHeight()) / 2 + 'px',
-						'left': ($(window).width() - plugin.image.outerWidth()) / 2 + 'px'
-					}).show();
+                    'top': ($(window).height() - plugin.image.outerHeight()) / 2 + 'px',
+                    'left': ($(window).width() - plugin.image.outerWidth()) / 2 + 'px'
+                }).show();
                 plugin.locked = false;
             },
 
@@ -123,57 +121,10 @@
                     return false;
                 }
                 plugin.locked = true;
-                //if (plugin.getCurrentIndex() >= plugin.items.length - 1) {
-                //    $(plugin.items[0]).click();
-                //} else {
-                //    $(plugin.items[plugin.getCurrentIndex() + 1]).click();
-                //}
-                var curentIndex = plugin.getCurrentIndex();
-                if ( curentIndex >= plugin.items.length - 1 ) {
-                    if ( plugin.items[0].className.indexOf('gallery') != -1 ) {     // проверка сначала
-                        $(plugin.items[0]).click();
-                    } else {
-                        var i_begin = 0;
-                        var ten_begin = -1;
-                        while ( ten_begin == -1 && ++i_begin < plugin.items.length - 1 ) {
-                            ten_begin = plugin.items[i_begin].indexOf('gallery');
-                        }
-                        if ( i_begin >= plugin.items.length - 1) {     // возврат в 0
-                            $(plugin.items[0]).click();
-                        } else {
-                            $(plugin.items[i_begin]).click();
-                        }
-                    }
+                if (plugin.getCurrentIndex() >= plugin.items.length - 1) {
+                    $(plugin.items[0]).click();
                 } else {
-                    if ( plugin.items[curentIndex + 1].className.indexOf('gallery') != -1) {    // с текущего индекса
-                        $(plugin.items[curentIndex + 1]).click();
-                    } else {
-                        var i_next = 0;
-                        var ten_next = -1;
-                        while ( ten_next == -1 && curentIndex + ++i_next <= plugin.items.length - 1 ) {
-                            ten_next = plugin.items[curentIndex + i_next].className.indexOf('gallery');
-                        }
-                        if ( curentIndex + i_next < plugin.items.length ) {
-                            if ( ten_next != -1 ) {
-                                $(plugin.items[curentIndex + i_next]).click();
-                            }
-                        } else {
-                            if ( plugin.items[1].className.indexOf('gallery') != -1 ) {     // проверка сначала
-                                $(plugin.items[1]).click();
-                            } else {
-                                var i_begin2 = 1;
-                                var ten_begin2 = -1;
-                                while ( ten_begin2 == -1 && ++i_begin2 < plugin.items.length - 1 ) {
-                                    ten_begin2 = plugin.items[i_begin2].indexOf('gallery');
-                                }
-                                if ( i_begin2 >= plugin.items.length - 1 ) {     // возврат в 0
-                                    $(plugin.items[0]).click();
-                                } else {
-                                    $(plugin.items[i_begin2]).click();
-                                }
-                            }
-                        }
-                    }
+                    $(plugin.items[plugin.getCurrentIndex() + 1]).click();
                 }
             },
 
@@ -182,59 +133,16 @@
                     return false;
                 }
                 plugin.locked = true;
-                //if (plugin.getCurrentIndex() <= 0) {
-                //    $(plugin.items[plugin.items.length - 1]).click();
-                //} else {
-                //    $(plugin.items[plugin.getCurrentIndex() - 1]).click();
-                //}
-                var curentIndex = plugin.getCurrentIndex();
-                if (curentIndex <= 1) {
-                    if ( plugin.items[plugin.items.length - 1].className.indexOf('gallery') != -1) {    // проверка с конца
-                        $(plugin.items[plugin.items.length - 1]).click();
-                    } else {
-                        var i_end = 0;
-                        var ten_end = -1;
-                        while ( ten_end == -1 && plugin.items.length >= ++i_end) {
-                            ten_end = plugin.items[plugin.items.length - i_end].className.indexOf('gallery');
-                        }
-                        if ( ten_end != -1 ) {
-                            $(plugin.items[plugin.items.length - i_end]).click();
-                        }
-                    }
+                if (plugin.getCurrentIndex() <= 0) {
+                    $(plugin.items[plugin.items.length - 1]).click();
                 } else {
-                    if ( plugin.items[curentIndex - 1].className.indexOf('gallery') != -1) {    // с текущего индекса
-                        $(plugin.items[curentIndex - 1]).click();
-                    } else {
-                        var i_prev = 0;
-                        var ten_prev = -1;
-                        while ( ten_prev == -1 && ++i_prev <= curentIndex ) {
-                            ten_prev = plugin.items[curentIndex - i_prev].className.indexOf('gallery');
-                        }
-                        if ( i_prev <= curentIndex ) {      // не дойшли к началу
-                            if ( ten_prev != -1 ) {
-                                $(plugin.items[curentIndex - i_prev]).click();
-                            }
-                        } else {
-                            if ( plugin.items[plugin.items.length - 1].className.indexOf('gallery') != -1) {    // проверка с конца
-                                $(plugin.items[plugin.items.length - 1]).click();
-                            } else {
-                                var i_end2 = 0;
-                                var ten_end2 = -1;
-                                while ( ten_end2 == -1 && plugin.items.length >= ++i_end2) {
-                                    ten_end2 = plugin.items[plugin.items.length - i_end2].className.indexOf('gallery');
-                                }
-                                if ( ten_end2 != -1 ) {
-                                    $(plugin.items[plugin.items.length - i_end2]).click();
-                                }
-                            }
-                        }
-                    }
+                    $(plugin.items[plugin.getCurrentIndex() - 1]).click();
                 }
             },
 
             bindEvents: function () {
                 $(plugin.items).click(function (e) {
-                    if(!plugin.lightbox.is(":visible") && ($(window).width() < opts.minSize || $(window).height() < opts.minSize)) {
+                    if (!plugin.lightbox.is(":visible") && ($(window).width() < opts.minSize || $(window).height() < opts.minSize)) {
                         $(this).attr("target", "_blank");
                         return;
                     }
@@ -268,19 +176,19 @@
                 });
 
                 // Previous click
-                $(plugin.lightbox).on('click', '.lightbox-previous', function () {
+                $(plugin.lightbox).on('click', '.lightbox__nav--prev', function () {
                     plugin.previous();
                     return false;
                 });
 
                 // Next click
-                $(plugin.lightbox).on('click', '.lightbox-next', function () {
+                $(plugin.lightbox).on('click', '.lightbox__nav--next', function () {
                     plugin.next();
                     return false;
                 });
 
                 // Close click
-                $(plugin.lightbox).on('click', '.lightbox-close', function () {
+                $(plugin.lightbox).on('click', '.lightbox__close', function () {
                     plugin.close();
                     return false;
                 });

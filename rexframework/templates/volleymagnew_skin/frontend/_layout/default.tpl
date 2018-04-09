@@ -24,14 +24,14 @@
     {*{css src="all.css"}*}
     {*{css src="form.css"}*}
 
-    {css src="slider.css"}
+    {*{css src="slider.css"}*}
     {*css src="jquery.lightbox-0.5.css"*}
     {css src="jquery.lightbox.css"}
     {css src="jquery.Jcrop.css"}
     {css src="jquery.autocomplete.css"}
     {css src="jquery.carousel.css"}
     {css src="superfish_new.css"}
-    {css src="jquery.ui.all.css"}
+    {*{css src="jquery.ui.all.css"}*}
     {css src="jquery.rex.tooltip.css"}
     {if $mod eq 'user' and $act eq 'avatar'}
     {css src="rex-ui-style.css"}
@@ -39,11 +39,7 @@
 
     {*JS*}
     {*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>*}
-    {*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
-            crossorigin="anonymous">
-    </script>*}
-    {*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>*}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 
     {*new assets*}
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800&amp;amp;subset=cyrillic,cyrillic-ext,latin-ext"
@@ -53,11 +49,10 @@
     {css src="app.css"}
     {css src="old-styles.css"}
 
-    {js src="app.js"}
+    {*{js src="app.js"}*}
     {*new assets end*}
 
     {js src="main.js"}
-    {*js src="jquery-1.7.1.min.js"*}
     {js src="jquery.autocomplete.js"}
     {*js src="jquery.lightbox-0.5.pack.js"*}
     {js src="jquery.lightbox.js"}
@@ -72,7 +67,7 @@
     {js src="jquery.ui.core.js"}
     {js src="jquery.ui.widget.js"}
     {js src="jquery.ui.mouse.js"}
-    {*{js src="jquery.ui.slider.js"}*}
+    {js src="jquery.ui.slider.js"}
     {*{js src="jquery.bxslider.js"}*}
     {js src="mainvolley.js"}
 
@@ -366,14 +361,9 @@
     </script>
 {/literal}
 
-
-
-{*TODO for remove bottom ad element*}
-<script>
-    $(document).ready(function () {
-        $('[rel="nofollow"]').css('display', 'none');
-    });
-</script>
+{*new js*}
+{js src="slick.min.js"}
+{js src="slick-init.js"}
 {**}
 </body>
 </html>
