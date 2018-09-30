@@ -8,9 +8,11 @@
                     </a>
                 </li>
                 {strip}
-                <li class="breadcrumbs_item active">
-                    <a href="javascript:void(0)" class="breadcrumbs_link">{$pcatalog->name}</a>
-                </li>
+                    {if $pcatalog->name}
+                    <li class="breadcrumbs_item active">
+                        <a href="javascript:void(0)" class="breadcrumbs_link">{$pcatalog->name}</a>
+                    </li>
+                    {/if}
                     {if $brandName}
                         <li class="breadcrumbs_item active">
                             <a href="javascript:void(0)" class="breadcrumbs_link">{$brandName}</a>
@@ -68,22 +70,22 @@
                                     </li>
                                 {elseif $item eq 1}
                                     {if $brand_alias}
-                                        <li class="pagin-item"><a
-                                                    href="{url mod=pCatalog act=default brand_alias=$brand_alias  task=$pcatalog->alias}{if $parseUrl.query}filter/?{$parseUrl.query}{/if}">{$item}</a>
+                                        <li class="pagin-item">
+                                            <a href="{url mod=pCatalog act=default brand_alias=$brand_alias  task=$pcatalog->alias}{if $parseUrl.query}filter/?{$parseUrl.query}{/if}">{$item}</a>
                                         </li>
                                     {else}
-                                        <li class="pagin-item"><a
-                                                    href="{url mod=pCatalog act=default  task=$pcatalog->alias}{if $parseUrl.query}filter/?{$parseUrl.query}{/if}">{$item}</a>
+                                        <li class="pagin-item">
+                                            <a href="{url mod=pCatalog act=default  task=$pcatalog->alias}{if $parseUrl.query}filter/?{$parseUrl.query}{/if}">{$item}</a>
                                         </li>
                                     {/if}
                                 {else}
                                     {if $brand_alias}
-                                        <li class="pagin-item"><a
-                                                    href="{url mod=pCatalog act=default brand_alias=$brand_alias task=$pcatalog->alias}{$item}/{if $parseUrl.query}filter/?{$parseUrl.query}{/if}">{$item}</a>
+                                        <li class="pagin-item">
+                                            <a href="{url mod=pCatalog act=default brand_alias=$brand_alias task=$pcatalog->alias}{$item}/{if $parseUrl.query}filter/?{$parseUrl.query}{/if}">{$item}</a>
                                         </li>
                                     {else}
-                                        <li class="pagin-item"><a
-                                                    href="{url mod=pCatalog act=default task=$pcatalog->alias}{$item}/{if $parseUrl.query}filter/?{$parseUrl.query}{/if}">{$item}</a>
+                                        <li class="pagin-item">
+                                            <a href="{url mod=pCatalog act=default task=$pcatalog->alias}{$item}/{if $parseUrl.query}filter/?{$parseUrl.query}{/if}">{$item}</a>
                                         </li>
                                     {/if}
                                 {/if}
@@ -182,3 +184,5 @@
     </div>
     <div id="levels-contents"></div>
 {/strip}
+
+{include file="product/last.tpl"}

@@ -7,23 +7,23 @@
             {assign var=url value=""}
         {/if}
         <div class="categories_price-holder">
-            <div class="btns-holder">
-                {if $valuta eq 'грн'}
-                    <a href="{url mod=pCatalog act=default task=$pcatalog->alias}filter/?{if $parseUrl.query}{$parseUrl.query}&{/if}filter[rangefrom]=0&filter[rangeto]={$pricerange.pricefrom|floor}"
-                       class="categories_price-btn">До&nbsp;<span id="fstVal">{$pricerange.pricefrom|floor}</span>&nbsp;грн.</a>
-                    <a href="{url mod=pCatalog act=default task=$pcatalog->alias}filter/?{if $parseUrl.query}{$parseUrl.query}&{/if}filter[rangefrom]=0&filter[rangeto]={$pricerange.priceto|floor}"
-                       class="categories_price-btn">До&nbsp;<span id="secVal">{$pricerange.priceto|floor}</span>&nbsp;грн.</a>
-                {elseif $valuta eq '$'}
-                    <a href="{url mod=pCatalog act=default task=$pcatalog->alias}filter/?{if $parseUrl.query}{$parseUrl.query}&{/if}filter[rangefrom]=0&filter[rangeto]={$pricerange.pricefrom|floor}"
-                       class="categories_price-btn">До&nbsp;$<span id="fstVal">{$pricerange.pricefrom|floor}</span></a>
-                    <a href="{url mod=pCatalog act=default task=$pcatalog->alias}filter/?{if $parseUrl.query}{$parseUrl.query}&{/if}filter[rangefrom]=0&filter[rangeto]={$pricerange.priceto|floor}"
-                       class="categories_price-btn">До&nbsp;$<span id="secVal">{$pricerange.priceto|floor}</span></a>
-                {/if}
-            </div>
+
             {*slider price*}
             <div class="dotted"></div>
-            <div class="categories_range-slider" >
-
+            <div class="categories_range-slider demo" >
+                <div class="btns-holder">
+                    {if $valuta eq 'грн'}
+                        <a href="{url mod=pCatalog act=default task=$pcatalog->alias}filter/?{if $parseUrl.query}{$parseUrl.query}&{/if}filter[rangefrom]=0&filter[rangeto]={$pricerange.pricefrom|floor}"
+                           class="categories_price-btn">От&nbsp;<span id="fstVal">{$pricerange.pricefrom|floor}</span>&nbsp;грн.</a>
+                        <a href="{url mod=pCatalog act=default task=$pcatalog->alias}filter/?{if $parseUrl.query}{$parseUrl.query}&{/if}filter[rangefrom]=0&filter[rangeto]={$pricerange.priceto|floor}"
+                           class="categories_price-btn">До&nbsp;<span id="secVal">{$pricerange.priceto|floor}</span>&nbsp;грн.</a>
+                    {elseif $valuta eq '$'}
+                        <a href="{url mod=pCatalog act=default task=$pcatalog->alias}filter/?{if $parseUrl.query}{$parseUrl.query}&{/if}filter[rangefrom]=0&filter[rangeto]={$pricerange.pricefrom|floor}"
+                           class="categories_price-btn">От&nbsp;$<span id="fstVal">{$pricerange.pricefrom|floor}</span></a>
+                        <a href="{url mod=pCatalog act=default task=$pcatalog->alias}filter/?{if $parseUrl.query}{$parseUrl.query}&{/if}filter[rangefrom]=0&filter[rangeto]={$pricerange.priceto|floor}"
+                           class="categories_price-btn">До&nbsp;$<span id="secVal">{$pricerange.priceto|floor}</span></a>
+                    {/if}
+                </div>
                 <div id="amount" type="text" name="pcatalog[range]">
                     {if $valuta eq 'грн'}
                         {if $pricerange.pricefrom}
@@ -97,9 +97,7 @@
                         step: 1,
                         min: min,
                         max: max,
-                        values: [
-                            {/literal}  {if $pricerange.pricefrom}{$pricerange.pricefrom|round:0}{else}0{/if}, {if $pricerange.priceto}{$pricerange.priceto|round:0}{else}0{/if}  {literal}
-                        ],
+                        values: [ {/literal}{if $pricerange.pricefrom}{$pricerange.pricefrom|round:0}{else}0{/if}, {if $pricerange.priceto}{$pricerange.priceto|round:0}{else}0{/if}{literal} ],
                         slide: function (event, ui) {
                             if (typeof window.sliderTimeout != 'undefined') {
                                 clearTimeout(window.sliderTimeout);
@@ -112,7 +110,6 @@
                             $("#rangeto").val(ui.values[1]);
                         }
                     });
-
                     $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
                         " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 

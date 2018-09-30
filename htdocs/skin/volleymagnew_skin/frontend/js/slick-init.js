@@ -1,39 +1,66 @@
 var newsSettings = {
         slidesToShow: 3,
         slidesToScroll: 1,
-        autoplay: !1,
-        autoplaySpeed: 3e3,
-        accessibility: !1,
-        draggable: !1,
-        responsive: [{breakpoint: 1024, settings: {slidesToShow: 3, slidesToScroll: 1, infinite: !0}}, {
-            breakpoint: 600,
-            settings: {slidesToShow: 1, slidesToScroll: 1}
-        }],
+        autoplay: false,
+        autoplaySpeed: 3000,
+        accessibility: false,
+        draggable: false,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ],
         nextArrow: '<button type="button" class="slick-next"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/arrow-next.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/arrow-next--hover.png"></button>',
         prevArrow: '<button type="button" class="slick-prev"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/arrow-prev.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/arrow-prev--hover.png"></button>'
     },
 
     mainSliderSettings = {
-        arrows: !1,
+        arrows: false,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: !0,
-        autoplaySpeed: 3e3,
-        accessibility: !1,
-        draggable: !1
+        autoplay: true,
+        autoplaySpeed: 3000,
+        accessibility: false,
+        draggable: false
     },
 
     productsSettings = {
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: !1,
-        autoplaySpeed: 3e3,
-        accessibility: !1,
-        draggable: !1,
-        responsive: [{breakpoint: 1200, settings: {slidesToShow: 3, slidesToScroll: 1, infinite: !0}}, {
-            breakpoint: 1024,
-            settings: {slidesToShow: 2, slidesToScroll: 1, infinite: !0}
-        }],
+        autoplay: false,
+        autoplaySpeed: 3000,
+        accessibility: false,
+        draggable: false,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true
+                }
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    infinite: true
+                }
+            }
+        ],
         nextArrow: '<button type="button" class="slick-next"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/arrow-next.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/arrow-next--hover.png"></button>',
         prevArrow: '<button type="button" class="slick-prev"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/arrow-prev.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/arrow-prev--hover.png"></button>'
     },
@@ -41,52 +68,80 @@ var newsSettings = {
     partnersSlider = {
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: !0,
-        autoplaySpeed: 3e3,
-        accessibility: !1,
-        draggable: !1,
-        responsive: [{breakpoint: 1024, settings: {slidesToShow: 3, slidesToScroll: 1}}],
+        autoplay: true,
+        autoplaySpeed: 3000,
+        accessibility: false,
+        draggable: false,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                }
+            }
+        ],
         nextArrow: '<button type="button" class="slick-next"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/right-arrow.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/right-arrow--hover.png"></button>',
         prevArrow: '<button type="button" class="slick-prev"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/left-arrow.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/left-arrow--hover.png"></button>'
     };
 
-!function (e) {
-    function t() {
-        n = e("#sliderOutput1").attr("aria-valuenow"), i = e("#sliderOutput2").attr("aria-valuenow"), o.text(n), s.text(i)
-    }
-
-    e(function () {
-
-        var t = function () {
-            e("#news-label").addClass("isActive").siblings().removeClass("isActive"),
-            e("#publications").hide(),
-            e("#news").show(),
-            e(".my-slider_news").slick(newsSettings)
-        },
-        n = function () {
-
-            e("#publications-label").addClass("isActive").siblings().removeClass("isActive"),
-            e("#news").hide(),
-            e("#publications").show(),
-            e(".my-slider_publication").slick(newsSettings)
+(function ($) {
+    $(function () {
+        // News slider
+        var newsSlider = function () {
+            $('#news-label').addClass('isActive').siblings().removeClass('isActive');
+            $('#publications').hide();
+            $('#news').show();
+            $('.my-slider_news').slick(newsSettings);
         };
-        t(),
-        e("#publications-label").on("click", function () {
-            n()
-        }),
-        e("#news-label").on("click", function () {
-            t()
-        }),
-        e(".my-slider_main").slick(mainSliderSettings),
-        e(".my-slider_product").slick(productsSettings),
-        e(".my-slider_partners").slick(partnersSlider)
+
+        var publicationsSlider = function () {
+            $('#publications-label').addClass('isActive').siblings().removeClass('isActive');
+            $('#news').hide();
+            $('#publications').show();
+            $('.my-slider_publication').slick(newsSettings);
+        };
+
+        newsSlider();
+
+        // Publications
+        $('#publications-label').on('click', function () {
+            publicationsSlider();
+        });
+
+        $('#news-label').on('click', function () {
+            newsSlider();
+        });
+
+
+        // Main slider
+        $('.my-slider_main').slick(mainSliderSettings);
+
+        // Product slider
+        $('.my-slider_product').slick(productsSettings);
+
+        // Partners slider
+        $('.my-slider_partners').slick(partnersSlider);
     });
-    var n, i,
-        o = e("#fstVal"), s = e("#secVal");
-        t(),
-        e("#sliderOutput1, #sliderOutput2").on("mousedown", function () {
-            return e(document).on("mousemove", t).one("mouseup", function () {
-                return e(document).off("mousemove", t)
-            })
-        })
-}(jQuery);
+
+    var dataFstPrice;
+    var dataSecPrice;
+    var textFstPrice = $('#fstVal');
+    var textSecPrice = $('#secVal');
+    function setText() {
+        dataFstPrice = ($('#sliderOutput1').attr('aria-valuenow'));
+        dataSecPrice = ($('#sliderOutput2').attr('aria-valuenow'));
+        textFstPrice.text(dataFstPrice);
+        textSecPrice.text(dataSecPrice);
+    }
+    setText();
+    //$('#sliderOutput1, #sliderOutput2').on('mousemove', setText);
+
+    $('#sliderOutput1, #sliderOutput2').on("mousedown", () =>
+    $(document)
+        .on("mousemove", setText)
+        .one("mouseup", () => $(document).off("mousemove", setText))
+)
+
+})($j);
+

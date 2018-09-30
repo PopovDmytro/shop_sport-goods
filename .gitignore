@@ -4,7 +4,7 @@ htdocs/content/file/
 htdocs/content/images/
 htdocs/content/attach/
 rexframework/files/
-rexframework/project/config.ini
-rexframework/project/settings.ini
+#rexframework/project/config.ini
+#rexframework/project/settings.ini
 rexframework/templates_c/
 update.bat

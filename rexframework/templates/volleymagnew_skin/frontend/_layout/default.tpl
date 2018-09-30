@@ -38,8 +38,7 @@
     {/if}
 
     {*JS*}
-    {*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>*}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
     {*new assets*}
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800&amp;amp;subset=cyrillic,cyrillic-ext,latin-ext"
@@ -212,6 +211,7 @@
             </div>
         </header>
         {*end header*}
+
         {*callback form popoup*}
         <div class="bells_form">
             <div class="name-bell"><h3>Заказать обратный звонок</h3></div>
@@ -230,11 +230,15 @@
         </div>
         <div class="bell-background"></div>
         {*end callback form popoup*}
+
+        {include file="pcatalog/menu.inc.tpl"}
+
         {*main*}
         <main class="main-content-wrapper">
             {workspace}
         </main>
         {*end main*}
+
         {*footer*}
         <footer class="main-footer">
             <section class="footer_main-section">
@@ -311,12 +315,6 @@
                             <li>
                                 <a href="https://facebook.com/volleymag" target="_blank"> {img src='footer/facebook_icon.png'} </a>
                             </li>
-                            {*<li>
-                                <a href="#"> {img src='footer/G+_icon.png'} </a>
-                            </li>*}
-                            {*<li>
-                                <a href="#"> {img src='footer/instagram_icon.png'} </a>
-                            </li>*}
                         </ul>
                     </div>
                 </div>
@@ -362,8 +360,18 @@
 {/literal}
 
 {*new js*}
-{js src="slick.min.js"}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>var $j = jQuery.noConflict(true);</script>
+{js src="slick.js"}
 {js src="slick-init.js"}
 {**}
+
+{*TODO remove bottom 000webhost button*}
+<script>
+$(document).ready(function() {
+	$('[rextitle]').css('display','none');
+});
+</script>
+
 </body>
 </html>

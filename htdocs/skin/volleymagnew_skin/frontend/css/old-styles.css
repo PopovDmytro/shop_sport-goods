@@ -213,9 +213,18 @@
     color: #ffffff;
 }
 /**/
+.breadcrumbs-block [href="javascript:void(0)"] {
+    cursor: default;
+}
+
 .home-content p {
     margin-left: 0 !important;
 }
+
+.basket-holder {
+    align-items: center;
+}
+
 /*breadcrumbs */
 .breadcrumbs_list li,
 .breadcrumbs_list li a {
@@ -235,4 +244,6 @@
     height: .5rem;
     position: relative;
 }
+
+
 

@@ -43,36 +43,38 @@ class ProductController extends \RexShop\ProductController
             return true;
         }
 
-        $lastproducts = array($this->entity->id);
-        if(isset($_COOKIE['lastproducts'])) {
-            $lastproducts = array_merge($lastproducts, json_decode($_COOKIE['lastproducts'], true));
-        }
+//        $lastproducts = array($this->entity->id);
+//        if(isset($_COOKIE['lastproducts'])) {
+//            $lastproducts = array_merge($lastproducts, json_decode($_COOKIE['lastproducts'], true));
+//        }
+//
+//        $lastproducts = array_slice(array_unique ($lastproducts), 0, 11);
+//        setcookie('lastproducts',json_encode($lastproducts) , time() + (86400 * 30), '/', RexConfig::get('Project', 'cookie_domain'));
+//
+//        $lastproductsEntity = RexFactory::entity('product');
+//        unset($lastproducts[array_search($this->entity->id,$lastproducts)]);
+//        $ids=implode($lastproducts,"','");
+//        $sql= "SELECT
+//              p.*,
+//              pc.`alias` AS palias,
+//              pa.`id` AS `pimageid`,
+//              pa.`color_sorder`,
+//              pa.`image`,
+//              s.`sku_article`
+//            FROM
+//              product AS p
+//              INNER JOIN pcatalog AS pc
+//                ON pc.`id` = p.`category_id`
+//              LEFT JOIN pimage AS pa
+//                ON pa.`product_id` = p.`id`
+//                 LEFT JOIN `sku` AS s ON s.`product_id`=p.`id`
+//            WHERE p.id IN ('$ids')
+//            AND s.`active`='1'
+//            GROUP BY p.`id`
+//            ORDER BY FIELD(p.`id`,'$ids')";
+//        RexDisplay::assign('lastproduct',  XDatabase::getAll($sql));
 
-        $lastproducts = array_slice(array_unique ($lastproducts), 0, 11);
-        setcookie('lastproducts',json_encode($lastproducts) , time() + (86400 * 30), '/', RexConfig::get('Project', 'cookie_domain'));
-
-        $lastproductsEntity = RexFactory::entity('product');
-        unset($lastproducts[array_search($this->entity->id,$lastproducts)]);
-        $ids=implode($lastproducts,"','");
-        $sql= "SELECT 
-              p.*,
-              pc.`alias` AS palias,
-              pa.`id` AS `pimageid`,
-              pa.`color_sorder`,
-              pa.`image`,
-              s.`sku_article`
-            FROM
-              product AS p 
-              INNER JOIN pcatalog AS pc 
-                ON pc.`id` = p.`category_id` 
-              LEFT JOIN pimage AS pa 
-                ON pa.`product_id` = p.`id` 
-                 LEFT JOIN `sku` AS s ON s.`product_id`=p.`id`
-            WHERE p.id IN ('$ids')
-            AND s.`active`='1'
-            GROUP BY p.`id`
-            ORDER BY FIELD(p.`id`,'$ids')";
-        RexDisplay::assign('lastproduct',  XDatabase::getAll($sql));
+        $this->getWatched();
 
         $sku_id = Request::get('sku', false);
         
@@ -342,6 +344,7 @@ class ProductController extends \RexShop\ProductController
         RexDisplay::assign('technologies', $technologies);
 
     }
+
 	function getArchive()
 	{
 		if (!$this->task or $this->task == 'default') {
@@ -481,5 +484,38 @@ class ProductController extends \RexShop\ProductController
         RexDisplay::assign('productBN', $brand->name);
         
         return RexDisplay::fetch('product/brand.tpl');
+    }
+
+    function getWatched() {
+        $lastproducts = array($this->entity->id);
+        if(isset($_COOKIE['lastproducts'])) {
+            $lastproducts = array_merge($lastproducts, json_decode($_COOKIE['lastproducts'], true));
+        }
+
+        $lastproducts = array_slice(array_unique ($lastproducts), 0, 11);
+        setcookie('lastproducts',json_encode($lastproducts) , time() + (86400 * 30), '/', RexConfig::get('Project', 'cookie_domain'));
+
+        $lastproductsEntity = RexFactory::entity('product');
+        unset($lastproducts[array_search($this->entity->id,$lastproducts)]);
+        $ids=implode($lastproducts,"','");
+        $sql= "SELECT 
+              p.*,
+              pc.`alias` AS palias,
+              pa.`id` AS `pimageid`,
+              pa.`color_sorder`,
+              pa.`image`,
+              s.`sku_article`
+            FROM
+              product AS p 
+              INNER JOIN pcatalog AS pc 
+                ON pc.`id` = p.`category_id` 
+              LEFT JOIN pimage AS pa 
+                ON pa.`product_id` = p.`id` 
+                 LEFT JOIN `sku` AS s ON s.`product_id`=p.`id`
+            WHERE p.id IN ('$ids')
+            AND s.`active`='1'
+            GROUP BY p.`id`
+            ORDER BY FIELD(p.`id`,'$ids')";
+        RexDisplay::assign('lastproduct',  XDatabase::getAll($sql));
     }
 }

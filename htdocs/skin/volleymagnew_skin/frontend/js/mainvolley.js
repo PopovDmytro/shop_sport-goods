@@ -552,8 +552,6 @@ function addProdByRexSubmit(divWithForm) {
                     if (data !== false) {
                         $('.basket-holder').each(function () {
                             $(this).replaceWith(data);
-
-                            console.log(data);
                         });
                         cart_button.html('В корзине!').attr('href', '/cart/').addClass('cart-added');
                         basket_right.addClass('adding');

@@ -97,7 +97,6 @@ class ArticleController extends \RexFramework\ParentController
             $arr = $commentEntity->getArray();
             $arr = array_merge($arr, $arrcomment);
             RexDisplay::assign('commententity', $arr);
-
         }
 
         $commentsManager = RexFactory::manager('comment');
@@ -152,19 +151,19 @@ class ArticleController extends \RexFramework\ParentController
             RexPage::setDescription('Полезная информация о спортивной одежде и обуви – как выбрать, особенности различных моделей для разных видов спорта. Статьи о волейбольных товарах, травмах и аксессуарах');
             RexPage::setKeywords('Статьи о спортивных товарах, как выбрать спортивную одежду, информация о спортивной одежде, статьи о волейбольных товарах');
         }
+
 	}
 
 	function getLatest() //smarty func
 	{
         $aParams = array(
             'saveto' => 'article',
-            'count' => 3
+            'count' => 6
         );
 
 		$articleManager = RexFactory::manager('article');
-		$articleManager->getByWhere('1=1 ORDER BY `id` DESC');
-//		RexDisplay::assign($aParams['saveto'], $articleManager->getCollection());
-		RexDisplay::assign($aParams['saveto'], array(1,2,3,4,5));
+        $articleManager->getByWhere('1=1 ORDER BY `id` DESC LIMIT '.$aParams['count'].'');
+		RexDisplay::assign($aParams['saveto'], $articleManager->getCollection());
 	}
 
 

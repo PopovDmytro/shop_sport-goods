@@ -11,7 +11,7 @@
             </div>
             <p class="news_slide_date">{$item.date|date_format:"%d.%m.%y "}</p>
             {*<p>{$item.content|strip_tags|truncate:100:"...":true}</p>*}
-            <a href="#" class="news_slide_link">{$item.name}</a>
+            <a href="{url mod=news act=default task=$item.alias}" class="news_slide_link">{$item.name}</a>
         </div>
     {/foreach}
 {/if}

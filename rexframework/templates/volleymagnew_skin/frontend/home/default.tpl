@@ -90,68 +90,12 @@
         </div>
     </div>
 </section>
-{*TODO have to atach to brands from db*}
+
 <section class="partners_section">
     <div class="row align-center">
-        <div class="column small-12"><h1 class="section-title">Наши бренды</h1>
-            <div class="my-slider my-slider_partners">
-                <div class="my-sliders_slide partners_slide">
-                    <div class="img-holder">
-                        <a href="#">
-                            {img src='main-page/mizuno_logo.png' class='slide-img'}
-                        </a>
-                    </div>
-                </div>
-                <div class="my-sliders_slide partners_slide">
-                    <div class="img-holder">
-                        <a href="#">
-                            {img src='main-page/asics_logo.png' class='slide-img'}
-                        </a>
-                    </div>
-                </div>
-                <div class="my-sliders_slide partners_slide">
-                    <div class="img-holder">
-                        <a href="#">
-                            {img src='main-page/mikasa_logo.png' class='slide-img'}
-                        </a>
-                    </div>
-                </div>
-                <div class="my-sliders_slide partners_slide">
-                    <div class="img-holder">
-                        <a href="#">
-                            {img src='main-page/errea_logo.png' class='slide-img'}
-                        </a>
-                    </div>
-                </div>
-                <div class="my-sliders_slide partners_slide">
-                    <div class="img-holder">
-                        <a href="#">
-                            {img src='main-page/mizuno_logo.png' class='slide-img'}
-                        </a>
-                    </div>
-                </div>
-                <div class="my-sliders_slide partners_slide">
-                    <div class="img-holder">
-                        <a href="#">
-                            {img src='main-page/asics_logo.png' class='slide-img'}
-                        </a>
-                    </div>
-                </div>
-                <div class="my-sliders_slide partners_slide">
-                    <div class="img-holder">
-                        <a href="#">
-                            {img src='main-page/mikasa_logo.png' class='slide-img'}
-                        </a>
-                    </div>
-                </div>
-                <div class="my-sliders_slide partners_slide">
-                    <div class="img-holder">
-                        <a href="#">
-                            {img src='main-page/errea_logo.png' class='slide-img'}
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="column small-12">
+            <h1 class="section-title">Наши бренды</h1>
+            {include file="brand/brands-slider.tpl"}
         </div>
     </div>
 </section>
@@ -173,20 +117,9 @@
                 </div>
             </div>
             {*end news*}
-            {*TODO fix articles view*}
             {*articles*}
             <div id="publications" class="media_slider-holder">
                 <div class="my-slider my-slider_publication">
-                    {*<div class="my-sliders_slide news_slide">
-                        <div class="img-holder text-center">
-                            {img src='main-page/news-slide-1.jpg' class='slide-img'}
-                            <a href="#" class="overlay-link">
-                                {img src='main-page/eye_icon.png' class='overlay-link_icon'}
-                            </a>
-                        </div>
-                        <p class="news_slide_date">05.07.2016 г.</p>
-                        <a href="#" class="news_slide_link">Как выбрать кроссовки?</a>
-                    </div>*}
                     {include file="article/list.tpl"}
                 </div>
                 <div class="link-btn-holder text-center">

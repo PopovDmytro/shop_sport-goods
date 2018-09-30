@@ -18,6 +18,9 @@ class HomeController extends \RexShop\HomeController
     {
         parent::getDefault();
             RexDisplay::assign('content', XDatabase::getOne('SELECT `content` FROM staticpage WHERE `alias` = "home"'));
+
+            RexDisplay::assign('brands', XDatabase::getAssoc('SELECT `id`, `name`,`alias` FROM brand'));
+
             RexPage::setTitle('VolleyMAG – интернет-магазин профессиональной спортивной экипировки. Спортивная одежда и обувь в Украине');
             RexPage::setDescription('Мужская и женская спортивная одежда в Харькове - спортивные товары для занятий футболом, волейболом и другими видами спорта. Купить кроссовки в интернет-магазине Волеймаг с доставкой по Украине');
             RexPage::setKeywords('Интернет-магазин спортивной обуви, женская спортивная одежда Харьков, спортивные товары, купить кроссовки в интернет-магазине');
