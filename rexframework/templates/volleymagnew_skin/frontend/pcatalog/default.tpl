@@ -39,7 +39,7 @@
                             {include file="attribute/filter_form.inc.tpl"}
                             {**}
                         </ul>
-                        <script type="text/javascript">
+                        {*<script type="text/javascript">
                             {literal}
                             $(document).ready(function(){
                                 $('.accordion-title').on('click', function(e){
@@ -48,7 +48,7 @@
                                 });
                             });
                             {/literal}
-                        </script>
+                        </script>*}
                     </aside>
                     <div class="categories_form-ctrls">
                         {include file="attribute/selected.tpl"}

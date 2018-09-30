@@ -183,10 +183,13 @@
                     </div>
                     <div class="header_sec-row">
                         <div class="header_categories">
-                            <button type="button" class="btn btn--green">
+                            <button type="button" class="btn btn--green categories-btn">
                                 {img src='footer/burger_icon.png' class='burger-icon'}
                                 Категории
                             </button>
+
+                            {include file="pcatalog/menu.inc.tpl"}
+
                         </div>
                         <div class="header_search">
                             <form action="{url mod=pCatalog act=search}" id="search" method="post">
@@ -230,8 +233,6 @@
         </div>
         <div class="bell-background"></div>
         {*end callback form popoup*}
-
-        {include file="pcatalog/menu.inc.tpl"}
 
         {*main*}
         <main class="main-content-wrapper">
@@ -363,7 +364,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>var $j = jQuery.noConflict(true);</script>
 {js src="slick.js"}
-{js src="slick-init.js"}
+{js src="custom.js"}
 {**}
 
 {*TODO remove bottom 000webhost button*}

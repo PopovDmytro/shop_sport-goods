@@ -245,5 +245,8 @@
     position: relative;
 }
 
-
+/*accordion filter*/
+.accordion-item .accordion-content {
+    display: none;
+}
 

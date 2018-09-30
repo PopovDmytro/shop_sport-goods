@@ -1,6 +1,6 @@
 <li data-accordion-item class="accordion-item is-active">
     <a href="javascript:void(0)" class="accordion-title">Цена</a>
-    <div data-tab-content class="accordion-content " style="overflow: visible; display: block;">
+    <div data-tab-content class="accordion-content is-active">
         {if $pcatalog}
             {assign var=url value="`$pcatalog->alias`/"}
         {else}
