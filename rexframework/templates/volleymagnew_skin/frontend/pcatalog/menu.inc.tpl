@@ -4,8 +4,8 @@
             {if $zeroLevel.level eq 0}
                 <li class="header_category-item {if $zeroLevel.cat_list}has-submenu{/if}">
                 <a class="header_collapse-anchor" id="menu-n{$zeroLevel.id}" href="{url mod=pCatalog act=default task=$zeroLevel.alias}">
-                    {img src="/categories-icons/{$zeroLevel.alias}" class="header_category-icon"}
-                    {img src="/categories-icons/{$zeroLevel.alias}" class="header_category-icon header_category-icon--hover"}
+                    {img src="/categories-icons/{$zeroLevel.alias}.png" class="header_category-icon"}
+                    {img src="/categories-icons/{$zeroLevel.alias}-hover.png" class="header_category-icon header_category-icon--hover"}
                     <span>{$zeroLevel.name}</span>
                     {if $zeroLevel.cat_list}
                         {img src='/categories-icons/arrow-icon.png' class="category_collapse-icon"}
@@ -14,7 +14,7 @@
                 </a>
             {/if}
             {if $zeroLevel.cat_list}
-                <ul class="menu vertical nested header_subcategory">view-list
+                <ul class="menu vertical nested header_subcategory">
                     {foreach from=$zeroLevel.cat_list item=firstLevel name=foo}
                         <li {if $firstLevel.cat_list.level2} class=""{/if}>
                             {if $firstLevel.cat_list.level2}<span class="toggler"> + </span>{/if}
