@@ -118,6 +118,16 @@
     color: red;
     opacity:0;
 }
+
+.contact-name-error,
+.contact-email-error,
+.contact-text-error,
+.captcha-form-error {
+    position: absolute;
+    left: 0;
+    bottom: 6px;
+}
+
 @media screen and (max-width: 500px) {
     .inpbell {
         width: 200px;
@@ -248,5 +258,14 @@
 /*accordion filter*/
 .accordion-item .accordion-content {
     display: none;
+}
+
+/*close x fix*/
+.popup_close-btn {
+    background-image: url(../img/close-popup.png);
+}
+
+.contact_form .text-contact {
+    position: relative;
 }
 
