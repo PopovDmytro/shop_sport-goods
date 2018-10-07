@@ -94,20 +94,9 @@
                         <a href="javascript:void(0);" class="forward"></a>
                     </div>
                 {/if}
-                {**}
-                {*mode*}
-                <div class="">
-                    <a href="javascript:void(0);" id="models" class="view-list{if !$modal} active{/if}">view list</a>
-                    <a href="javascript:void(0);" id="models" class="view-plate{if $modal} active{/if}">view plate</a>
-                </div>
-                {**}
                 <div class="categories_products">
                     <div class="row xlarge-up-3 large-up-2 small-up-1 categories_products-list" id="products-contents">
-                        {if $modal}
-                            {include file="pcatalog/product.block.tpl"}
-                        {else}
-                            {include file="pcatalog/product.list.tpl"}
-                        {/if}
+                        {include file="pcatalog/product.block.tpl"}
                     </div>
                 </div>
                 {*pagination / view more*}

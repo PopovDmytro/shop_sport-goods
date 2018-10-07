@@ -14,7 +14,7 @@
                 </a>
             {/if}
             {if $zeroLevel.cat_list}
-                <ul class="menu vertical nested header_subcategory">
+                <ul class="menu vertical nested header_subcategory">view-list
                     {foreach from=$zeroLevel.cat_list item=firstLevel name=foo}
                         <li {if $firstLevel.cat_list.level2} class=""{/if}>
                             {if $firstLevel.cat_list.level2}<span class="toggler"> + </span>{/if}
