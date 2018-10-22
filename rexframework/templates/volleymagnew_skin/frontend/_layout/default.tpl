@@ -285,7 +285,7 @@
                                 <li><a href="{url mod=staticPage act=default task='delivery'}">Оплата</a></li>
                                 <li><a href="{url mod=staticPage act=default task='razmernaja-setka'}">Размеры</a></li>
                                 <li><a href="{url mod=home act=contact}">Контакты</a></li>
-                                {*<li><a href="{url mod=staticPage act=default task=faq}">FAQ</a></li>*}
+                                <li><a href="{url mod=staticPage act=default task='garantija'}">Гарантия</a></li>
                             </ul>
                         </nav>
                     </div>

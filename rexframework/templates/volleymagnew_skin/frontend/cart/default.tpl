@@ -13,6 +13,10 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="column small-12"><h1 class="section-title section-title--blue">Корзина товаров</h1></div>
+</div>
+
 <div id="cart">
     <div class="product-def">
         <div class="product-def-top-bg"></div>
@@ -21,314 +25,304 @@
 
         <div class="into-box info-block">
             {if $cartList}
-                    <div id="cart_items">
+                <div id="cart_items">
                     <form action="" method="post" id="cartForm">
                     <input type="hidden" name="mod" value="order" id="mod">
                     <input type="hidden" name="act" value="add" id="act">
-
                         {assign var=nitem value=1}
-                        <table cellpadding="2" cellspacing="0" border="0"  width="100%" id="cart-main-table">
-                            <tr class="head-tr">
-                                <th>Изображение</th>
-                                <th>Название</th>
-                                <th>Параметры</th>
-                                {if $issetUncheckedSku}<th>Размер</th>{/if}
-                                <th>Количество</th>
-                                <th>Стоимость</th>
-                                <th></th>
-                            </tr>
+                        <div id="cart-main-table" class="checkout_table-row">
+                            <div class="checkout_thead-row">
+                                <div class="row collapse">
+                                    <div class="checkout_th columns small-1"><h3>Товар</h3></div>
+                                    <div class="checkout_th columns small-2 small-offset-1"><h3>Название</h3></div>
+                                    <div class="checkout_th columns small-2"><h3>Параметры</h3></div>
+                                    {*{if $issetUncheckedSku}<div class="checkout_th columns small-1 small-offset-1"><h3>Размер</h3></div>{/if}*}
+                                    <div class="checkout_th columns small-2 "><h3>Количество</h3></div>
+                                    <div class="checkout_th columns small-1 small-offset-1"><h3>Цена</h3></div>
+                                    <div class="checkout_th columns small-1 small-offset-1"><h3>Удалить</h3></div>
+                                </div>
+                            </div>
                             {foreach from=$cartList key=key item=cart name=cartitem}
                                 {assign var=cartEntity value=$cart.cart}
                                 {if $cart.product}
-                                     <tr class="cart-li">
-                                    {assign var=productEntity value=$cart.product}
-                                    {assign var=image value=$cart.image}
-                                    {assign var=pcatalog_alias value=$cart.pcatalog_alias}
-                                    {*<div class="cart-li" {if !$smarty.foreach.cartitem.last}style="border-bottom:2px dotted #03A5D6;"{/if}>*}
-                                        <input type="hidden" name="cart[{$nitem}][product_id]"     value="{$productEntity->id}">
-                                        <input type="hidden" name="cart[{$nitem}][attributes]"     value="{$cartEntity->attributes}">
-                                        {if $cartEntity->sku}<input type="hidden" name="cart[{$nitem}][sku]" value="{$cartEntity->sku}">{/if}
-
-                                        <td valign="top" width="130px;" class="cart-img">
-                                            {*<a href="{url mod=product act=default cat_alias=$pcatalog_alias task=$productEntity->id}">*}
-                                                {if $image}
-                                                <a style="position:relative; display:block;" id="imgfull" class="gallery rex-tooltip-disable" title="{if $productBrand}{$productBrand->name} {/if}{$product->name}" href="{getimg type=main name=pImage id=$image.id ext=$image.image}">
-                                                    <img  id="imageFull" src="{getimg type=icon name=pImage id=$image.id ext=$image.image}" />
-                                                </a>
-                                                {else}
-                                                      {img src="default-icon-120.jpg" class="t-image"}
-                                                {/if}
-                                            {*</a>*}
-                                            {literal}<script> prev_id = '{/literal}{$image.id}{literal}' </script>{/literal}
-                                        </td>
-                                        <td valign="middle" width="190" class="product-title">
-                                            <div class="cart-title">
-                                                <a href="{url mod=product act=default cat_alias=$pcatalog_alias task=$productEntity->id}">
-                                                    {$productEntity->name}
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td width="18%" class="attr-cart">
-                                            <table cellpadding="0" cellspacing="0" border="0" class="cart-attr">
-                                                <tr>
-                                                    <td class="cart-attr-l">Артикул:</td>
-                                                    <td class="cart-attr-r">
-                                                        {if $cart.skuEntity}
-                                                            {$cart.skuEntity->sku_article}
-                                                        {elseif $cart.skuByColor}
-                                                            {$cart.skuByColor.sku_article}
-                                                            <input type="hidden" name="cart[{$nitem}][sku_color]" value="{$cart.skuByColor.id}">
-                                                        {else}
-                                                            {$productEntity->id}
-                                                        {/if}
-                                                    </td>
-                                                </tr>
-                                                {if $cart.attributes}
-                                                    {foreach from=$cart.attributes key=attributeKey item=attributeValue}
-                                                        {assign var=attr_key value=$attributeValue.key}
-                                                        {assign var=attr_value value=$attributeValue.value}
-                                                        {if $attr_value->name}
-                                                        <tr>
-                                                            <td class="cart-attr-l">{$attr_key->name}</td>
-                                                            <td class="cart-attr-r">{$attr_value->name}</td>
-                                                        </tr>
-                                                        {/if}
-                                                    {/foreach}
-                                                {/if}
-                                                {if $cart.sku}
-                                                    <tr>
-                                                        {$cart.sku}
-                                                    </tr>
-                                                {/if}
-                                            </table>
-                                        </td>
-                                        {if $issetUncheckedSku}
-                                            <td class="size-select {if !$cart.atributeListByColor}fl-none{/if}">
-                                                {if $cart.atributeListByColor}
-                                                    <select name="cart[{$nitem}][sku]" class="sku-by-color">
-                                                        <option value="1">Не выбран</option>
-                                                        {foreach from=$cart.atributeListByColor item=atributeByColor}
-                                                            {if $atributeByColor.name neq 'Пол'}
-                                                            <option value="{$atributeByColor.sku_id}">{$atributeByColor.value}</option>
-                                                            {/if}
-                                                        {/foreach}
-                                                    </select>
-                                                {/if}
-                                            </td>
-                                        {/if}
-                                        <td class="cart-attr-r count {if !$cart.atributeListByColor}fl-none{/if}" align="center">
-                                        {*if $smarty.server.REMOTE_ADDR == '37.57.56.101'*}
-                                        <div data-id="{$nitem}" class="count-minus back"></div>
-                                            <input item-id="{$nitem}" class="cart-amount" type="text" name="cart[{$nitem}][count]" value="{$cartEntity->count}" id="value-cart-{$nitem}">
-                                        <div data-id="{$nitem}" class="count-plus forward"></div>
-                                        {*else}
-                                            <input item-id="{$productEntity->id}{if $cartEntity->sku}-{$cartEntity->sku}{/if}" class="cart-amount" type="text" name="cart[{$nitem}][count]" value="{$cartEntity->count}">
-                                        {/if*}
-
-                                        </td>
-                                        <td width="90px;" align="center" class="prod-price">
-                                            <div class="cart-price"><span class="price_ua"><span>{$productEntity->price|floor}</span> грн</span>
-                                            <span item-id="{$nitem}" class="cart-prices" id="prod-price-{$nitem}" style="display: none;">{$productEntity->price|floor}</span>
-                                            </div>
-                                        </td>
-                                        <td class="button-td">
-                                        {assign var=fddd value=$fddd + 1}
-                                            <a id="free_button" href="{url mod=cart act=clear id=$cartEntity->num}">Удалить</a>
-
-                                        </td>
-                                        <td class="clear"></td>
-                                    </tr>
+                                     <div class="checkout_tbody-row">
+                                         <div class="row collapse">
+                                             {assign var=productEntity value=$cart.product}
+                                             {assign var=image value=$cart.image}
+                                             {assign var=pcatalog_alias value=$cart.pcatalog_alias}
+                                             {*<div class="cart-li" {if !$smarty.foreach.cartitem.last}style="border-bottom:2px dotted #03A5D6;"{/if}>*}
+                                             <input type="hidden" name="cart[{$nitem}][product_id]"
+                                                    value="{$productEntity->id}">
+                                             <input type="hidden" name="cart[{$nitem}][attributes]"
+                                                    value="{$cartEntity->attributes}">
+                                             {if $cartEntity->sku}
+                                                 <input type="hidden" name="cart[{$nitem}][sku]" value="{$cartEntity->sku}">
+                                             {/if}
+                                             <div class="checkout_td columns small-1">
+                                                 {*<a href="{url mod=product act=default cat_alias=$pcatalog_alias task=$productEntity->id}">*}
+                                                 <div class="pic-holder">
+                                                 {if $image}
+                                                     <a style="position:relative; display:block;" id="imgfull"
+                                                        class="gallery rex-tooltip-disable"
+                                                        title="{if $productBrand}{$productBrand->name} {/if}{$product->name}"
+                                                        href="{getimg type=main name=pImage id=$image.id ext=$image.image}">
+                                                         <img id="imageFull" src="{getimg type=icon name=pImage id=$image.id ext=$image.image}"/>
+                                                     </a>
+                                                 {else}
+                                                     {img src="default-icon-120.jpg" class="t-image"}
+                                                 {/if}
+                                                 {*</a>*}
+                                                 {literal}
+                                                 </div>
+                                                 <script> prev_id = '{/literal}{$image.id}{literal}' </script>{/literal}
+                                             </div>
+                                             <div class="checkout_td columns small-2 small-offset-1">
+                                                 <a class="product-name" href="{url mod=product act=default cat_alias=$pcatalog_alias task=$productEntity->id}">
+                                                     {$productEntity->name}
+                                                 </a>
+                                             </div>
+{*TODO check sku text *}
+                                             <div class="checkout_td columns small-2">
+                                                 <div class="">
+                                                     <div>
+                                                         <span class="cart-attr-l">Артикул:</span>
+                                                         <span class="cart-attr-r">
+                                                             {if $cart.skuEntity}
+                                                                 {$cart.skuEntity->sku_article}
+                                                             {elseif $cart.skuByColor}
+                                                                 {$cart.skuByColor.sku_article}
+                                                                 <input type="hidden" name="cart[{$nitem}][sku_color]"
+                                                                        value="{$cart.skuByColor.id}">
+                                                             {else}
+                                                                 {$productEntity->id}
+                                                             {/if}
+                                                         </span>
+                                                     </div>
+                                                     {if $cart.attributes}
+                                                         {foreach from=$cart.attributes key=attributeKey item=attributeValue}
+                                                             {assign var=attr_key value=$attributeValue.key}
+                                                             {assign var=attr_value value=$attributeValue.value}
+                                                             {if $attr_value->name}
+                                                                 <div>
+                                                                     <span class="cart-attr-l">{$attr_key->name}</span>
+                                                                     <span class="cart-attr-r">{$attr_value->name}</span>
+                                                                 </div>
+                                                             {/if}
+                                                         {/foreach}
+                                                     {/if}
+                                                     {if $cart.sku}
+                                                         <div>
+                                                             {$cart.sku}
+                                                         </div>
+                                                     {/if}
+                                                     {if $issetUncheckedSku}
+                                                         <div class="size-select {if !$cart.atributeListByColor}fl-none{/if}">
+                                                             {if $cart.atributeListByColor}
+                                                                 <select name="cart[{$nitem}][sku]" class="sku-by-color">
+                                                                     <option value="1">Не выбран</option>
+                                                                     {foreach from=$cart.atributeListByColor item=atributeByColor}
+                                                                         {if $atributeByColor.name neq 'Пол'}
+                                                                             <option value="{$atributeByColor.sku_id}">{$atributeByColor.value}</option>
+                                                                         {/if}
+                                                                     {/foreach}
+                                                                 </select>
+                                                             {/if}
+                                                         </div>
+                                                     {/if}
+                                                 </div>
+                                             </div>
+{**}
+                                             <div class="checkout_td columns small-2">
+                                                 <div class="checkout_stock">
+                                                 {*if $smarty.server.REMOTE_ADDR == '37.57.56.101'*}
+                                                     <button type="button" data-id="{$nitem}" class="checkout_btn checkout_btn--decrease count-minus back"></button>
+                                                     <input item-id="{$nitem}" class="cart-amount" type="text"
+                                                            name="cart[{$nitem}][count]" value="{$cartEntity->count}"
+                                                            id="value-cart-{$nitem}">
+                                                     <button type="button" data-id="{$nitem}" class="checkout_btn checkout_btn--increase count-plus forward"></button>
+                                                 {*else}
+                                                     <input item-id="{$productEntity->id}{if $cartEntity->sku}-{$cartEntity->sku}{/if}" class="cart-amount" type="text" name="cart[{$nitem}][count]" value="{$cartEntity->count}">
+                                                 {/if*}
+                                                 </div>
+                                             </div>
+                                             <div class="checkout_td columns small-1 small-offset-1 align-center">
+                                                 <div class="cart-price">
+                                                     <span class="price_ua"><span>{$productEntity->price|floor}</span> грн</span>
+                                                     <span item-id="{$nitem}" class="cart-prices" id="prod-price-{$nitem}"
+                                                           style="display: none;">{$productEntity->price|floor}</span>
+                                                 </div>
+                                             </div>
+                                             <div class="checkout_td columns small-1 small-offset-1 align-center">
+                                                 {assign var=fddd value=$fddd + 1}
+                                                 <a class="checkout_btn checkout_btn--remove" id="free_button" href="{url mod=cart act=clear id=$cartEntity->num}">{img src="close-popup.png" alt="close icon"}</a>
+                                             </div>
+                                         </div>
+                                    </div>
                                     {assign var=nitem value=$nitem + 1}
                                     {if !$smarty.foreach.cartitem.last}
-                                        <tr>
-                                            <td colspan="6">
-                                                <span class="hr_dot"></span>
-                                            </td>
-                                        </tr>
+                                        {*<hr />*}
                                     {/if}
                                 {/if}
                             {/foreach}
-                        </table>
-                    <span class="hr"></span>
-                    {*if $user}
-                        {if $order_count >= 1}
-                            {if $order_summa > 500000}
-                                <div class="sale_cart">Ваша скидка: 10%</div>
-                            {elseif $order_summa > 200000}
-                                 <div class="sale_cart">Ваша скидка: 5%</div>
-                            {elseif $order_summa > 100000}
-                                <div class="sale_cart">Ваша скидка: 3%</div>
-                            {else}
-                                <div class="sale_cart">Ваша скидка: 2%</div>
-                            {/if}
-                        {else}
-                            {if $order_summa > 500000}
-                                <div class="sale_cart">Ваша скидка: 10%</div>
-                            {elseif $order_summa > 200000}
-                                 <div class="sale_cart">Ваша скидка: 5%</div>
-                            {elseif $order_summa > 100000}
-                                <div class="sale_cart">Ваша скидка: 3%</div>
-                            {/if}
-                        {/if}
-                    {/if*}
-                    <input type="button" class="cart-clear" id="free_button" onclick="history.back()" value="Вернуться к покупкам">
-                    <input type="button" class="cart-clear" id="free_button" onclick="document.location.href='{url mod=cart act=clear}'" value="Очистить корзину">
-                    <span style="float:right;margin-top:5px;" class="full-price"><b>Всего: <span class="cart-alltogether"></span> грн</b><br><span style="font-size:10px; color:red; margin-top:10px">(со скидкой {$sale}%)</span></span>
-                    <div class="clear"> </div>
-                    <table cellpadding="0" cellspacing="0" id="cart-orders">
-                        {if !$user}
-                            <tr class="user_info">
-                                <td class="cart-attr-l">
-                                    <p class="cart-prim">Фамилия :</p>
-                                    <p class="cart-prim">Имя :</p>
-                                </td>
-                            </tr>
-                            <tr class="user_info">
-                                <td class="cart-attr-l" class="2">
-                                    <input class="titlex" type="text" name="order[lastname]" value="" id="lastname">
-                                    <input class="titlex" type="text" name="order[name]" value="" id="name">
-                                </td>
-                            </tr>
-                            
-                            <tr>
-                                <td class="cart-attr-l" colspan="2"><p class="cart-prim">Мобильный телефон (380991112233):</p></td>
-                            </tr>
-                            <tr>
-                                <td class="cart-attr-l" colspan="2"><input class="titlex" type="text" name="order[phone]" value="" id="phone" maxlength="24" data-init-inputmask="true" placeholder="+38(___)___-__-__"></td>
-                            </tr>
-                            <tr>
-                                <td class="cart-attr-l" colspan="2"><p class="cart-prim">Email (example@example.com):</p></td>
-                            </tr>
-                            <tr>
-                                <td class="cart-attr-l" colspan="2"><input class="titlex" type="text" name="order[email]" value="" id="email"></td>
-                            </tr>
-
-                        {/if}
-                            <tr>
-                                <td class="cart-attr-l" colspan="2">
-                                    {*<select name="order[delivery]" style="width: 250px" class="select_default titlex">
-                                        <option value="Выберите способ оплаты и доставки" >Выберите способ оплаты и доставки</option>
-                                        <option value="Полная предоплата">Полная предоплата</option>
-                                        <option value="Наложенный платеж">Наложенный платеж</option>
-                                        <option value="Оплата наличными курьеру">Оплата наличными курьеру</option>
-                                    </select>*}
-                                    <table>
-                                        <tr style="height: 50px;">
-                                            <td><input type="radio" {if $odelivery == 'Полная предоплата' or not $odelivery}checked{/if} name="order[delivery]" value="Полная предоплата"></td>
-                                            <td>Полная предоплата (перевод на банковскую карту)</td>
-                                        </tr>
-                                        <tr style="height: 50px;">
-                                            <td><input type="radio" {if $odelivery == 'Наложенный платеж'}checked{/if}name="order[delivery]" value="Наложенный платеж"></td>
-                                            <td>Наложенный платеж (оплата заказа после его фактического получения на складе транспортной компании)</td>
-                                        </tr>
-                                        <tr style="height: 50px;">
-                                            <td><input type="radio" {if $odelivery == 'Безналичный расчет'}checked{/if}name="order[delivery]" value="Безналичный расчет"></td>
-                                            <td>Безналичный расчет (для юридических лиц)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="attention" colspan="2">  Внимание! Наложеным платежом отправляются заказы на общую сумму более 400 грн.</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-
-
-                            {*if !$user*}
-                            <tr>
-                                <td class="cart-attr-l">
-                                {if !$user}
-                                    <div><b>Населенный пункт доставки:</b></div>
-                                    <input id="searchcity" class="search titlex" name="order[city]" onblur="{literal}javascript: if (this.value=='') {this.value='Населенный пункт доставки';}" onfocus="javascript: if (this.value=='' || this.value=='Населенный пункт доставки') {this.value='';}{/literal}" value="{if $q}{$q}{else}Населенный пункт доставки{/if}" />
+                            {*if $user}
+                                {if $order_count >= 1}
+                                    {if $order_summa > 500000}
+                                        <div class="sale_cart">Ваша скидка: 10%</div>
+                                    {elseif $order_summa > 200000}
+                                         <div class="sale_cart">Ваша скидка: 5%</div>
+                                    {elseif $order_summa > 100000}
+                                        <div class="sale_cart">Ваша скидка: 3%</div>
+                                    {else}
+                                        <div class="sale_cart">Ваша скидка: 2%</div>
+                                    {/if}
                                 {else}
-                                    <div><b>Имя:</b></div>
-                                    <input class="titlex" name="order[name]" value="{$user.name}">
-                                    <div><b>Фамилия:</b></div>
-                                    <input class="titlex" name="order[lastname]" value="{$user.lastname}">
-                                    <div><b>Мобильный телефон (+380991112233):</b></div>
-                                    <input class="titlex" name="order[phone]" value="{if $user.phone}{$user.phone}{/if}" maxlength="24" data-init-inputmask="true" placeholder="+38(___)___-__-__">
-                                    <div><b>Email (example@example.com):</b></div>
-                                    <input class="titlex" name="order[email]" value="{if $user.email}{$user.email}{/if}">
-                                    <div><b>Населенный пункт доставки:</b></div>
-                                    <input id="searchcity" class="search titlex" name="order[city]" onblur="{literal}javascript: if (this.value=='') {this.value='Населенный пункт доставки';}" onfocus="javascript: if (this.value=='' || this.value=='Населенный пункт доставки') {this.value='';}{/literal}" value="{if $q}{$q}{else}{$user.city}{/if}" />
+                                    {if $order_summa > 500000}
+                                        <div class="sale_cart">Ваша скидка: 10%</div>
+                                    {elseif $order_summa > 200000}
+                                         <div class="sale_cart">Ваша скидка: 5%</div>
+                                    {elseif $order_summa > 100000}
+                                        <div class="sale_cart">Ваша скидка: 3%</div>
+                                    {/if}
                                 {/if}
-                                    <input type="hidden" id="city-val" name="" value="{$usercity_id}">
-                                    {*{foreach from=$city item=icity}{if $user.city eq $icity.id}{$icity.name}{/if}{/foreach}*}
-                                </td>
-                            </tr>
-                            <tr class="fillials_rt"></tr>
-                            {*<tr class="fillials_rt">
-                                <td class="cart-attr-l">
-                                <div><b>Адрес отделения транспортной компании:</b></div>
-                                    <select name="order[fillials]" style="width: 260px" class="select_default titlex">
-                                        <option id="Selcity" value="0">Адрес отделения транспортной компании</option>
-                                        {foreach from=$fillials item=ifillials}
-                                            <option value="{$ifillials.id}" cid="{$ifillials.city_id}" {if $user.fillials eq $ifillials.id}selected{/if}>{$ifillials.name}</option>
-                                        {/foreach}
-                                    </select>
-                                </td>
-                            </tr>*}
-                            {*/if*}
-                            <tr>
-                                <td class="cart-attr-l" colspan="2">
-                                    <input type="checkbox" {if $oconfirm}checked{/if} id="do_not_call_to_confirm" name="order[confirm]" title="Не звонить для подтверждения заказа">
-                                    <b>
-                                        Не звонить для подтверждения заказа
-                                    </b>
-                                </td>
-                            </tr>
-                             <tr>
-                                <td class="cart-attr-l" colspan="2"><p class="cart-prim">Примечание:</p></td>
-                            </tr>
-                            <tr class="block-td">
-                                <td class="cart-attr-l" colspan="2"><textarea class="cart-textarea" name="order[comment]">{if $ocomment}{$ocomment}{/if}</textarea></td>
-                            </tr>
-                            <tr>
-                                <td class="cart-attr-l-create" colspan="2" align="left">
-                                {*<input type="submit" class="cart-create free_button {if $issetUncheckedSku}cart-create--inactive{/if}" name="cart[submit]" value="Оформить заказ" id="order-submit-button"></td>*}
-                                <input type="submit" class="cart-create free_button" name="cart[submit]" value="Оформить заказ" id="order-submit-button"></td>
-                            </tr>
-                        </table>
+                            {/if*}
+                            <div class="checkout_total-amount">
+                                <div class="row collapse">
+                                    <div class="columns">
+                                        <dl class="amount-dl full-price">
+                                            <dt>Всего к оплате:</dt>
+                                            <dd><span class="cart-alltogether"></span>&nbsp;<span>грн</span></dd>
+                                        </dl>
+                                        <dl >(со скидкой {$sale}%)</dl>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout_btns-row">
+                                <div class="row collapse">
+                                    <div class="btn-holder columns shrink">
+                                        <button type="button" class="btn btn-blue " id="free_button" onclick="history.back()" ><i aria-hidden="true" class="fa fa-angle-left"></i>Обратно к покупкам</button>
+                                    </div>
+                                    <div class="btn-holder columns shrink">
+                                        <button type="button" class="btn btn-blue " id="free_button" onclick="document.location.href='{url mod=cart act=clear}'" >Очистить корзину</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="text-container">
-                            {*<div class="delivery">
-                                <span class="heading">Доставка и оплата</span>
-                                <ul>
-                                    <li>по Харькову: 35 грн. -  бесплатно</li>
-                                    <li>в регионы: 35 грн.</li>
-                                    <li>адресная доставка в регионы: 35 грн.</li>
-                                    <li>оплата при получении товара</li>
-                                </ul>
-                                <span class="warranty">Гарантия 12 месяцев</span>
-                                <span>обмен/возврат товара в течение 14 дней</span>
-                                <a class="more" href="{url mod=staticPage task='delivery'}">Подробнее</a>
-                            </div>*}
-                            <div class="delivery">
-                                <div class="heading">Наши преимущества:</div>
-                                <ul>
-                                    <li class="deliver">Доставка по всей Украине</li>
-                                    <li class="checked">Актуальные размеры</li>
-                                    <li class="assurance">Гарантия подлинности</li>
-                                    <li class="return">Гарантия возврата</li>
-                                    <li class="sale">Дополнительные скидки для постоянных покупателей</li>
-                                </ul>
-                                <a class="more" href="#amply">Подробнее</a>
+                        <div  id="cart-orders" class="checkout_form" >
+                            <div class="row collapse">
+                                <div class="columns small-12">
+                                    <ul class="checkout_payment-methods no-bullet">
+                                        <li>
+                                            <div class="radio-holder top-trigger">
+                                                <label>
+                                                    <input type="radio" {if $odelivery == 'Полная предоплата' or not $odelivery}checked{/if} name="order[delivery]" value="Полная предоплата">
+                                                    <span class="checkbox-trigger checkbox-trigger--grey"></span>
+                                                    <span class="lbl">
+                                                        Полная предоплата (переводом на карту или через терминал Приватбанка)
+                                                        {*Полная предоплата (перевод на банковскую карту)*}
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="radio-holder top-trigger">
+                                                <label>
+                                                    <input type="radio" {if $odelivery == 'Наложенный платеж'}checked{/if} name="order[delivery]" value="Наложенный платеж">
+                                                    <span class="checkbox-trigger checkbox-trigger--grey"></span>
+                                                    <span class="lbl">Наложенный платеж (оплата заказа после его фактического получения на складе транспортной компании)<br><i>Внимание!<br>
+                                                        Наложеным платежом отправляются заказы на общую сумму более 400 грн.</i>
+                                                        {*Наложенный платеж (оплата заказа после его фактического получения на складе транспортной компании)*}
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="radio-holder top-trigger">
+                                                <label>
+                                                    <input type="radio" {if $odelivery == 'Безналичный расчет'}checked{/if} name="order[delivery]" value="Безналичный расчет">
+                                                    <span class="checkbox-trigger checkbox-trigger--grey"></span>
+                                                    <span class="lbl">
+                                                        {*Безналичный расчет*}
+                                                        Безналичный расчет (для юридических лиц)
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <div class="checkout_form-wrapper row">
+                                        <div class="columns small-5">
+                                            <div class="row small-up-1">
+                                                {if !$user}
+                                                <div class="input-holder column">
+                                                    <input placeholder="Имя" class="titlex" type="text" name="order[lastname]" value="" id="lastname">
+                                                </div>
+                                                <div class="input-holder column">
+                                                    <input placeholder="Фамилия" class="titlex" type="text" name="order[name]" value="" id="name">
+                                                </div>
+                                                <div class="input-holder column">
+                                                    <input class="titlex" type="text" name="order[phone]" value="" id="phone" maxlength="24" data-init-inputmask="true" placeholder="+38(___)___-__-__">
+                                                </div>
+                                                <div class="input-holder column">
+                                                    <input placeholder="Email (example@example.com)" class="titlex" type="text" name="order[email]" value="" id="email">
+                                                </div>
+                                                <div class="input-holder column">
+                                                    <input placeholder="Введите ваш город" id="searchcity" class="search titlex" name="order[city]" onblur="{literal}javascript: if (this.value=='') {this.value='Населенный пункт доставки';}" onfocus="javascript: if (this.value=='' || this.value=='Населенный пункт доставки') {this.value='';}{/literal}" value="{if $q}{$q}{else}Населенный пункт доставки{/if}" />
+                                                </div>
+                                                {else}
+                                                <div class="input-holder column">
+                                                    <input placeholder="Имя" class="titlex" name="order[name]" value="{$user.name}">
+                                                </div>
+                                                <div class="input-holder column">
+                                                    <input placeholder="Фамилия" class="titlex" name="order[lastname]" value="{$user.lastname}">
+                                                </div>
+                                                <div class="input-holder column">
+                                                    <input class="titlex" name="order[phone]" value="{if $user.phone}{$user.phone}{/if}" maxlength="24" data-init-inputmask="true" placeholder="+38(___)___-__-__">
+                                                </div>
+                                                <div class="input-holder column">
+                                                    <input placeholder="Email (example@example.com)" class="titlex" name="order[email]" value="{if $user.email}{$user.email}{/if}">
+                                                </div>
+                                                <div class="input-holder column">
+                                                    <input placeholder="Населенный пункт доставки" id="searchcity" class="search titlex" name="order[city]" onblur="{literal}javascript: if (this.value=='') {this.value='Населенный пункт доставки';}" onfocus="javascript: if (this.value=='' || this.value=='Населенный пункт доставки') {this.value='';}{/literal}" value="{if $q}{$q}{else}{$user.city}{/if}" />
+                                                </div>
+                                                {/if}
+                                                <input type="hidden" id="city-val" name="" value="{$usercity_id}">
+                                                {*{foreach from=$city item=icity}{if $user.city eq $icity.id}{$icity.name}{/if}{/foreach}*}
+                                                <div class="input-holder column">
+                                                    <textarea placeholder="Комментарий к заказу" class="cart-textarea" name="order[comment]">{if $ocomment}{$ocomment}{/if}</textarea>
+                                                </div>
+                                                <div class="input-holder column">
+                                                    <div class="radio-holder top-trigger">
+                                                        <label>
+                                                            <input type="checkbox" {if $oconfirm}checked{/if} id="do_not_call_to_confirm" name="order[confirm]" title="Не звонить для подтверждения заказа">
+                                                            <span class="checkbox-trigger checkbox-trigger--grey"></span>
+                                                            <span class="lbl">Не звонить для подтверждения заказа</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="input-holder column">
+                                                    {*<input type="submit" class="cart-create free_button {if $issetUncheckedSku}cart-create--inactive{/if}" name="cart[submit]" value="Оформить заказ" id="order-submit-button"></td>*}
+                                                    <input type="submit" class="btn btn--blue cart-create free_button" name="cart[submit]" value="Оформить заказ" id="order-submit-button">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
-                <a href="#x" class="overlay" id="amply"></a>
-                <div class="benefits">
-                    <div style="padding: 15px;">
+                {*<a href="#x" class="overlay" id="amply"></a>*}
+                {*<div class="benefits">
+                    <div >
                         {include file='product/benefits.tpl'}
                     </div>
                     <a class="close"title="Закрыть" href="#close"></a>
-                </div>
+                </div>*}
             {else}
                 <div class="page_text">
-                    <p>
-                        Ваша корзина пуста!
-                    </p>
+                    <h2 class="text-center">Ваша корзина пуста!</h2>
                 </div>
             {/if}
         </div>
