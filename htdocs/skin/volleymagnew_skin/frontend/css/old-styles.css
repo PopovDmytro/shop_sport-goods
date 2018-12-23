@@ -1,3 +1,9 @@
+/*TODO disable host demo image*/
+[alt="www.000webhost.com"] {
+    display: none;
+}
+/* --- */
+
 /*bell popup*/
 .bell-background{
     background-color: #000000;
@@ -259,6 +265,34 @@
 .accordion-item .accordion-content {
     display: none;
 }
+
+
+.categories_sidebar ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.categories_sidebar li {
+    list-style-type: none;
+}
+
+.accordion-title {
+    width: 100%;
+    display: block;
+    color: #ffffff;
+    padding: 5px 15px;
+}
+
+.categories_form-ctrls button:hover,
+.categories_sidebar .accordion-item.is-active .accordion-title {
+    background: #80db1c;
+}
+
+.categories_form-ctrls button,
+.categories_sidebar .accordion-title {
+    background: #7a7a7a;
+}
+
 
 /*close x fix*/
 .popup_close-btn {

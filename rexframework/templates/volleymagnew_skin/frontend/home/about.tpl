@@ -115,8 +115,6 @@
         </div>
     </section>
 
-
-
     <section class="about_comments-section row">
         {if $comments}
             <div class="comments-wrapper column small-12">
@@ -125,7 +123,8 @@
                     <div class="comment_header">
                         <div class="comment_date"><span>{$item.date_create|date_format:"%d.%m.%Y"} г.</span></div>
                         <div class="comment_user-name">
-                            <a href="{url mod=user act=default id=$item.user_id}" class="comment_user-link">{$item.name}</a></div>
+                            <a href="{url mod=user act=default id=$item.user_id}" class="comment_user-link">{$item.name}</a>
+                        </div>
                     </div>
                     <div class="comment_body">
                         <p>{$item.content}</p>

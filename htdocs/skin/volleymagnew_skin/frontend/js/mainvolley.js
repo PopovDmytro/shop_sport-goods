@@ -687,7 +687,7 @@ function generateLightbox() {
 $(function () {
     if (parseInt(ajax_paging) == 1) {
         $(document).on('click.getAjaxPaging', '.ajax-paging', function () {
-            var $link = $('div.pagination li.pagination_div').next('.pagin-item');
+            var $link = $('.pagination li.pagination_div').next('.pagin-item');
             var number_page = $link.find('a').html();
             $.post($link.find('a').attr('href'), {rex_request: 1}, function (data) {
                 var json_response = $.parseJSON(data);
@@ -703,9 +703,9 @@ $(function () {
         });
 
         var hideShowNext = function (countNext) {
-            var $next = $('div.pagination li.pagination_div').next('.pagin-item');
+            var $next = $('.pagination li.pagination_div').next('.pagin-item');
             if (!$next.length) {
-                return $('div.ajax-paging').remove();
+                return $('.ajax-paging').remove();
             }
             var stringNext = '';
             if (countNext == 1) {
@@ -715,7 +715,7 @@ $(function () {
             } else {
                 stringNext = 'Показать еще ' + countNext;
             }
-            $('div.ajax-paging').html(stringNext);
+            $('.ajax-paging').html(stringNext);
         };
         hideShowNext(parseInt($('#count_next').val()));
     }

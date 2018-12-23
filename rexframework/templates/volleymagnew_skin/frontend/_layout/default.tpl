@@ -247,7 +247,7 @@
                     <div class="column large-3 medium-6 small-12">
                         <div class="footer_logo">
                             <div class="img-holder">
-                                {img src='logos/Logo_footer.png'}
+                                {img src='logos/logo_footer.png'}
                                 <h1 class="footer_logo_heading">интернет-магазин <br>спортивной&nbsp;экипировки <br>и аксессуаров</h1>
                             </div>
                         </div>
