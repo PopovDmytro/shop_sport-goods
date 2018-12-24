@@ -1,138 +1,142 @@
-<div class="order-b">
-    <table cellpadding="0" cellspacing="0" border="0" class="order-list-table">
-        <tr>
-            <td class="order-list-table-id" valign="top" colspan="5"><b>№ заказа:</b> {$order.id}<span style="float:right; font-size:12px">{$order.date_create|date_format:"%d.%m.%Y"}</span></td>
-        </tr>
-        <tr>
-            <td class="order-list-table-date" valign="top" colspan="5">
-            <b style="color:green; float:left;margin-right:20px">{if $order.status eq 'Новый'}Заказ оформлен и отправлен на обработку{elseif $order.status eq 'Проверен'}Проверен и оплачен{else}{$order.status}{/if}</b></td>
-        </tr>
-        <tr>
-            <td valign="top" colspan="5"><span class="hr_dot"></span></td>
-        </tr>
+<div class="row profile_orders-box order-b">
+    <div class="order-list-table columns small-12 profile_order_header">
+        <div class="row align-justify">
+            <div class="column shrink">
+                <dl class="order-number order-list-table-id">
+                    <dt>№ заказа:</dt>
+                    <dd>{$order.id}<span >{$order.date_create|date_format:"%d.%m.%Y"}</dd>
+                </dl>
+            </div>
+            <div class="column shrink">
+                <date>{$order.date_create|date_format:"%d.%m.%Y"}</date>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <b >{if $order.status eq 'Новый'}Заказ оформлен и отправлен на обработку{elseif $order.status eq 'Проверен'}Проверен и оплачен{else}{$order.status}{/if}</b>
+            </div>
+        </div>
+    </div>
+
     {if $order.productList}
-            {foreach from=$order.productList key=key item=list}
-                {assign var=prod2Order 	value=$list.prod2Order}
-                {assign var=product 	value=$list.product}
-                {assign var=image 		value=$list.image}
-                {assign var=attributes 	value=$list.attributes}
-                {assign var=imagesku    value=$list.imagessku}
-                {assign var=prices      value=$list.prices}
-                <tr>
-                    <td valign="top" width="140" class="order-list-table-down-img">
-                        {if isset($imagesku.id)}
-                            <a href="{if $pismo}{$pismo}{/if}{url mod=product act=default cat_alias=$list.img_alias task=$product->id}">
-                                <img src="{if $pismo}{$pismo}{/if}{getimg type=icon name=pImage id=$imagesku.id ext=$imagesku.image}"/>
-                            </a>
-                        {elseif isset($image.image)}
-                             <a href="{if $pismo}{$pismo}{/if}{url mod=product act=default cat_alias=$list.img_alias task=$product->id}">
-                                <img src="{if $pismo}{$pismo}{/if}{getimg type=icon name=pImage id=$image.id ext=$image.image}"/>
-                            </a>
+        {foreach from=$order.productList key=key item=list}
+            {assign var=prod2Order 	value=$list.prod2Order}
+            {assign var=product 	value=$list.product}
+            {assign var=image 		value=$list.image}
+            {assign var=attributes 	value=$list.attributes}
+            {assign var=imagesku    value=$list.imagessku}
+            {assign var=prices      value=$list.prices}
+
+            <div class="columns small-12 profile_order_body">
+        <div class="row order_details-container align-middle">
+            <div class="columns small-12 medium-6">
+                <div class="row">
+                    <div class="columns shrink">
+                        <div class="pic-holder">
+                            {if isset($imagesku.id)}
+                                <a href="{if $pismo}{$pismo}{/if}{url mod=product act=default cat_alias=$list.img_alias task=$product->id}">
+                                    <img src="{if $pismo}{$pismo}{/if}{getimg type=icon name=pImage id=$imagesku.id ext=$imagesku.image}"/>
+                                </a>
+                            {elseif isset($image.image)}
+                                <a href="{if $pismo}{$pismo}{/if}{url mod=product act=default cat_alias=$list.img_alias task=$product->id}">
+                                    <img src="{if $pismo}{$pismo}{/if}{getimg type=icon name=pImage id=$image.id ext=$image.image}"/>
+                                </a>
+                            {else}
+                                {img src="default-icon-60.jpg" class="t-image"}
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <a class="product-name" href="{if $pismo}{$pismo}{/if}{url mod=product act=default cat_alias=$list.img_alias task=$product->id}">{$product->name}</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns shrink order-details">
+                <dl>
+                    <dt>Артикул:</dt>
+                    <dd>
+                        {if $prod2Order.sku}
+                            {if $list.skuEntity->sku_article}
+                                {$list.skuEntity->sku_article}
+                            {else}
+                                {$prod2Order.sku}
+                            {/if}
                         {else}
-                              {img src="default-icon-60.jpg" class="t-image"}
+                            {$product->id}
                         {/if}
-                    </td>
-                    <td class="name-product">
-                        <div class="cart-title">
-                            <a href="{if $pismo}{$pismo}{/if}{url mod=product act=default cat_alias=$list.img_alias task=$product->id}">{$product->name}</a>
-                        </div>
-                    </td>
-                    <td class="prod-count">
-                        <b>Количество:</b> {$prod2Order->count}
-                    </td>
-                    <td class="order-list-table-down-count" valign="top" style="vertical-align: middle;">
-
-                        <table cellpadding="0" cellspacing="0" border="0" class="cart-attr" style="margin:auto; width: 91%;">
-                        <tr>
-                            <td>
-                                <div class="cart-article"> <b>Артикул:</b> </div>
-                            </td>
-                            <td>
-                                {if $prod2Order.sku}
-                                    {if $list.skuEntity->sku_article}
-                                        {$list.skuEntity->sku_article}
-                                    {else}
-                                        {$prod2Order.sku}
-                                    {/if}
-                                {else}
-                                    {$product->id}
-                                {/if}
-                            </td>
-                        </tr>
-                            {if $attributes}
-                                {foreach from=$attributes key=attributeKey item=attributeValue}
-                                    {assign var=attr_key value=$attributeValue.key}
-                                    {assign var=attr_value value=$attributeValue.value}
-                                    <tr>
-                                        <td class="cart-attr-l">{$attr_key->name}</td>
-                                        <td class="cart-attr-r">{$attr_value->name}</td>
-                                    </tr>
-                                {/foreach}
-                            {/if}
-                            {if $list.sku}
-                                <tr>
-                                    {$list.sku}
-                                </tr>
-                            {/if}
-                        </table>
-                    </td>
-                    <td class="prod-price">
-                        <div class="cart-price">
-                            <span class="new-price">
-                                {if $prices.discount gt 0}
-                                    {*<span class="price-not-sale">{$prices.price} грн</span>*}
-                                    <span style="color:#008000; font-weight:bold;">{$prices.user_price} грн.</span>
-                                    {*<br>
-                                    <span>Скидка на товар {$prices.discount}%</span> *}
-                                {else}{$prices.price} грн
-                                {/if}
-                            </span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top" colspan="5"><span class="hr_dot"></span></td>
-                </tr>
-            {/foreach}
-        </table>
-
-        <div id="order-price">
-            <span class="order-price" item-id="{$order.id}">
-                {if $order.sale_price < $order.full_price}
-                    {if $order.sale gt 0}
-                        <span style="font-size:11px">Ваша скидка на заказ {$order.sale}%</span><br>
-                    {/if}
-                    <br>Общая сумма к оплате: {$order.sale_price} грн.
-                    {*<span class="order-not-sale">Без скидки: {$order.full_price} грн</span>*}
-                {else}
-                    Общая сумма к оплате: {$order.full_price} грн.
+                    </dd>
+                </dl>
+                {if $attributes}
+                    {foreach from=$attributes key=attributeKey item=attributeValue}
+                        {assign var=attr_key value=$attributeValue.key}
+                        {assign var=attr_value value=$attributeValue.value}
+                        <dl>
+                            <dt class="cart-attr-l">{$attr_key->name}</dt>
+                            <dd class="cart-attr-r">{$attr_value->name}</dd>
+                        </dl>
+                    {/foreach}
                 {/if}
-            </span>
-            <br/>
+                {if $list.sku}
+                    <dl>
+                        {$list.sku}
+                    </dl>
+                {/if}
+                <dl>
+                    <dt>Количество:</dt>
+                    <dd>{$prod2Order->count}</dd>
+                </dl>
+                <dl>
+                    <dt>Цена:</dt>
+                    <dd>
+                        {if $prices.discount gt 0}
+                            <span >{$prices.user_price} грн.</span>
+                        {else}{$prices.price} грн
+                        {/if}
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+        {/foreach}
+
+        <div class="columns small-12 profile_order_footer">
+            <div class="row align-middle">
+                <div class="columns small-12 medium-6">
+                    <div id="order-price">
+                        <span class="order-price" item-id="{$order.id}">
+                            {if $order.sale_price < $order.full_price}
+                                {if $order.sale gt 0}
+                                    <span >Ваша скидка на заказ {$order.sale}%</span><br>
+                                {/if}
+                                <br>Общая сумма к оплате: {$order.sale_price} грн.
+                            {else}
+                                Общая сумма к оплате: {$order.full_price} грн.
+                            {/if}
+                        </span>
+                    </div>
+                </div>
+                {if $order.comment and $order.type == NULL}
+                    <div class="columns small-12 medium-6">
+                        <dl>
+                            <dt>Примечание:</dt>
+                            <dd>{$order.comment|strip_tags}</dd>
+                        </dl>
+                    </div>
+                {/if}
+                {if $order.type != NULL}
+                    <div class="columns small-12 medium-6">
+                        <dl>
+                            <dt>
+                                Статус заказа: <i>{$order.status}</i>
+                                <br />
+                                Примечание: {$order.comment|replace:"\n":"<br/>"}
+                            </dt>
+                            <dd>Стоимость товара в Украине: {if $order.price > 0}{$order.price}{if $order.type == 1} грн{elseif $order.type == 2} у.е.{/if}{else}Уточняется{/if}</dd>
+                        </dl>
+                    </div>
+                {/if}
+            </div>
         </div>
     {/if}
-    {if $order.comment and $order.type == NULL}
-    <table cellpadding="0" cellspacing="0" border="0" class="order-list-table-com">
-        <tr>
-            <td class="order-list-table-comment"><b>Примечание:</b></td>
-        </tr>
-        <tr>
-            <td class="order-list-table-comment">{$order.comment|strip_tags}</td>
-        </tr>
-    </table>
-    {/if}
-    {if $order.type != NULL}
-    <table cellpadding="0" cellspacing="0" border="0" class="cart-attr">
-        <tr>
-            <td class="cart-price"><b>Статус заказа:</b> <i>{$order.status}</i></td>
-        </tr>
-        <tr>
-            <td class="cart-price"><b>Примечание:</b> {$order.comment|replace:"\n":"<br/>"}</td>
-        </tr>
-        <tr>
-            <td class="cart-price"><b>Стоимость товара в Украине:</b> {if $order.price > 0}{$order.price}{if $order.type == 1} грн{elseif $order.type == 2} у.е.{/if}{else}Уточняется{/if}</td>
-        </tr>
-    </table>
-    {/if}
-
 </div>

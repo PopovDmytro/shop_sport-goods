@@ -65,11 +65,11 @@ class OrderController extends \RexShop\OrderController
                             if ($skuEntity->price) {
                                 $productEntity->price = $skuEntity->price;
                             }
-                            $skuName = $skuEntity->getClearName(htmlspecialchars('</tr><tr>'),
-                                htmlspecialchars('<td class="cart-attr-l"><b>'),
+                            $skuName = $skuEntity->getClearName(htmlspecialchars('</dl><dl>'),
+                                htmlspecialchars('<b>'),
                                 htmlspecialchars(':&nbsp;</b>'),
-                                htmlspecialchars('<td class="cart-attr-r">'),
-                                htmlspecialchars('</td>'));
+                                htmlspecialchars('<span class="cart-attr-r">'),
+                                htmlspecialchars('</span>'));
                             $orderList[$key]['productList'][$product_key]['sku'] = $skuName;
                             $orderList[$key]['productList'][$product_key]['skuEntity'] = $skuEntity;
                             $orderList[$key]['productList'][$product_key]['prices'] = $orderManager->getProductValues($order['id'], $productEntity->id, $skuEntity->id);
@@ -81,7 +81,6 @@ class OrderController extends \RexShop\OrderController
                         $pCatalog->get($productEntity->category_id);
                         $orderList[$key]['productList'][$product_key]['img_alias'] = $pCatalog->alias;
                         $orderList[$key]['productList'][$product_key]['product'] = $productEntity;
-
 
                     } else {
                         continue;

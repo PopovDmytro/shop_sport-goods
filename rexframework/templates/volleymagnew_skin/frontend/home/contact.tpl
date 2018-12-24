@@ -15,58 +15,6 @@
 
 <div class="row contacts-wrapper">
     <div class="column small-12">
-        {*<h1 class="section-title section-title--blue">Контакты</h1>
-        <p>Получить консультацию в выборе товара, узнать наличие интересующих Вас<br>моделей и условий доставки
-            Вы можете, связавшись с менеджером любым удобным Вам способом:</p>
-        <ul class="no-bullet contacts_list">
-            <li class="contacts_list_item">
-                <div class="icon-holder">
-                    <div class="inner-wrapper">
-                        {img src="contacts/tel_icon--blue.png"}
-                    </div>
-                </div>
-                <div class="text-holder">
-                    <a href="tel:097-948-50-39" class="regular-txt">097 948 50 39</a>
-                    <a href="tel:099-923-81-89" class="regular-txt">099 923 81 89</a>
-                </div>
-            </li>
-            <li class="contacts_list_item">
-                <div class="icon-holder">
-                    <div class="inner-wrapper">
-                        {img src="contacts/mail_icon--blue.png"}
-                    </div>
-                </div>
-                <div class="text-holder">
-                    <a href="mailto:zakaz@volleymag.com.ua" class="regular-txt">zakaz@volleymag.com.ua</a>
-                </div>
-            </li>
-            <li class="contacts_list_item">
-                <div class="icon-holder">
-                    <div class="inner-wrapper">
-                        {img src="contacts/skype_icon--blue.png"}
-                    </div>
-                </div>
-                <div class="text-holder">
-                    <span class="regular-txt">loginskype</span>
-                </div>
-            </li>
-            <li class="contacts_list_item">
-                <div class="icon-holder">
-                    <div class="inner-wrapper">
-                        {img src="contacts/scheduller_icon--blue.png"}
-                    </div>
-                </div>
-                <div class="text-holder">
-                    <span class="regular-txt">Пн - Пт: 10:00 - 18:00</span>
-                    <span class="regular-txt">Сб - Вс: выходной</span>
-                </div>
-            </li>
-        </ul>
-        <p>Для предложений сотрудничества, рекламы, а также по любым спорным вопросам Вы можете написать
-            руководству магазина. <br>
-            Предложения по улучшению нашего сервиса будут приняты с благодарностью.
-        </p>*}
-
         {*from admin static page*}
         {if $staticpage->content}
             <div class="contact_page_content">{$staticpage->content}</div>

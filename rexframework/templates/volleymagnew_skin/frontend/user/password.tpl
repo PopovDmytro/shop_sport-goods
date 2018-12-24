@@ -7,37 +7,52 @@
 				</a>
 			</li>
 			<li class="breadcrumbs_item active">
-				<a href="{url mod=user id=$user->id}" class="breadcrumbs_link">Профиль</a>
+				{*<a href="{url mod=user id=$user->id}" class="breadcrumbs_link">Профиль</a>*}
+				<a href="javascript:void(0)" class="breadcrumbs_link">Профиль</a>
 			</li>
 			<li class="breadcrumbs_item active">
-				Изменения Пароля:
-				<a href="{url mod=user act=default id=$userentity.id}" class="breadcrumbs_link">{$userentity.login}</a>
+				{*<a href="{url mod=user act=default id=$userentity.id}" class="breadcrumbs_link">Изменения Пароля: {$userentity.login}</a>*}
+				<a href="javascript:void(0)" class="breadcrumbs_link">Изменения Пароля: {$userentity.login}</a>
 			</li>
 		</ul>
 	</div>
 </div>
 
-<div class="product-def">
-	{include file="user/intobox.text.tpl"}
-	<div class="into-box login-link">
-	{page type='getRenderedMessages' section='user'}
-	{page type='getRenderedErrors' section='user'}
-	
-	<form action="" enctype="multipart/form-data" method="post">
-		<input type="hidden" name="mod" value="{$mod}">
-		<input type="hidden" name="act" value="{$act}">
-		
-		<div class="profile-edit-div">Текущий пароль:</div>
-		<input type="password" class="profile-edit-input titlex" name="profile[curr_password]" maxlength="128" value=""><br/>
-		
-		<div class="profile-edit-div">Новый пароль:</div>
-		<input type="password" class="profile-edit-input titlex" name="profile[password]" maxlength="128" value=""><br/>
-		
-		<div class="profile-edit-div">Новый пароль (Еще раз):</div>
-		<input type="password" class="profile-edit-input titlex" name="profile[passconfirm]" maxlength="128" value=""><br/>
-			
-		<div class="profile-edit-div"><input type="submit" id="free_button"class="profile-edit-submit" name="profile[submit]" value="Отправить"></div>
-	</form>
+<section class="profile-tabs">
+	<div class="row align-center">
+		<div class="columns small-12 large-8">
+			<div class="profile_tabs-container product-def">
+				{include file="user/intobox.text.tpl"}
+				<div class="into-box login-link">
+					{page type='getRenderedMessages' section='user'}
+					{page type='getRenderedErrors' section='user'}
+					<br />
+
+					<form action="" enctype="multipart/form-data" method="post">
+						<input type="hidden" name="mod" value="{$mod}">
+						<input type="hidden" name="act" value="{$act}">
+
+						<div class="row small-up-1 py-1">
+							<div class="input-holder column">
+								<input placeholder="Текущий пароль" type="password" class="profile-edit-input titlex" name="profile[curr_password]" maxlength="128" value="">
+							</div>
+
+							<div class="input-holder column">
+								<input placeholder="Новый пароль" type="password" class="profile-edit-input titlex" name="profile[password]" maxlength="128" value="">
+							</div>
+
+							<div class="input-holder column">
+								<input placeholder="Новый пароль (Еще раз)" type="password" class="profile-edit-input titlex" name="profile[passconfirm]" maxlength="128" value="">
+							</div>
+
+							<div class="profile-edit-div column">
+								<button type="submit" id="free_button"class="profile-edit-submit btn btn--green" name="profile[submit]" value="Отправить">Отправить</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="product-def-bottom-bg"></div>
+			</div>
+		</div>
 	</div>
-	<div class="product-def-bottom-bg"></div>
-</div>
+</section>

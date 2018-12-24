@@ -251,7 +251,7 @@
                                     </ul>
 
                                     <div class="checkout_form-wrapper row">
-                                        <div class="columns small-5">
+                                        <div class="columns large-5 row">
                                             <div class="row small-up-1">
                                                 {if !$user}
                                                 <div class="input-holder column">

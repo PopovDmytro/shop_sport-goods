@@ -1,27 +1,32 @@
-
-    <div class="product-def">
+<div class="product-def">
     <div class="product-def-top-bg"></div>
-
-        {if !$okprocess and !$confirm_sms}
-            {include file="user/login.inc.tpl"}
-        {elseif $confirm_sms}
-            <h1>Вход</h1>
-            <div class="into-box">
-                <form enctype="multipart/form-data" id="" action="{url mod=user act=login}" method="post">
-                    <table cellpadding="0" cellspacing="4px" border="0" class="table-reg">
-                        <tr>
-                            <td class="table-reg-l">Введите код подтверждения</td>
-                            <td class="table-reg-r-captcha"><input class="title-captcha" type="text" name="user[code]" value=""></td>
-                        </tr>
-                        <tr>
-                            <td class="table-reg-l-sub" align="right"><input type="submit" name="user[submit]" value="Подтвердить" /></td>
-                            <td class="table-reg-l-sub" align="right"><input type="submit" name="user[cancel]" value="Отменить вход" /></td>
-                        </tr>
-                    </table>
-                </form>
+    {if !$okprocess and !$confirm_sms}
+        {include file="user/login.inc.tpl"}
+    {elseif $confirm_sms}
+        <div class="row">
+            <div class="column small-12">
+                <h1 class="section-title section-title--blue">Вход</h1>
             </div>
-        {/if}
-    
-    
+        </div>
+        <div class="into-box">
+            <form enctype="multipart/form-data" id="" action="{url mod=user act=login}" method="post">
+                <div class="checkout_form-wrapper table-reg">
+                    <div class="row">
+                        <div class="input-holder column small-12 large-6">
+                            <input placeholder="Введите код подтверждения" class="title-captcha" type="text" name="user[code]" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-holder column small-12 large-3">
+                            <input class="btn btn--blue" type="submit" name="user[submit]" value="Подтвердить" />
+                        </div>
+                        <div class="input-holder column small-12 large-3">
+                            <input class="btn btn--blue" type="submit" name="user[cancel]" value="Отменить вход" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {/if}
     <div class="product-def-bottom-bg"></div>
-    </div>
+</div>

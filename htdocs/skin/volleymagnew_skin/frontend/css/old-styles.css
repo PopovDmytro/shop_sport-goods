@@ -303,3 +303,28 @@
     position: relative;
 }
 
+/*tabs buttons*/
+.tabs-title > a.active-tab:hover,
+.tabs-title > a.active-tab:active,
+.tabs-title > a.active-tab:focus,
+.tabs-title .active-tab {
+    background-color: #80db1c;
+    color: #ffffff;
+}
+
+/*padding classes*/
+.py-1 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.py-2 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.py-3 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
