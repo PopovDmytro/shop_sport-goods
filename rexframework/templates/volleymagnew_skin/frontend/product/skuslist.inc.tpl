@@ -5,15 +5,19 @@
             <span class="attr-wrapper slider4">
                 {foreach from=$attrFS key=k item=attr}
                     <div class="slide-attr" title="{$attr.name}">
-                        <a href="javascript:void(0);" class="attr-default color-box" data-sku-article="{$attr.sku_article}" attr_id="{$attr.attribute_id}" id="{$attr.id}">{if $attr.img_id}<img src="{getimg type=mini name=pImage id=$attr.img_id ext=$attr.img_ext}" title="{$attr.name}">{else}{$attr.name}{/if}</a>
+                        <a href="javascript:void(0);" class="attr-default color-box" data-sku-article="{$attr.sku_article}" attr_id="{$attr.attribute_id}" id="{$attr.id}">
+                            {if $attr.img_id}<img src="{getimg type=mini name=pImage id=$attr.img_id ext=$attr.img_ext}" title="{$attr.name}">{else}{$attr.name}{/if}
+                        </a>
                     </div>
                 {/foreach}
             </span>
         {else}
-            <span class="attr-wrapper size"><span>{$key}:</span>
+            <span class="attr-wrapper size">
+                <span>{$key}:</span>
                 <select class="titlex" title="{$key}">
                     {foreach from=$attrFS key=k item=attr name=size}
-                        <option class="attr-default {*{if $smarty.foreach.size.first}attr-active{/if}*}" attr_id="{$attr.attribute_id}" id="{$attr.id}">{if $attr.img_id}<img src="{getimg type=mini name=pImage id=$attr.img_id ext=$attr.img_ext}" title="{$attr.name}">{else}{$attr.name}{/if}
+                        <option class="attr-default {*{if $smarty.foreach.size.first}attr-active{/if}*}" attr_id="{$attr.attribute_id}" id="{$attr.id}">
+                            {if $attr.img_id}<img src="{getimg type=mini name=pImage id=$attr.img_id ext=$attr.img_ext}" title="{$attr.name}">{else}{$attr.name}{/if}
                         </option>
                     {/foreach}
                 </select>

@@ -328,3 +328,22 @@
     padding-bottom: 3rem;
 }
 
+/*compare block*/
+.compare_product_btns a,
+.compare_product-block_picture a,
+.compare_product-block_picture img {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.compare_product_btns a {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.compare_product_btns a:hover,
+.compare_product_btns a:focus,
+.compare_product_btns a:active {
+    color: #ffffff;
+}

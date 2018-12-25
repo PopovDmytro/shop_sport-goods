@@ -18,8 +18,8 @@
                                 <div class="product_price-holder">
                                     {if $item.sale}
                                         {assign var=new value=$item.price -$item.price*$item.sale/100}
-                                        <span class="product-price product-price--discount">{$new|floor } грн</span>
                                         <span class="product-price product-price--regular">{$item.price} грн</span>
+                                        <span class="product-price product-price--discount">{$new|floor } грн</span>
                                     {else}
                                         <span class="product-price product-price--regular">{$item.price} грн</span>
                                     {/if}

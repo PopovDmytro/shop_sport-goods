@@ -518,4 +518,74 @@ class ProductController extends \RexShop\ProductController
             ORDER BY FIELD(p.`id`,'$ids')";
         RexDisplay::assign('lastproduct',  XDatabase::getAll($sql));
     }
+
+    function getCompareClear()
+    {
+        $prod_id = $this->task;
+
+        if($prod_id === "default") {
+            XSession::set('compare', '');
+            if ($_SERVER['HTTP_REFERER']) {
+                header('Location: '.$_SERVER['HTTP_REFERER']);
+                exit;
+            } else {
+                RexRoute::location('home');
+            }
+        } else {
+            $compare_products = is_array(XSession::get('compare')) ? XSession::get('compare') : null;
+            foreach ($compare_products as $key => $product) {
+                if($product['pid'] === $prod_id) {
+                    unset($compare_products[$key]);
+                }
+            }
+            XSession::set('compare', $compare_products);
+            header('Location: '. '/compare');
+        }
+    }
+
+    function getCompare()
+    {
+        RexPage::setTitle('Сравнение товаров – интернет-магазин спортивных товаров Волеймаг');
+        //RexPage::setTitle(RexLang::get('catalog.compare.title'));
+
+        $compare = XSession::get('compare', false);
+
+        if (!$compare) {
+            return false;
+        }
+
+        if (sizeof($compare) < 1) {
+            return false;
+        }
+
+        $this->manager = RexFactory::manager('product');
+
+        $this->manager->getCompare($compare);
+        if (!$this->manager->_collection or sizeof($this->manager->_collection) < 1) {
+            return false;
+        }
+
+        $productList = $this->manager->getCollection();
+
+        //
+        $gender = RexFactory::manager('attribute');
+        $skuManager = RexFactory::manager('sku');
+
+        foreach ($productList as $key => $val) {
+
+            $sex = $gender->getGenderName($val['id']);
+            $skuManager->getSkusFront($val['id'], 1);
+
+            $productList[$key]['sex'] = $sex;
+            $productList[$key]['attributes'] = $skuManager->attributes;
+        }
+        //
+
+        RexDisplay::assign('productList', $productList);
+
+        $attr2ProdManager = RexFactory::manager('attr2Prod');
+        $attr2ProdManager->productList = $productList;
+        $attr2ProdManager->drawMulti();
+        RexDisplay::assign('attributes', $attr2ProdManager->fetched);
+    }
 }
