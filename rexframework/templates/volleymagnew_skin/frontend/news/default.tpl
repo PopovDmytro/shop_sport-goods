@@ -10,13 +10,16 @@
             </ul>
         </div>
     </div>
-
-    <div class="product-def">
-        <div class="into-box page_text">
-            <h1>{$news_item->name}</h1>
-            <p>{$news_item->date|date_format:"%d/%m/%Y"}</p>
-            <p>{$news_item->content}</p>
-        </div>
+    <div class="product-def row small-up-12">
+        <section class="about_main-content column column-block">
+            <div class="into-box page_text">
+                <h1 class="section-title section-title--blue">{$news_item->name}</h1>
+                <p>{$news_item->date|date_format:"%d/%m/%Y"}</p>
+                <p>{$news_item->content}</p>
+            </div>
+            {include file='news/newscomm.tpl'}
+        </section>
     </div>
-    {include file='news/newscomm.tpl'}
 {/if}
+
+

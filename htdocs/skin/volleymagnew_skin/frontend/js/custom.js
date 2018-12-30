@@ -83,6 +83,17 @@ var newsSettings = {
         ],
         nextArrow: '<button type="button" class="slick-next"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/right-arrow.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/right-arrow--hover.png"></button>',
         prevArrow: '<button type="button" class="slick-prev"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/left-arrow.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/left-arrow--hover.png"></button>'
+    },
+
+    productColorsSlider = {
+        infinite: !1,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: !1,
+        accessibility: !1,
+        draggable: !1,
+        nextArrow: '<button type="button" class="slick-next"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/right-arrow--sm.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/right-arrow-hover--sm.png"></button>',
+        prevArrow: '<button type="button" class="slick-prev"><img class="slider_arrow-img" src="/skin/volleymagnew_skin/frontend/img/slick/left-arrow--sm.png"><img class="slider_arrow-img slider_arrow-img--hover" src="/skin/volleymagnew_skin/frontend/img/slick/left-arrow-hover--sm.png"></button>'
     };
 
 (function ($) {
@@ -122,6 +133,9 @@ var newsSettings = {
 
         // Partners slider
         $('.my-slider_partners').slick(partnersSlider);
+
+        //product colors slider
+        $('.my-slider_product-colors').slick(productColorsSlider);
     });
 
     var dataFstPrice;

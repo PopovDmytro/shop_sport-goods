@@ -14,5 +14,8 @@
         </ul>
     </div>
 </div>
-
-{$productB}
+<div class="row small-up-12">
+    <section class="about_main-content column column-block">
+        {$productB}
+    </section>
+</div>

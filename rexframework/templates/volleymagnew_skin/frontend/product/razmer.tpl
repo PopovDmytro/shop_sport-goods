@@ -1,9 +1,9 @@
 <div class="obyv-block">
     <a href="javascript:void(0)" style="float:right;" class="obyv-close">Закрыть</a>
-    {*<img src="http://www.volleymag.com.ua/content/file/-/17%5B1%5D.jpg">*}
+    {*<img src="/content/file/-/17%5B1%5D.jpg">*}
     {if $productBrand->alias eq 'mizuno'}
     <div class="mizuno">
-        <img src="http://www.volleymag.com.ua/content/images/image/mizuno_logo.gif">
+        <img src="/content/images/image/mizuno_logo.gif">
         <h3 class="men_obyv">Размерная сетка на спортивную обувь Mizuno</h3> 
         {*<h3 id="men_obyv">Мужская обувь Mizuno</h3> *}
         <table border=1>
@@ -143,7 +143,7 @@
     </div>
     {elseif $productBrand->alias eq 'asics'}
     <div class="asics">
-        <img src="http://www.volleymag.com.ua/content/images/image/asics_logo.jpg">
+        <img src="/content/images/image/asics_logo.jpg">
         <h2 class="men_obyv">Размерная сетка на обувь Asics</h2>
         <h3>Мужская обувь Asics</h3>
         <table border="1">
@@ -429,10 +429,10 @@
 </div>
 <div class="odezhda-block">
     <a href="javascript:void(0)" style="float:right;" class="odezhda-close">Закрыть</a>
-    {*<img src="http://www.volleymag.com.ua/content/images/image/2.jpg">*}
+    {*<img src="/content/images/image/2.jpg">*}
     {if $productBrand->alias eq 'mizuno'}
     <div class="mizuno mizuno_odezhda">
-        <img src="http://www.volleymag.com.ua/content/images/image/mizuno_logo.gif">
+        <img src="/content/images/image/mizuno_logo.gif">
         <h3>Размерная сетка на одежду Mizuno</h3>
         <table border="1">
             <tr>
@@ -542,7 +542,7 @@
     </div>
     {elseif $productBrand->alias eq 'asics'}
     <div class="asics">
-        <img src="http://www.volleymag.com.ua/content/images/image/asics_logo.jpg">
+        <img src="/content/images/image/asics_logo.jpg">
         <h2 class="men_obyv">Размерная сетка на одежду Asics</h2>
         <h3>Спортивная одежда для мужчин</h3>
         <table border="1">
@@ -674,9 +674,9 @@
 </div>
 <div class="nakolenniki-block">
     <a href="javascript:void(0)" style="float:right;" class="nakolenniki-close">Закрыть</a>
-    {*<img src="http://www.volleymag.com.ua/content/images/image/1.png">*}
+    {*<img src="/content/images/image/1.png">*}
     <div class="mizuno mizuno_nakolenniki">
-        {*<img src="http://www.volleymag.com.ua/content/images/image/mizuno_logo.gif">*}
+        {*<img src="/content/images/image/mizuno_logo.gif">*}
         <h3>Таблица размеров наколенников</h3>
         <p>Размер наколенника определяется по центру коленной чашечки</p>
         <table border="1">
@@ -703,7 +703,7 @@
     <a href="javascript:void(0)" style="float:right;" class="noski-close">Закрыть</a>
     {if $productBrand->alias eq 'mizuno'}
     <div class="mizuno mizuno-noski">
-        <img src="http://www.volleymag.com.ua/content/images/image/mizuno_logo.gif">
+        <img src="/content/images/image/mizuno_logo.gif">
         <h3>Размерная сетка на носки Mizuno</h3>
         <table border="1">
             <tr>
@@ -731,7 +731,7 @@
     {elseif $productBrand->alias eq 'asics'}
     
     <div class="asics">
-        <img src="http://www.volleymag.com.ua/content/images/image/asics_logo.jpg">
+        <img src="/content/images/image/asics_logo.jpg">
         <h3>Размерная сетка на носки Asics</h3>
         <table border="1">
             <tr>
@@ -762,3 +762,5 @@
     </div>
     {/if}
 </div>
+
+<div class="block-background"></div>

@@ -21,10 +21,10 @@ class SkuManager extends \RexFramework\DBManager
     var $skus;
     var $total_quantity = 0;
 
-	function __construct()
-	{
-		parent::__construct('sku', 'id');
-	}
+    function __construct()
+    {
+        parent::__construct('sku', 'id');
+    }
 
     function getList($filters, $fields, $mod = false) {
         $attributesList = array(
@@ -104,14 +104,13 @@ class SkuManager extends \RexFramework\DBManager
                 }
             }
         }
-
         if (isset($filters['attr']) && $filters['attr'] == 'color') {
             $sql_group = ' GROUP BY `se`.attr2prod_id';
             $sql_limit =' ORDER BY `t`.`'.$order_by.'` '.$order_dir.'
             LIMIT '.($page * $inpage - $inpage).', '.$inpage.'  ;';
 
             $sql = 'FROM '.$this->_table.' AS `t` '.$sql_join.' WHERE '.$sql;
-//var_dump('SELECT t.id, t.product_id, t.price, t.price_opt, t.sale, t.sku_article, t.active, MAX(t.quantity) AS quantity, attr2.id AS color_id, CONCAT("<b>", attr1.`name`, "</b>", ": ", attr2.`name`) AS `name` '.$sql.$sql_group.$sql_limit);exit;
+
             return array(
                 0 => XDatabase::getAll('SELECT t.id, t.product_id, t.price, t.price_opt, t.sale, t.sku_article, t.active, MAX(t.quantity) AS quantity, attr2.id AS color_id, CONCAT("<b>", attr1.`name`, "</b>", ": ", attr2.`name`) AS `name` '.$sql.$sql_group.$sql_limit),
                 1 => XDatabase::getOne('SELECT COUNT(*) FROM (SELECT t.id '.$sql.$sql_group.') AS derived'));
@@ -119,7 +118,7 @@ class SkuManager extends \RexFramework\DBManager
             $order_by = 'gorder';
             $sql_group = ' GROUP BY `t`.id';
             $sql_limit =' ORDER BY `'.$order_by.'` '.$order_dir.' 
-            LIMIT '.($page * $inpage - $inpage).', '.$inpage.'  ';       
+            LIMIT '.($page * $inpage - $inpage).', '.$inpage.'  ';
             $sql = 'FROM '.$this->_table.' AS `t` '.$sql_join.' WHERE '.$sql;
             //echo 'SELECT t.*, GROUP_CONCAT("<b>", attr1.`name`, "</b>", ": ", attr2.`name` ORDER BY attr1.`name` DESC SEPARATOR "<br />") AS `name`, GROUP_CONCAT(attr2.`gorder` ORDER BY attr2.`gorder` ASC SEPARATOR "-") AS `gorder` '.$sql.$sql_group.$sql_limit;exit;
             return array(
@@ -128,27 +127,27 @@ class SkuManager extends \RexFramework\DBManager
         }
 
     }
-    
+
     function getOldColorSku($task, $colorId)
     {
         $sql = 'SELECT t.id, t.product_id, MAX(t.quantity) AS quantity, attr2.id AS color_id '.
-                'FROM sku AS t '.
-                'INNER JOIN sku_element se '.
-                    'ON t.id = se.sku_id '.
-                'INNER JOIN attr2prod ap '.
-                    'ON se.attr2prod_id = ap.id '.
-                'INNER JOIN attribute attr1 '.
-                    'ON ap.`attribute_id` = attr1.id AND attr1.id = 1 '.
-                'INNER JOIN attribute attr2  '.
-                    'ON ap.value = attr2.`id` '.
-                'WHERE 1 '.
-                    'AND  attr2.`id` = '.addslashes($colorId).' '.
-                    'AND t.active = "1" '.
-                    'AND `t`.`product_id` = "'.addslashes($task).'" ';
+            'FROM sku AS t '.
+            'INNER JOIN sku_element se '.
+            'ON t.id = se.sku_id '.
+            'INNER JOIN attr2prod ap '.
+            'ON se.attr2prod_id = ap.id '.
+            'INNER JOIN attribute attr1 '.
+            'ON ap.`attribute_id` = attr1.id AND attr1.id = 1 '.
+            'INNER JOIN attribute attr2  '.
+            'ON ap.value = attr2.`id` '.
+            'WHERE 1 '.
+            'AND  attr2.`id` = '.addslashes($colorId).' '.
+            'AND t.active = "1" '.
+            'AND `t`.`product_id` = "'.addslashes($task).'" ';
 
         return  XDatabase::getRow($sql);
     }
-    
+
     function getListOld($filters, $fields, $mod = false) {
         $order_by = $this->_uid;
         $order_dir = 'DESC';
@@ -234,6 +233,7 @@ class SkuManager extends \RexFramework\DBManager
                   FROM
                     attribute attr
                   WHERE attr.id = ap.`value`) AS `name`,
+
                   (SELECT
                     attr.`gorder`
                   FROM
@@ -241,9 +241,11 @@ class SkuManager extends \RexFramework\DBManager
                   WHERE attr.id = ap.`value`) AS `gorder`,
                   CONCAT(p.`id`, ".", p.`image`) AS img_url,
                   p.`id` AS img_id,
-                  p.`image` AS img_ext
+                  p.`image` AS img_ext,
+                  pco.sorder AS `sorder`
                 FROM
                   attr2prod ap
+
                   INNER JOIN sku_element se
                     ON ap.id = se.attr2prod_id
                   INNER JOIN sku s
@@ -251,11 +253,12 @@ class SkuManager extends \RexFramework\DBManager
                     AND s.quantity > 0
                   LEFT JOIN pimage p
                     ON ap.`product_id` = p.`product_id`
-                    AND ap.id = p.attribute_id AND p.`main` = 1 
+                    AND ap.id = p.attribute_id AND p.`main` = 1
+                  LEFT JOIN prod_color_order pco
+                    ON ap.value = pco.`attribute_id` AND ap.`product_id` = pco.`product_id`
                 WHERE ap.`product_id` = '.$aProductID.'
                 GROUP BY ap.id
-                ORDER BY gorder, ap.`attribute_id`, ap.`id` ASC';
-
+                ORDER BY ap.`attribute_id`, pco.sorder, gorder,  ap.`id` ASC';
         $res = XDatabase::getAll($sql);
         if ($res && count($res) > 0) {
             foreach ($res as $attr) {

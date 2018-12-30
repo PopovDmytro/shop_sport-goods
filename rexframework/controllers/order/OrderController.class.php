@@ -456,7 +456,6 @@ class OrderController extends \RexShop\OrderController
             $userManager = RexFactory::manager('user');
             $userManager->getMail($html, RexSettings::get('contact_email'), sprintf(RexLang::get('order.email.new_order_subject'), RexConfig::get('Project', 'sysname')));
 
-
             $orderList = $this->manager->getOrderList($orderEntity->id, true);
 
             $messageForUser = $this->getToOrderList($orderList, $this->manager);
@@ -469,9 +468,16 @@ class OrderController extends \RexShop\OrderController
             $userManager = RexFactory::manager('user');
             $userManager->getMail($htmlForUser, $email, sprintf(RexLang::get('order.email.new_order_subject'), RexConfig::get('Project', 'sysname')));
 
-            RexPage::addMessage(RexLang::get('order.order_congratulation'));
+            RexRoute::location(['mod' => 'order', 'act' => 'success']);
         }
     }
+
+    public function getSuccess()
+    {
+        RexPage::addMessage(RexLang::get('order.order_congratulation'));
+        RexDisplay::assign('delayedRedirect', RexRoute::getUrl(['mod' => 'home', 'act' => 'default']));
+    }
+
 
     // /usr/bin/php -f /home/users/volleymag/dev.volleymag.com.ua/htdocs/cron/check_first_order.php
     public function getCheckFirstOrder()

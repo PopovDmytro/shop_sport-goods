@@ -112,7 +112,9 @@
                                                      {/if}
                                                      {if $cart.sku}
                                                          <div>
+                                                             <table>
                                                              {$cart.sku}
+                                                             </table>
                                                          </div>
                                                      {/if}
                                                      {if $issetUncheckedSku}

@@ -775,7 +775,7 @@ function Views() {
     });
 }
 
-$('.obyv').off('click').on('click', function () {
+$('.obyv').die('click').live('click', function(){
     var block = $('.obyv-block');
     if (block.css('display', 'none')) {
         block.css('display', 'block');
@@ -783,7 +783,7 @@ $('.obyv').off('click').on('click', function () {
     }
 });
 
-$('.obyv-close').off('click').on('click', function () {
+$('.obyv-close').die('click').live('click', function(){
     var block = $('.obyv-block');
     if (block.css('display', 'block')) {
         block.css('display', 'none');
@@ -791,7 +791,7 @@ $('.obyv-close').off('click').on('click', function () {
     }
 });
 
-$('.odezhda').off('click').on('click', function () {
+$('.odezhda').die('click').live('click', function(){
     var block = $('.odezhda-block');
     if (block.css('display', 'none')) {
         block.css('display', 'block');
@@ -799,7 +799,7 @@ $('.odezhda').off('click').on('click', function () {
     }
 });
 
-$('.odezhda-close').off('click').on('click', function () {
+$('.odezhda-close').die('click').live('click', function(){
     var block = $('.odezhda-block');
     if (block.css('display', 'block')) {
         block.css('display', 'none');
@@ -807,7 +807,7 @@ $('.odezhda-close').off('click').on('click', function () {
     }
 });
 
-$('.nakolenniki').off('click').on('click', function () {
+$('.nakolenniki').die('click').live('click', function(){
     var block = $('.nakolenniki-block');
     if (block.css('display', 'none')) {
         block.css('display', 'block');
@@ -815,7 +815,7 @@ $('.nakolenniki').off('click').on('click', function () {
     }
 });
 
-$('.nakolenniki-close').off('click').on('click', function () {
+$('.nakolenniki-close').die('click').live('click', function(){
     var block = $('.nakolenniki-block');
     if (block.css('display', 'block')) {
         block.css('display', 'none');
@@ -823,7 +823,7 @@ $('.nakolenniki-close').off('click').on('click', function () {
     }
 });
 
-$('.noski').off('click').on('click', function () {
+$('.noski').die('click').live('click', function(){
     var block = $('.noski-block');
     if (block.css('display', 'none')) {
         block.css('display', 'block');
@@ -831,7 +831,7 @@ $('.noski').off('click').on('click', function () {
     }
 });
 
-$('.noski-close').off('click').on('click', function () {
+$('.noski-close').die('click').live('click', function(){
     var block = $('.noski-block');
     if (block.css('display', 'block')) {
         block.css('display', 'none');
@@ -839,7 +839,7 @@ $('.noski-close').off('click').on('click', function () {
     }
 });
 
-$('.block-background').off('click').on('click', function () {
+$('.block-background').die('click').live('click', function(){
     $('.obyv-block').css('display', 'none');
     $('.odezhda-block').css('display', 'none');
     $('.nakolenniki-block').css('display', 'none');
@@ -847,12 +847,12 @@ $('.block-background').off('click').on('click', function () {
     $('.block-background').css('display', 'none');
 });
 
-$('#subscribe-form').on('submit', function (e) {
+$('#subscribe-form').live('submit', function(e){
     e.preventDefault();
     var data = $(this).serialize();
     data = data + '&mod=user&act=addsubscriber';
 
-    $.post('/index.php', data, function () {
+    $.post('/index.php', data, function(){
         $('.subscribe-block').html('<h1>Поздравляем! Вы подписались на рассылку!</h1>');
     });
 });

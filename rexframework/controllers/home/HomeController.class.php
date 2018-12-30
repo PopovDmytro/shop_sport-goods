@@ -63,7 +63,7 @@ class HomeController extends \RexShop\HomeController
                 RexResponse::response(RexLang::get('contact.error.invalid_email'));
             }
 
-            if (trim(strlen($contact['text'])) < 5) {
+            if (trim(strlen($contact['text'])) < 2) {
                 RexResponse::response(RexLang::get('contact.error.invalid_text'));
             }
 
@@ -81,9 +81,7 @@ class HomeController extends \RexShop\HomeController
 
                 $html = RexDisplay::fetch('mail/pismo.cont.tpl');
                 $userManager = RexFactory::manager('user');
-                //RexSettings::get('contact_only_email');
                 $userManager->getMail($html, RexSettings::get('contact_only_email'), sprintf(RexLang::get('contact.email.subject'), RexConfig::get('Project', 'sysname')));
-
                 RexPage::addMessage(RexLang::get('contact.congratulation'), $this->mod);
                 RexResponse::response('ok');
             }
@@ -96,7 +94,6 @@ class HomeController extends \RexShop\HomeController
 
     function getAbout()
     {
-
         $staticEntity = RexFactory::entity('staticPage');
         $staticEntity->getByWhere('id = 2');
         $res = $staticEntity->content;

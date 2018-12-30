@@ -1,59 +1,63 @@
-<div class="block-comments">
-        <ul class="comments-list">
-            {if $comments}
-                {foreach from=$comments key=key item=item}
-                    <li>
-                        <div class="top-block"><a class="user" href="{url mod=user act=default id=$item.user_id}">{$item.login}</a>{if $item.status eq 0}<span class="your_comment">Сообщение на модерации.</span>{/if}<span class="date">{$item.date_create|date_format:"%d.%m.%Y"}</span></div>
-                        <p>{$item.content}</p>
-                    </li>
-                {/foreach}
-            {/if}
-            {foreach from=$userCom key=key item=item}
-                 <li>
-                    <div class="top-block"><a class="user" href="{url mod=user act=default id=$item.user_id}">{$item.login}</a>{if $item.status eq 0}<span class="your_comment">Сообщение на модерации.</span>{/if}<span class="date">{$item.date_create|date_format:"%d.%m.%Y"}</span></div>
-                    <p>{$item.content}</p>
-                 </li>
-            {/foreach}
-        </ul>
-    
-    {*if $commententity}
-        <ul class="comments-list">
-            <li>
-                <div class="top-block"><a class="user" href="{url mod=user act=default id=$commententity.user_id}">{$user.login}</a>{if $commententity.status eq 0}<span class="your_comment">Сообщение на модерации.</span>{/if}<span class="date">{$commententity.date_create|date_format:"%d.%m.%Y"}</span></div>
-                <p>{$commententity.content}</p>
-           </li>
-        </ul>
-    {/if*}
-    {if $user}
-        <form action="" method="POST" class="commentform">
-        <table cellpadding="0" cellspacing="0" border="0" class="user-comments">
-            <tr>
-                <td class="user-comments-in user-comments-intitle" valign="top">
-                    <div>
-                        {page type='getRenderedErrors' section='news'}
-                        {page type='getRenderedMessages' section='news'}
+<section class="block-comments about_comments-section row">
+    <div class="comments-wrapper column small-12">
+        {if $comments}
+            {foreach from=$comments key=key item=item}
+                <article class="comment">
+                    <div class="comment_header">
+                        <div class="comment_date date">{$item.date_create|date_format:"%d.%m.%Y"}</div>
+                        <div class="comment_user-name">
+                            <a class="user comment_user-link"href="{url mod=user act=default id=$item.user_id}">{$item.login}</a>
+                            {if $item.status eq 0}&nbsp;&nbsp;&nbsp;<span class="your_comment">Сообщение на модерации.</span>{/if}
+                        </div>
                     </div>
-                    {'about.add'|lang}
-                </td>
-            </tr>
-            <tr>
-                <td class="user-comments-in" valign="top">    
-                    <textarea onkeyup="javascript:backspacerUPText(this,event);"  id="comment_text" class="user-comments-textarea" name="addcom[content]"></textarea><br/>
-                </td>
-            </tr>
-            <tr>
-                <td class="user-comments-in user-comments-inbutton" valign="top" align="left">
-                    <input type="submit" class="user-comment-add-submit enter" value="Отправить отзыв" name="addcom[commentsubmit]">
-                </td>
-            </tr>
-        </table>
-        </form>
+                    <div class="comment_body">
+                        <p>{$item.content}</p>
+                    </div>
+                </article>
+            {/foreach}
+        {/if}
+        {foreach from=$userCom key=key item=item}
+            <article class="comment">
+                <div class="comment_header">
+                    <div class="comment_date date">{$item.date_create|date_format:"%d.%m.%Y"}</div>
+                    <div class="comment_user-name">
+                        <a class="user comment_user-link" href="{url mod=user act=default id=$item.user_id}">{$item.login}</a>
+                        {if $item.status eq 0}&nbsp;&nbsp;&nbsp;<span class="your_comment">Сообщение на модерации.</span>{/if}
+                    </div>
+                </div>
+                <div class="comment_body">
+                    <p>{$item.content}</p>
+                </div>
+            </article>
+        {/foreach}
+    </div>
+
+    {if $user}
+        <div class="answer-wrapper column small-12">
+            <form action="" method="POST" class="commentform">
+                <div>
+                    {page type='getRenderedErrors' section='news'}
+                    {page type='getRenderedMessages' section='news'}
+                </div>
+                <h3>{'about.add'|lang}</h3>
+                <label for="comment_text"></label>
+                <textarea rows="4" onkeyup="javascript:backspacerUPText(this,event);" id="comment_text"
+                          class="user-comments-textarea" name="addcom[content]">
+                </textarea>
+                <br/>
+                <input type="submit" class="user-comment-add-submit enter btn btn--blue" value="Отправить отзыв"
+                       name="addcom[commentsubmit]">
+            </form>
+        </div>
     {else}
-        <div class="authorization-block">
-            <span>Для того чтобы оставить отзыв нужно</span>
-            <a href="{url mod=user act=login}" class="enter"><span class="wrapper"><span>Войти</span></span></a>
-            <span>или</span>
-            <a href="{url mod=user act=registration}" class="enter"><span class="wrapper"><span>Зарегистрироваться</span></span></a>
+        <div class="authorization-block row">
+            <div class="answer-wrapper column small-12">
+                <h3>Для того чтобы оставить отзыв нужно</h3>
+                <a href="{url mod=user act=login}" class="common_link-btn btn btn--blue">Войти</a>
+                <span>или</span>
+                <a href="{url mod=user act=registration}"
+                   class="common_link-btn btn btn--blue">Зарегистрироваться</a>
+            </div>
         </div>
     {/if}
-</div>
+</section>

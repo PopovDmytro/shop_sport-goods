@@ -47,8 +47,6 @@
 
     {css src="app.css"}
     {css src="old-styles.css"}
-
-    {*{js src="app.js"}*}
     {*new assets end*}
 
     {js src="main.js"}
@@ -67,7 +65,7 @@
     {js src="jquery.ui.widget.js"}
     {js src="jquery.ui.mouse.js"}
     {js src="jquery.ui.slider.js"}
-    {*{js src="jquery.bxslider.js"}*}
+    {js src="jquery.bxslider.js"}
     {js src="mainvolley.js"}
 
     <script type="text/javascript">
@@ -366,13 +364,6 @@
 {js src="slick.js"}
 {js src="custom.js"}
 {**}
-
-{*TODO remove bottom 000webhost button*}
-<script>
-$(document).ready(function() {
-	$('[rextitle]').css('display','none');
-});
-</script>
 
 </body>
 </html>

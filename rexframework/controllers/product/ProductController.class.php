@@ -131,22 +131,21 @@ class ProductController extends \RexShop\ProductController
         $list = $pimageManager->getCollection();*/
 
         $list = XDatabase::getAll('SELECT
-              pimg.* 
+              pimg.*
             FROM
-              sku s 
-              INNER JOIN sku_element se 
-                ON s.`id` = se.`sku_id` 
-              INNER JOIN pimage pimg 
+              sku s
+              INNER JOIN sku_element se
+                ON s.`id` = se.`sku_id`
+              INNER JOIN pimage pimg
                 ON pimg.`attribute_id` = se.`attr2prod_id`
-              INNER JOIN attr2prod a2p 
+              INNER JOIN attr2prod a2p
                 ON se.`attr2prod_id` = a2p.id 
-              LEFT JOIN prod_color_order pco 
+              LEFT JOIN prod_color_order pco
                 ON pimg.`product_id` = pco.`product_id` AND a2p.`value` = pco.`attribute_id`
-            WHERE pimg.product_id = ' . intval($this->entity->id) . ' 
-              AND s.`quantity` > 0 
+            WHERE pimg.product_id = ' . intval($this->entity->id) . '
+              AND s.`quantity` > 0
             GROUP BY pimg.id
             ORDER BY pimg.`main` DESC, pco.`sorder`');
-
         if (sizeof($list) > 0) {
             RexDisplay::assign('imageList', $list);
         }
@@ -315,6 +314,10 @@ class ProductController extends \RexShop\ProductController
                      
         $brand = RexFactory::entity('brand');
         $brand->get($this->entity->brand_id);
+
+//        var_dump(file_exists('skin/volleymagnew_skin/frontend/img/main-page/asics_logo.png'));
+//        exit;
+
         RexDisplay::assign('productBrand', $brand);
         
         //get attached files
