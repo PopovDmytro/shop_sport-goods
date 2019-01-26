@@ -287,6 +287,9 @@
                                                 <div class="input-holder column">
                                                     <input placeholder="Населенный пункт доставки" id="searchcity" class="search titlex" name="order[city]" onblur="{literal}javascript: if (this.value=='') {this.value='Населенный пункт доставки';}" onfocus="javascript: if (this.value=='' || this.value=='Населенный пункт доставки') {this.value='';}{/literal}" value="{if $q}{$q}{else}{$user.city}{/if}" />
                                                 </div>
+                                                <div class="fillials_rt">
+
+                                                </div>
                                                 {/if}
                                                 <input type="hidden" id="city-val" name="" value="{$usercity_id}">
                                                 {*{foreach from=$city item=icity}{if $user.city eq $icity.id}{$icity.name}{/if}{/foreach}*}

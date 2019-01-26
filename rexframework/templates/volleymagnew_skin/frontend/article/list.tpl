@@ -1,5 +1,5 @@
 {if $article}
-    {foreach from=$article key=key item=item name=news_list}
+    {foreach from=$article key=key item=item name=article_list}
         <div class="my-sliders_slide news_slide">
             <div class="img-holder text-center">
                 {if $item.icon neq ''}

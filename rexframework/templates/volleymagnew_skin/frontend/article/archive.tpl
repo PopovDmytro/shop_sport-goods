@@ -28,7 +28,7 @@
                         {if $item.icon neq ''}
                             <img src="{getimg type=main name='article' id=$item.id ext=$item.icon}" class="slide-img" />
                         {/if}
-                        <a href="{url mod=news task=$item.alias}" class="overlay-link">
+                        <a href="{url mod=article task=$item.alias}" class="overlay-link">
                             {img src='main-page/eye_icon.png' class='overlay-link_icon'}
                         </a>
                     </div>

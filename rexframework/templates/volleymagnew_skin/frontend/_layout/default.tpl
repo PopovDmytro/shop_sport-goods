@@ -119,20 +119,18 @@
                         <div class="header_stream-block">
                             <ul class="header_actions-holder hide-for-large">
                                 <li>
-                                    <button type="button">
+                                    <button type="button" id="mobile-search-toggle">
                                         {img src='footer/search_icon_grey.png' class='search-icon action-icon'}
                                     </button>
-
-                                    {*TODO search inputs for mobile*}
-                                    {*<div class="search-box" id="search-box">
+                                    <div class="search-box" id="search-box">
                                         <form action="{url mod=pCatalog act=search}" id="search-ad" method="post">
                                             <div class="search-input">
                                                 <input name="q" id="search_inp" onblur="{literal}javascript: if (this.value=='') {this.value='Поиск';}" onfocus="javascript: if (this.value=='' || this.value=='Поиск') {this.value='';}{/literal}" value="{if $q}{$q}{else}Поиск{/if}" />   </div>
-                                            <input type="submit" name="search-submit" class="search-submit btn-search" value=""/>
+                                            <button type="submit" name="search-submit" class="search-submit btn-search search-btn" value="">
+                                                {img src='footer/search_icon.png' class='search-icon'}
+                                            </button>
                                         </form>
-                                    </div>*}
-                                    {*END TODO search inputs for mobile*}
-
+                                    </div>
                                 </li>
                                 <li>
                                     <a href="{url mod=cart}">
@@ -313,6 +311,9 @@
                         <ul class="ul ul--untitl">
                             <li>
                                 <a href="https://facebook.com/volleymag" target="_blank"> {img src='footer/facebook_icon.png'} </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/volley_mag" target="_blank"> {img src='footer/instagram_icon.png'} </a>
                             </li>
                         </ul>
                     </div>

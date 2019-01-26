@@ -154,10 +154,19 @@ var newsSettings = {
         return $(document).on("mousemove", setText).one("mouseup", function () { return $(document).off("mousemove", setText); });
     });
 
-})($j);
+    //open / close mobile search block
+    document.querySelector('#mobile-search-toggle').addEventListener('click', function (evt) {
+        var searchBox = document.querySelector('#search-box');
 
-//new js
-//    --------------------------------
+        if(getComputedStyle(searchBox).display === 'none') {
+            searchBox.style.display = 'block';
+        } else {
+            searchBox.style.display = 'none';
+        }
+
+    });
+
+})($j);
 
 (function (jQuery) {
 
@@ -4374,7 +4383,6 @@ var newsSettings = {
     $j(document).foundation();
 
 })($j);
-//    --------------------------------
 
 (function () {
     function AddListeners(openBtn, closeBtn, popupElement) {
@@ -4403,3 +4411,4 @@ var newsSettings = {
     // var brand_check_all = document.getElementById('brand_check_all');
 
 })();
+

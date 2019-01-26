@@ -142,9 +142,7 @@
                     </div>
                     <h3>{'about.add'|lang}</h3>
                     <label for="comment_text"></label>
-                    <textarea rows="4" onkeyup="javascript:backspacerUPText(this,event);"  id="comment_text" class="user-comments-textarea" name="about[content]">
-                        {if $commententity.content}Отзыв отправлен на модерацию...{*$commententity.content*}{/if}
-                    </textarea>
+                    <textarea rows="4" onkeyup="javascript:backspacerUPText(this,event);"  id="comment_text" class="user-comments-textarea" name="about[content]">{if $commententity.content}Отзыв отправлен на модерацию...{*$commententity.content*}{/if}</textarea>
                     <br/>
                     <input type="submit" value="Отправить отзыв" name="about[commentsubmit]" class="btn btn--blue">
                 </form>
