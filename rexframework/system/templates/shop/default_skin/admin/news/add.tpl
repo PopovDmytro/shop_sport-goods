@@ -79,6 +79,16 @@
                 </td>
             </tr>
         </table>
+       <table cellspacing="5" cellpadding="0" border="0" width="100%">
+            <tr>
+                <td class="frame-t-td-l">
+                    Youtube:
+                </td>
+                <td class="frame-t-td">
+                    <input name="entity[youtube]" style="width: 400px;" value="{if $entity->youtube}{$entity->youtube}{/if}"></input>
+                </td>
+            </tr>
+        </table>
         </div>
     </form>
 </div>

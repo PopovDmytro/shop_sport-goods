@@ -10,6 +10,12 @@
         {if $staticpage->content}
              <div class="contact_page_content">{$staticpage->content}</div>
         {/if}
+        {if $staticpage->youtube}
+            <p style="text-align: center">
+                <iframe width="100%" height="400" src="{$staticpage->youtube}" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </p>
+        {/if}
         <div class="button_contact">
             Написать руководству
         </div>

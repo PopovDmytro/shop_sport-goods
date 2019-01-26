@@ -11,9 +11,11 @@ class XImageGD2 extends XImageInterface
     {
         list($width, $height, $type, $attr) = getimagesize($aParam['source']);
 
+        //var_dump($aParam['source'], is_file($aParam['source']));exit;
         $type = image_type_to_mime_type($type);
         $type = str_replace('image/', '', $type);
         $function = 'imagecreatefrom'.$type;
+        //var_dump($function);exit;
         if (!function_exists($function)) {
             return false;
         }
@@ -54,7 +56,7 @@ class XImageGD2 extends XImageInterface
         if (!function_exists($function)) {
             return false;
         }
-        
+
         $handle = $this->prepareWatermark($aParam);
         
         $width = imagesx($handle);
@@ -84,25 +86,25 @@ class XImageGD2 extends XImageInterface
         } else {
             imagecopymerge($out, $handle, $left, $top, 0, 0, $width, $height, intval(100 * $aParam['opacity']));
         }
-        
+
         $function = 'image'.$type;
-        $tmp_file = tempnam('/tmp', 'wmk');
-        $function($out, $tmp_file);
+        $function($out, $aParam['destination']);
         
         imagedestroy($out);
         imagedestroy($handle);
-        
-        unlink($aParam['destination']);
-        copy($tmp_file, $aParam['destination']);
+
+        return true;
     }
 
     public function crop($aParam)
     {
         list($current_width, $current_height, $type) = getimagesize($aParam['source']);
+
         $type = image_type_to_mime_type($type);
         $type = str_replace('image/', '', $type);
         $fnImageCreate = 'imagecreatefrom'.$type;
         $fnImage = 'image'.$type;
+
         if (!function_exists($fnImageCreate) || !function_exists($fnImage)) {
             return false;
         }

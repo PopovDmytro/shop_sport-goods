@@ -1,12 +1,13 @@
 <?php
 
 class PHPSender {
-
-    protected static $project = '20';
-    protected static $password = 'ba58320e5d1c2ddde337d126ea17b3b3';
+    
+    protected static $project = '19';
+    protected static $password = 'be98b894b1b6ae3266de1e10522a94c0';
     protected static $server_url = 'http://sender.illusix.com/';
+    protected static $isTranslitContent = false;
     protected static $pathToLogFile = 'htdocs/files/logs/sms';
-
+    
     /**
      * @param bool $number
      * @param string $message
@@ -14,29 +15,21 @@ class PHPSender {
      */
     public static function sendSms($number = false, $message = '')
     {
-
         if (!$message || !$number || strlen(trim($message)) < 1) {
             return 'One or more parametrs are missing in request';
         }
-
         if (is_array($number)) {
-            $number = implode(';', $number); 
+            $number = implode(';', $number);
         }
-
         $resault = [];
-
         $resault['status'] =  static::sendSmsByAtompark(array(
-            'nmb' => $number,
-            'msg' => $message)
+                'nmb' => $number,
+                'msg' => $message)
         );
-
         if($resault['status']){
             $resault['message'] = $message;
         }
-
         return (object)$resault;
-
-
         // old
         /*return static::_getAnswerCurl(
             static::$server_url,
@@ -47,7 +40,6 @@ class PHPSender {
                 'msg' => $message)
         );*/
     }
-
     /**
      * @param $number
      * @param $count
@@ -55,7 +47,6 @@ class PHPSender {
      */
     public static function sendValidationCode($number, $count)
     {
-
         $message = static::randomNumber($count);
         $resault = [];
         $resault['status'] =  static::sendSmsByAtompark(
@@ -63,13 +54,10 @@ class PHPSender {
                 'nmb' => $number,
                 'msg' => $message)
         );
-
         if($resault['status']){
             $resault['code'] = $message;
         }
-
         return (object)$resault;
-
         // Old
         /*return static::_getAnswerCurl(
             static::$server_url,
@@ -80,7 +68,6 @@ class PHPSender {
                 'cnt' => $count)
         );*/
     }
-
     /**
      * @param $number
      * @return bool|mixed
@@ -90,10 +77,8 @@ class PHPSender {
         if( static::_validateNumber($number) ){
             return $number;
         }
-
         return false;
     }
-
     /**
      * Old
      * @param $url
@@ -105,7 +90,6 @@ class PHPSender {
         if(!isset($url) || !isset($fields_post)) {
             return false;
         }
-
         foreach ($fields_post as $key => $value) {
             $params[] = $key.'='.urlencode($value);
         }
@@ -122,21 +106,16 @@ class PHPSender {
         //return $res;
         return json_decode($res);
     }
-
     /**
      * @param array $massageData
      * @return bool
      */
     protected static function sendSmsByAtompark(array $massageData){
-
         if (!$massageData) {
             return false;
         }
-
         $logMassageData = '. Massage data: ' . json_encode($massageData, JSON_UNESCAPED_UNICODE);
-
         $src = static::createAtomparkXML($massageData);
-
         $ch = curl_init();
         $chOptions = array(
             CURLOPT_URL => 'http://api.atompark.com/members/sms/xml.php',
@@ -151,20 +130,17 @@ class PHPSender {
         curl_setopt_array($ch, $chOptions);
         $result = curl_exec($ch);
         curl_close($ch);
-
         if (!$result) {
             static::logAtompark('Curl error: ' . curl_error($ch) . $logMassageData . PHP_EOL);
             return false;
         }
-
         $resultsXML = [
-            '-1' =>	'Неправильный логин и/или пароль',
+            '-1' => 'Неправильный логин и/или пароль',
             '-2' => 'Неправильный формат XML',
             '-3' => 'Недостаточно кредитов на аккаунте пользователя',
             '-4' => 'Нет верных номеров получателей',
             '-7' => 'Ошибка в имени отправителя'
         ];
-
         try{
             $response = new SimpleXMLElement($result);
             $status = (string) $response->status;
@@ -175,31 +151,24 @@ class PHPSender {
             static::logAtompark ('Atompark XML exception: ' . $e->getMessage() . $logMassageData  . PHP_EOL);
             return false;
         }
-
         if(isset($resultsXML[$status])){
             static::logAtompark ('Atompark error: ' . $resultsXML[$status] . $logMassageData . PHP_EOL);
             return false;
         }
-
         static::logAtompark('SMS send' . $logMassageData . PHP_EOL);
-
         return $status > 0;
     }
-
     /**
      * @param string $msg
      * @return void
      */
     protected static function logAtompark($msg)
     {
-
         if(!is_dir(REX_ROOT . static::$pathToLogFile)){
             mkdir(REX_ROOT . static::$pathToLogFile, 0755, true);
         }
-
         file_put_contents(REX_ROOT . static::$pathToLogFile . '/log.txt', '['.date('Y-m-d H:i:s') .'] '.$msg, FILE_APPEND);
     }
-
     /**
      * @param array $massageData
      * @return string
@@ -207,7 +176,6 @@ class PHPSender {
     protected static function createAtomparkXML(array $massageData)
     {
         $accesses = self::getLoginPasswordAtompark();
-
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
                     <SMS>
                         <operations>
@@ -221,7 +189,6 @@ class PHPSender {
                             <sender>' . $accesses['brand_name'] . '</sender>
                             <text>' . $massageData['msg'] . '</text>
                         </message>';
-
         if (strpos($massageData['nmb'], ';')) {
             $numbers = explode(';', $massageData['nmb']);
             $xml .= '<numbers>';
@@ -234,12 +201,9 @@ class PHPSender {
                         <number>' . $massageData['nmb'] . '</number>
                     </numbers>';
         }
-
         $xml .= '</SMS>';
-
         return $xml;
     }
-
     /**
      * @param int $length
      * @return string
@@ -247,15 +211,11 @@ class PHPSender {
     protected static function randomNumber($length = 6)
     {
         $result = '';
-
         for ($i = 0; $i < $length; $i++) {
             $result .= mt_rand(0, 9);
         }
-
         return $result;
     }
-
-
     /**
      * @return array
      */
@@ -273,7 +233,6 @@ class PHPSender {
             static::logAtompark('Config error' . $e->getMessage() . PHP_EOL);
             $fail = true;
         }
-
         if ($fail){
             $data['login'] = 'null';
             $data['password'] = 'null';
@@ -281,7 +240,6 @@ class PHPSender {
         }
         return $data;
     }
-
     /**
      * @param $numberUnval
      * @return bool
@@ -289,20 +247,16 @@ class PHPSender {
     private static function _validateNumber(&$numberUnval)
     {
         $numberUnval = preg_replace('/\D/', '', $numberUnval);
-
         if (strlen($numberUnval) < 9 || strlen($numberUnval) > 12) {
             return false;
         }
-
         $countryCodes = array('380\d{9}', '7\d{10}', '375\d{9}');
-
         foreach ($countryCodes as $regExp) {
             if (preg_match('#'.$regExp.'#is', $numberUnval)) {
                 $numberUnval = '+'.$numberUnval;
                 return true;
             }
         }
-
         $numberUnval = '+380'.substr($numberUnval, -9);
         return true;
     }

@@ -52,12 +52,13 @@ if (isset($arrUser['submitlogin']) && !isset($arrUser['code'])) {
             if ($user->phone && RexSettings::get('phpsender_adminlogin') == 'true') {
                 $result = PHPSender::sendValidationCode($user->phone, 6);
                 if($result->status === false){
-                    RexPage::addError(RexLang::get('user.error.try_again'), Request::get('mod'));
+                    RexPage::addError(RexLang::get('user.error.try_again'), 'user');
+                    return false;
                 }
                 $user->phone_validation = $result->code;
                 $user->update();
                 setcookie('user_login', $user->id, time() + 18000, '/', RexConfig::get('Project', 'cookie_domain'));
-                RexDisplay::assign('confirm_sms', true);
+                RexDisplay::assign('confirm_sms', true);    
             } else {
                 XSession::set('user', $user);
             }
@@ -65,13 +66,13 @@ if (isset($arrUser['submitlogin']) && !isset($arrUser['code'])) {
             if ($user->phone && RexSettings::get('phpsender_adminlogin') == 'true') {
                 $result = PHPSender::sendValidationCode($user->phone, 6);
                 if($result->status === false){
-                    RexPage::addError(RexLang::get('user.error.try_again'), Request::get('mod'));
+                    RexPage::addError(RexLang::get('user.error.try_again'), 'user');
+                    return false;
                 }
                 $user->phone_validation = $result->code;
                 $user->update();
                 setcookie('user_login', $user->id, time() + 18000, '/', RexConfig::get('Project', 'cookie_domain'));
-                RexDisplay::assign('confirm_sms', true);
-                return true;
+                RexDisplay::assign('confirm_sms', true);    
             } else {
                 XSession::set('user', $user);
             }
@@ -93,13 +94,13 @@ if (isset($arrUser['submitlogin']) && !isset($arrUser['code'])) {
             if ($user->phone && RexSettings::get('phpsender_userlogin') == 'true') {
                 $result = PHPSender::sendValidationCode($user->phone, 6);
                 if($result->status === false){
-                    RexPage::addError('Ошибка авторизации', 'user');
-                    //RexPage::addError(RexLang::get('user.error.try_again'), Request::get('mod'));
+                    RexPage::addError(RexLang::get('user.error.try_again'), 'user');
+                    return false;
                 }
                 $user->phone_validation = $result->code;
                 $user->update();
                 setcookie('user_login', $user->id, time() + 18000, '/', RexConfig::get('Project', 'cookie_domain'));
-                RexDisplay::assign('confirm_sms', true);
+                RexDisplay::assign('confirm_sms', true);    
             } else {
                 XSession::set('user', $user);
                 

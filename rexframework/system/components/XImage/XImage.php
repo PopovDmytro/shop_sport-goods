@@ -173,7 +173,7 @@ class XImage
             ),
             'opacity' => $opacity
         );
-        
+
         if (!static::$object->watermark($params)) {
             static::_setError('Watermark error');
             return false;

@@ -36,6 +36,7 @@ class ArticleEntity extends RexDBEntity
         static::add('date', new RexDBDatetime());
         static::add('type_id', new RexDBInt());
         static::add('icon', new RexDBString());
+        static::add('youtube', new RexDBText());
     }
      
     function create() 

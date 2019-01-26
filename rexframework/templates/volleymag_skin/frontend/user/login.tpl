@@ -22,6 +22,5 @@
             </div>
         {/if}
     
-    
     <div class="product-def-bottom-bg"></div>
     </div>

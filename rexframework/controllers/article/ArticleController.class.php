@@ -12,7 +12,7 @@ class ArticleController extends \RexFramework\ParentController
         'CommentManager:volley.standart:1.0',
         'PagerObj:standart:1.0'
     );
-
+	
 	function getDefault()
 	{
 		$this->entity = RexFactory::entity('article');
@@ -28,10 +28,10 @@ class ArticleController extends \RexFramework\ParentController
 			} else {
                 RexPage::setTitle($this->entity->name);
 			}
-
+			
 			RexPage::setDescription($this->entity->description);*/
 			RexPage::setKeywords($this->entity->keywords);
-
+            
             //\sys::dump($this->entity->id);exit;
         $arrcomment = Request::get('addcom');
         RexDisplay::assign('comment', $arrcomment);
@@ -39,16 +39,16 @@ class ArticleController extends \RexFramework\ParentController
         $commentEntity = RexFactory::entity('comment');
         //if edit mode - get data by ID
         if (isset($arrcomment['id']) and intval($arrcomment['id']) > 0) {
-
+            
             if (!$commentEntity->get($arrcomment['id'])) {
                 RexPage::addError(RexLang::get('comment.error.edit_comment'), $this->mod);
             } else {
                 $arr = $commentEntity->getArray();
                 $arr = array_merge($arr, $arrcomment);
-                RexDisplay::assign('commententity', $arr);
+                RexDisplay::assign('commententity', $arr);                
             }
         }
-
+        
         //if form is submitted
         if (isset($arrcomment['commentsubmit']) and !RexPage::isError($this->mod)) {
 
@@ -57,26 +57,26 @@ class ArticleController extends \RexFramework\ParentController
             //user
             $newUser     = RexFactory::entity('user');
             $user         = RexFactory::entity('user');
-            $user = XSession::get('user');
+            $user = XSession::get('user');        
             if (!$user or $user->id < 1) {
                 RexPage::addError(RexLang::get('comment.error.user_error'), $this->mod);
             } elseif ($user->role != 'user' and isset($commentEntity->user_id) and $commentEntity->user_id > 0 and $newUser->get($commentEntity->user_id)) {
                 $user = $newUser;
             }
-
+            
             //content
             if (empty($arrcomment['content'])) {
                 RexPage::addError(RexLang::get('about.error.empty_comment'), $this->mod);
             }
-
+            
             if (!RexPage::isError($this->mod)) {
                 //set form fields to entity
                 $commentEntity->set($arrcomment);
                 $commentEntity->user_id = $user->id;
-                $commentEntity->product_id = -1;
-                $commentEntity->article_id = $this->entity->id;
-                $commentEntity->type = 3;
-
+                $commentEntity->product_id = -1;    
+                $commentEntity->article_id = $this->entity->id;    
+                $commentEntity->type = 3;    
+                
                 if (!RexPage::isError($this->mod) and !isset($arrcomment['id'])) {
                     if (!$commentEntity->create()) {
                         RexPage::addError(RexLang::get('comment.error.error_create'), $this->mod);
@@ -93,18 +93,19 @@ class ArticleController extends \RexFramework\ParentController
                     RexPage::addError(RexLang::get('comment.message.add_to_moderator'), $this->mod);
                 }
             }
-
+            
             $arr = $commentEntity->getArray();
             $arr = array_merge($arr, $arrcomment);
             RexDisplay::assign('commententity', $arr);
+            
         }
-
+        
         $commentsManager = RexFactory::manager('comment');
         $comments = $commentsManager->getArticleComm($this->entity->id);
         $user = XSession::get('user');
         //\sys::dump($this->entity->id);exit;
         if ($user) {
-
+            
             $userCom = $commentsManager->getArticleCommUser($user->id, $this->entity->id);
             RexDisplay::assign('comments', $comments);
             RexDisplay::assign('userCom', $userCom);
@@ -119,23 +120,23 @@ class ArticleController extends \RexFramework\ParentController
             $desc = substr($str, 0, strpos($str, ' ', 100));
             RexPage::setDescription($desc.'.. Статьи о спортивной одежде, обуви и брендах на сайте интернет-магазина Волеймаг');
         }
-
+        
         //\sys::dump($comments);exit;
 		}
 	}
-
+	
 	function getArchive()
 	{
 		if (!$this->task or $this->task == 'default') {
 			$this->task = 1;
 		}
-
+        
         //\sys::dump($this->task);
-		$pagerObj = new PagerObj('pager_'.$this->mod, 9, $this->task);
+		$pagerObj = new PagerObj('pager_'.$this->mod, 10, $this->task);
 
 		$this->manager = RexFactory::manager('article');
 		$this->manager->getArchive($pagerObj->getFrom(), $pagerObj->getPerPage());
-
+        
         RexDisplay::assign('article_archive', $this->manager->getCollection());
 
 		$pagerObj->setCount($this->manager->getCount());
@@ -151,20 +152,19 @@ class ArticleController extends \RexFramework\ParentController
             RexPage::setDescription('Полезная информация о спортивной одежде и обуви – как выбрать, особенности различных моделей для разных видов спорта. Статьи о волейбольных товарах, травмах и аксессуарах');
             RexPage::setKeywords('Статьи о спортивных товарах, как выбрать спортивную одежду, информация о спортивной одежде, статьи о волейбольных товарах');
         }
-
 	}
-
+	
 	function getLatest() //smarty func
 	{
         $aParams = array(
             'saveto' => 'article',
-            'count' => 6
+            'count' => 3
         );
-
-		$articleManager = RexFactory::manager('article');
-        $articleManager->getByWhere('1=1 ORDER BY `id` DESC LIMIT '.$aParams['count'].'');
-		RexDisplay::assign($aParams['saveto'], $articleManager->getCollection());
+         
+		$newsManager = RexFactory::manager('news');
+		$newsManager->getByWhere('1=1 ORDER BY `id` DESC');		
+		RexDisplay::assign($aParams['saveto'], $newsManager->getCollection());
 	}
-
-
+    
+    
 }

@@ -557,7 +557,7 @@ class XDatagrid extends Structures_DataGrid
 		
 		RexDisplay::assign("requestPrefix",   $this->_requestPrefix);
 		RexDisplay::assign("columnPreSet",    $columnPreSet);
-
+		
 		return RexDisplay::fetch('file:/'.$aTemplate);
 	}
 	

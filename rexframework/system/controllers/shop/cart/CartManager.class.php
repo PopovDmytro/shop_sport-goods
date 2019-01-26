@@ -21,7 +21,7 @@ class CartManager extends \RexObject
 	var $_collection = array();
 	
 	function getData()
-	{   
+	{
 		if (isset($_COOKIE['cart'])) {
 			$cart = base64_decode($_COOKIE['cart']); 
 		    $cart = gzuncompress($cart);

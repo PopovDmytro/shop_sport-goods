@@ -58,8 +58,7 @@ class RexResponse extends RexObject {
     }
 
     public static function send() {
-//        $output = ob_get_clean();
-        $output = '';
+        $output = ob_get_clean();
         @ob_end_clean();
         if ($output) {
             echo $output;

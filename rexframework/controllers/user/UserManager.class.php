@@ -182,10 +182,9 @@ class UserManager extends \RexFramework\UserManager
 
     function getMail($html, $mail, $subject)
     {
-
         return Mailer::send($mail, $subject, $html);
 
-        $boundary = md5(uniqid(mt_rand(), 1));
+        /*$boundary = md5(uniqid(mt_rand(), 1));
 
         $headers = "From: ".RexSettings::get('site_name')."\r";
         $headers .= "MIME-Version: 1.0\r\n";
@@ -200,7 +199,7 @@ class UserManager extends \RexFramework\UserManager
             '=?UTF-8?B?'.base64_encode($subject).'?=',
             $body,
             $headers
-        );
+        );*/
     }
 
 

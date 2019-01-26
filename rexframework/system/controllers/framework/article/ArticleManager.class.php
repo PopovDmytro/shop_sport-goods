@@ -28,7 +28,7 @@ class ArticleManager extends DBManager
 
         $sql = 'SELECT * FROM '.$this->_table.' ORDER BY UNIX_TIMESTAMP(`date_create`) DESC LIMIT ?';
         $res = XDatabase::getAll($sql, array($aCount));
-
+        
         if (!$res or sizeof($res) < 1) {
             $this->_collection = false;
         } else {

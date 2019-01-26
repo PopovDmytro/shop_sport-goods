@@ -129,17 +129,5 @@ class NewsController extends \RexShop\NewsController
         RexPage::setDescription('Последние новости о спортивной одежде, обуви и сопутствующих товарах на сайте интернет-магазина волейбольных товаров Волеймаг');
         //RexPage::setKeywords('');
     }
-
-    function getLatest() //smarty func
-    {
-        $aParams = array(
-            'saveto' => 'news',
-            'count' => 6
-        );
-
-        $newsManager = RexFactory::manager('news');
-        $newsManager->getByWhere('1=1  ORDER BY `id` DESC LIMIT '.$aParams['count'].'');
-        RexDisplay::assign($aParams['saveto'], $newsManager->getCollection());
-        //\sys::dump($newsManager->getCollection());exit;
-    }
+	
 }

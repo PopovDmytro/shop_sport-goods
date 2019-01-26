@@ -65,11 +65,11 @@ class OrderController extends \RexShop\OrderController
                             if ($skuEntity->price) {
                                 $productEntity->price = $skuEntity->price;
                             }
-                            $skuName = $skuEntity->getClearName(htmlspecialchars('</dl><dl>'),
-                                htmlspecialchars('<b>'),
+                            $skuName = $skuEntity->getClearName(htmlspecialchars('</tr><tr>'),
+                                htmlspecialchars('<td class="cart-attr-l"><b>'),
                                 htmlspecialchars(':&nbsp;</b>'),
-                                htmlspecialchars('<span class="cart-attr-r">'),
-                                htmlspecialchars('</span>'));
+                                htmlspecialchars('<td class="cart-attr-r">'),
+                                htmlspecialchars('</td>'));
                             $orderList[$key]['productList'][$product_key]['sku'] = $skuName;
                             $orderList[$key]['productList'][$product_key]['skuEntity'] = $skuEntity;
                             $orderList[$key]['productList'][$product_key]['prices'] = $orderManager->getProductValues($order['id'], $productEntity->id, $skuEntity->id);
@@ -81,6 +81,7 @@ class OrderController extends \RexShop\OrderController
                         $pCatalog->get($productEntity->category_id);
                         $orderList[$key]['productList'][$product_key]['img_alias'] = $pCatalog->alias;
                         $orderList[$key]['productList'][$product_key]['product'] = $productEntity;
+
 
                     } else {
                         continue;
@@ -455,6 +456,7 @@ class OrderController extends \RexShop\OrderController
             $html = RexDisplay::fetch('mail/pismo.order.admin.tpl');
             $userManager = RexFactory::manager('user');
             $userManager->getMail($html, RexSettings::get('contact_email'), sprintf(RexLang::get('order.email.new_order_subject'), RexConfig::get('Project', 'sysname')));
+
 
             $orderList = $this->manager->getOrderList($orderEntity->id, true);
 

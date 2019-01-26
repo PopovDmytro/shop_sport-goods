@@ -84,7 +84,14 @@
                         <input type="text" name="entity[date_update]" maxlength="255" value="{if $entity->date_update}{$entity->date_update}{/if}" data-autosave="true" style="width: 280px;">
                     </td>
                 {/if}
-            <tr> 
+            <tr>
+                <td class="frame-t-td-l">
+                   Youtube:
+                </td>
+                <td>
+
+                    <input type="text" name="entity[youtube]" value="{if $entity->date_update}{$entity->youtube}{/if}" data-autosave="true" style="width: 280px;">
+                </td>
             </tr>
         </table>
             <table cellspacing="5" cellpadding="0" border="0" width="100%">

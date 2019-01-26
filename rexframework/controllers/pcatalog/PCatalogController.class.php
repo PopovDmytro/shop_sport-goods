@@ -80,11 +80,7 @@ class PCatalogController extends \RexShop\PCatalogController
         RexDisplay::assign('parseUrl', $parseUrl);
 
         $this->entity = RexFactory::entity('pCatalog');
-
-        $brands = XDatabase::getAssoc('SELECT `id`,`alias` FROM brand');
-        $brand_alias = Request::get('brand_alias', true);
-
-        if (!$this->entity->getByFields(array('alias' => $this->task)) && !array_search($brand_alias, $brands)) {
+        if (!$this->entity->getByFields(array('alias' => $this->task))) {
             header('HTTP/1.0 404 Not Found');
             header('location: /404');
             exit;
@@ -92,15 +88,10 @@ class PCatalogController extends \RexShop\PCatalogController
 
         RexDisplay::assign('pcatalog', $this->entity);
 
-        if(!$this->entity->alias) {
-            $this->entity->alias = 'all';
-        }
-
         $clearfilter = Request::get('clearfilter', false);
 
         if ($clearfilter) {
             $url = RexRoute::getUrl('pCatalog', 'default', $this->entity->alias);
-
             //
             header('location: '.$url);
             exit;

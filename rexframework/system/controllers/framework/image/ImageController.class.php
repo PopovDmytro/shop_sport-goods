@@ -146,7 +146,7 @@ class ImageController extends ParentAdminController
         
         $source = REX_ROOT.$temp_folder.$picture; // путь картинки источника
         $croped = REX_ROOT.$temp_folder.'cropped_'.$picture; // путь будущей откропленой картинки
-        
+
         if ($x !== false) { // когда был передан параметр x - т.е. при сохранении кропа
             if (!$h || !$w) { // если один из параметров не был передан, значит неверно выбран селект кропа
                 RexResponse::error('Wrong selection', true);

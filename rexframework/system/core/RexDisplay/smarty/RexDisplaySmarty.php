@@ -6,9 +6,9 @@ class RexDisplaySmarty implements RexDisplayTemplateEngine
 
     function __construct($property = null)
     {                
-        require_once dirname(__FILE__)."/lib/Smarty.class.php";
+        require_once dirname(__FILE__)."/lib/Smarty.php";
         $this->engine = new Smarty();
-
+        
         $this->engine->addPluginsDir(dirname(__FILE__).'/plugins/');
         
         $environment = RexRunner::getEnvironment();
@@ -29,7 +29,7 @@ class RexDisplaySmarty implements RexDisplayTemplateEngine
             array($this, 'rexGetTrusted')
         ));
     }
-
+    
     public function assign($name, $value)
     {
         return $this->engine->assign($name, $value);

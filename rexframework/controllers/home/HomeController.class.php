@@ -18,9 +18,6 @@ class HomeController extends \RexShop\HomeController
     {
         parent::getDefault();
             RexDisplay::assign('content', XDatabase::getOne('SELECT `content` FROM staticpage WHERE `alias` = "home"'));
-
-            RexDisplay::assign('brands', XDatabase::getAssoc('SELECT `id`, `name`,`alias` FROM brand'));
-
             RexPage::setTitle('VolleyMAG – интернет-магазин профессиональной спортивной экипировки. Спортивная одежда и обувь в Украине');
             RexPage::setDescription('Мужская и женская спортивная одежда в Харькове - спортивные товары для занятий футболом, волейболом и другими видами спорта. Купить кроссовки в интернет-магазине Волеймаг с доставкой по Украине');
             RexPage::setKeywords('Интернет-магазин спортивной обуви, женская спортивная одежда Харьков, спортивные товары, купить кроссовки в интернет-магазине');
@@ -82,6 +79,7 @@ class HomeController extends \RexShop\HomeController
                 $html = RexDisplay::fetch('mail/pismo.cont.tpl');
                 $userManager = RexFactory::manager('user');
                 $userManager->getMail($html, RexSettings::get('contact_only_email'), sprintf(RexLang::get('contact.email.subject'), RexConfig::get('Project', 'sysname')));
+
                 RexPage::addMessage(RexLang::get('contact.congratulation'), $this->mod);
                 RexResponse::response('ok');
             }
@@ -94,6 +92,7 @@ class HomeController extends \RexShop\HomeController
 
     function getAbout()
     {
+
         $staticEntity = RexFactory::entity('staticPage');
         $staticEntity->getByWhere('id = 2');
         $res = $staticEntity->content;

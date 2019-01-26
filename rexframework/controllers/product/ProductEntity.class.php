@@ -39,6 +39,7 @@ class ProductEntity extends RexDBEntity
         static::add('unit', new RexDBString());
         static::add('is_common_price', new RexDBInt(REXDB_FIELD_NOTNULL & REXDB_FIELD_UNSIGNED, 1, 1));
         static::add('is_common_sale', new RexDBInt(REXDB_FIELD_NOTNULL & REXDB_FIELD_UNSIGNED, 1, 1));
+        static::add('youtube', new RexDBText());
     }
     
 	function visited() 

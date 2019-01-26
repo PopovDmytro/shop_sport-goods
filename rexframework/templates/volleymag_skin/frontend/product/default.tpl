@@ -358,6 +358,11 @@
                         <div class="amply"><p>Произвольный текст</p></div>*}
                     </div>
                 </div>
+                    {if $product.youtube}
+                        <div style="text-align: center;">
+                            <iframe width="100%" height="400" src="{$product.youtube}" frameborder="0" style="border-top: 1px solid #1B6CB3; margin-top: 15px;    padding-top: 10px;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    {/if}
                 <div class="clear"></div>
                 <div class="block-comments">
                     {strip}

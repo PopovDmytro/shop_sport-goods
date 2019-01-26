@@ -280,10 +280,11 @@ class ParentController extends RexObject
             }
 
             if (RexResponse::isRequest()) {
-                if (isset($arr['cropped']) && $arr['cropped'] && $this->mod == 'pimage') {
+                if (isset($arr['cropped']) && $arr['cropped'] && strtolower($this->mod) == 'pimage') {
                     Request::set('id', $entity->id);
                     $this->getMainPhoto();
                 }
+
                 RexResponse::response($entity->id);
             } else {
                 RexRoute::location(array('mod' => $mod));

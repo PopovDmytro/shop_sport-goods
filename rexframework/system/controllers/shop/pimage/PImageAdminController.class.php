@@ -257,7 +257,7 @@ class PImageAdminController extends \RexFramework\ParentAdminController
         
         $list = new RexDBList('product');
         RexDisplay::assign('productList', $list);
-        
+
         $attr2prodManager = RexFactory::manager('attr2Prod');
         RexDisplay::assign('colorAttr', $attr2prodManager->getColorAttributes($product_id));
         
@@ -271,7 +271,7 @@ class PImageAdminController extends \RexFramework\ParentAdminController
         if ($add !== true) {
             return $add;
         }
-        
+
        //echo $entity->id; print_r($arr);   exit;
         try {
             if (isset($arr['cropped'])) {
@@ -306,7 +306,7 @@ class PImageAdminController extends \RexFramework\ParentAdminController
     protected function _updateEntity($entity, $arr)
     {
         $update = parent::_updateEntity($entity, $arr);
-        
+
         if ($update !== true) {
             return $update;
         }
@@ -317,10 +317,11 @@ class PImageAdminController extends \RexFramework\ParentAdminController
             } else {
                 $images = $this->_createImages($entity, 'image');
             }
-            
+
             if ($images !== true) {
                 return $images;
             }
+
             XImage::putWatermark(REX_ROOT.'rexframework/files/images/pimage/'.$entity->id.'/main.'.$entity->image, HTDOCS.'content/watemark.png', 355, 378, 8, 15, 4, 15);
         } catch (Exception $e) {
             return $e->getMessage();

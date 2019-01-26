@@ -30,5 +30,6 @@ class StaticPageEntity extends RexDBEntity
         static::add('keywords', new RexDBString());
         static::add('description', new RexDBString());
         static::add('active', new RexDBInt(0, 1, 1));
+        static::add('youtube', new RexDBText());
     }    
 }

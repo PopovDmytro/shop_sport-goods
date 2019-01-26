@@ -168,6 +168,13 @@
         }
     });
 
+    template.off('click.copyItem', '.copyItem').on('click.copyItem', '.copyItem', function () {
+      if ($.rex(mod, 'copy', {task: $(this).attr('item_id')}) !== false) {
+        alert('Копия товара успешно создана');
+        $.data(template, 'updateDatagrid')();
+      }
+    });
+
     template.off('mouseenter.hoverButton', 'li.ui-state-default').on('mouseenter.hoverButton', 'li.ui-state-default', function() {
         $(this).addClass('ui-state-hover');
     }).off('mouseleave.leaveButton', 'li.ui-state-default').on('mouseleave.leaveButton', 'li.ui-state-default', function() {

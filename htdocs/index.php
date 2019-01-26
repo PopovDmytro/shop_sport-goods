@@ -11,6 +11,10 @@ if ((isset($_SERVER['REQUEST_URI']) && substr($_SERVER['REQUEST_URI'], 0, 10) ==
 ini_set('display_errors', 'stdout');
 error_reporting(E_ALL);
 
+if (isset($_COOKIE['bogdan'])) {
+    ini_set('display_errors', '1');
+}
+
 define('HTDOCS', dirname(__FILE__).'/');
 define('REX_ROOT', realpath(dirname(__FILE__).'/../').'/');
 define('CONFIG_DIR', REX_ROOT.'rexframework/project/');
@@ -34,5 +38,3 @@ RexLoader::initialize();
 
 RexRunner::run();
 //RexDisplay::display();
-
-

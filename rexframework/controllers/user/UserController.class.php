@@ -155,7 +155,6 @@ class UserController extends \RexFramework\UserController
 
     function getLogin()
     {
-        RexPage::setTitle('Авторизация пользователя');
         if (XSession::get('user_exist')) {
             $oemail = explode(';', XSession::get('user_exist'));
             RexDisplay::assign('oemail', $oemail[0]);
@@ -163,6 +162,7 @@ class UserController extends \RexFramework\UserController
         if (isset($_COOKIE['user_login'])) {
             RexDisplay::assign('confirm_sms', true);
         }
+        RexPage::setTitle('Авторизация пользователя');
     }
 
     private function _reg_validate($arr)
@@ -177,10 +177,7 @@ class UserController extends \RexFramework\UserController
             return RexLang::get('user.error.invalid_email');
         }
 
-        preg_match_all('#\d+#', $arr['phone'], $matches);
-
-        $arr['phone'] = implode('',$matches[0]);
-
+        $arr['phone'] = (int)($arr['phone']);
         if(!$arr['phone'] || mb_strlen($arr['phone'], 'UTF-8') > 17 ) {
             return RexLang::get('user.error.incorrect_phone');
         }

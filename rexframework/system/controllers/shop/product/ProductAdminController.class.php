@@ -65,7 +65,7 @@ class ProductAdminController extends \RexFramework\ParentAdminController
             array(
                 'title' => RexLang::get('default.edit'),
                 'item_id' => $param['record'][$this->entity->__uid],
-                'url' => '/admin/?mod=product&act=edit&task='.$param['record'][$this->entity->__uid],
+                'url' => '/admin/?mod=product&act=edit&task=' . $param['record'][$this->entity->__uid],
                 'allow' => 'edit',
                 'img' => 'ui-icon-pencil'
             ),
@@ -75,7 +75,14 @@ class ProductAdminController extends \RexFramework\ParentAdminController
                 'class' => 'itemdelete',
                 'allow' => 'delete',
                 'img' => 'ui-icon-trash'
-            )
+            ),
+            array(
+                'title' => 'Создать копию',
+                'item_id' => $param['record'][$this->entity->__uid],
+                'class' => 'copyItem',
+                'allow' => 'copy',
+                'img' => 'ui-icon-copy'
+            ),
         );
 
         return $arr;

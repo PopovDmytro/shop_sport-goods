@@ -456,7 +456,7 @@ class ProductManager extends \RexFramework\DBManager
 					LIMIT '.intval($aStart).', '.intval($aCount);
                     //var_dump($sql);exit;
 			$res = XDatabase::getAll($sql);
-
+			
 		if (!$res or sizeof($res) < 1) {
 			$this->_collection = array();
 		} else {

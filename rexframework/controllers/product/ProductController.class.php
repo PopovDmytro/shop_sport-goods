@@ -43,38 +43,36 @@ class ProductController extends \RexShop\ProductController
             return true;
         }
 
-//        $lastproducts = array($this->entity->id);
-//        if(isset($_COOKIE['lastproducts'])) {
-//            $lastproducts = array_merge($lastproducts, json_decode($_COOKIE['lastproducts'], true));
-//        }
-//
-//        $lastproducts = array_slice(array_unique ($lastproducts), 0, 11);
-//        setcookie('lastproducts',json_encode($lastproducts) , time() + (86400 * 30), '/', RexConfig::get('Project', 'cookie_domain'));
-//
-//        $lastproductsEntity = RexFactory::entity('product');
-//        unset($lastproducts[array_search($this->entity->id,$lastproducts)]);
-//        $ids=implode($lastproducts,"','");
-//        $sql= "SELECT
-//              p.*,
-//              pc.`alias` AS palias,
-//              pa.`id` AS `pimageid`,
-//              pa.`color_sorder`,
-//              pa.`image`,
-//              s.`sku_article`
-//            FROM
-//              product AS p
-//              INNER JOIN pcatalog AS pc
-//                ON pc.`id` = p.`category_id`
-//              LEFT JOIN pimage AS pa
-//                ON pa.`product_id` = p.`id`
-//                 LEFT JOIN `sku` AS s ON s.`product_id`=p.`id`
-//            WHERE p.id IN ('$ids')
-//            AND s.`active`='1'
-//            GROUP BY p.`id`
-//            ORDER BY FIELD(p.`id`,'$ids')";
-//        RexDisplay::assign('lastproduct',  XDatabase::getAll($sql));
+        $lastproducts = array($this->entity->id);
+        if(isset($_COOKIE['lastproducts'])) {
+            $lastproducts = array_merge($lastproducts, json_decode($_COOKIE['lastproducts'], true));
+        }
 
-        $this->getWatched();
+        $lastproducts = array_slice(array_unique ($lastproducts), 0, 11);
+        setcookie('lastproducts',json_encode($lastproducts) , time() + (86400 * 30), '/', RexConfig::get('Project', 'cookie_domain'));
+
+        $lastproductsEntity = RexFactory::entity('product');
+        unset($lastproducts[array_search($this->entity->id,$lastproducts)]);
+        $ids=implode($lastproducts,"','");
+        $sql= "SELECT 
+              p.*,
+              pc.`alias` AS palias,
+              pa.`id` AS `pimageid`,
+              pa.`color_sorder`,
+              pa.`image`,
+              s.`sku_article`
+            FROM
+              product AS p 
+              INNER JOIN pcatalog AS pc 
+                ON pc.`id` = p.`category_id` 
+              LEFT JOIN pimage AS pa 
+                ON pa.`product_id` = p.`id` 
+                 LEFT JOIN `sku` AS s ON s.`product_id`=p.`id`
+            WHERE p.id IN ('$ids')
+            AND s.`active`='1'
+            GROUP BY p.`id`
+            ORDER BY FIELD(p.`id`,'$ids')";
+        RexDisplay::assign('lastproduct',  XDatabase::getAll($sql));
 
         $sku_id = Request::get('sku', false);
         
@@ -139,13 +137,14 @@ class ProductController extends \RexShop\ProductController
               INNER JOIN pimage pimg
                 ON pimg.`attribute_id` = se.`attr2prod_id`
               INNER JOIN attr2prod a2p
-                ON se.`attr2prod_id` = a2p.id 
+                ON se.`attr2prod_id` = a2p.id
               LEFT JOIN prod_color_order pco
                 ON pimg.`product_id` = pco.`product_id` AND a2p.`value` = pco.`attribute_id`
             WHERE pimg.product_id = ' . intval($this->entity->id) . '
               AND s.`quantity` > 0
             GROUP BY pimg.id
-            ORDER BY pimg.`main` DESC, pco.`sorder`');
+            ORDER BY pimg.`main` DESC, pimg.`sorder`');
+
         if (sizeof($list) > 0) {
             RexDisplay::assign('imageList', $list);
         }
@@ -314,10 +313,6 @@ class ProductController extends \RexShop\ProductController
                      
         $brand = RexFactory::entity('brand');
         $brand->get($this->entity->brand_id);
-
-//        var_dump(file_exists('skin/volleymagnew_skin/frontend/img/main-page/asics_logo.png'));
-//        exit;
-
         RexDisplay::assign('productBrand', $brand);
         
         //get attached files
@@ -347,7 +342,6 @@ class ProductController extends \RexShop\ProductController
         RexDisplay::assign('technologies', $technologies);
 
     }
-
 	function getArchive()
 	{
 		if (!$this->task or $this->task == 'default') {
@@ -487,108 +481,5 @@ class ProductController extends \RexShop\ProductController
         RexDisplay::assign('productBN', $brand->name);
         
         return RexDisplay::fetch('product/brand.tpl');
-    }
-
-    function getWatched() {
-        $lastproducts = array($this->entity->id);
-        if(isset($_COOKIE['lastproducts'])) {
-            $lastproducts = array_merge($lastproducts, json_decode($_COOKIE['lastproducts'], true));
-        }
-
-        $lastproducts = array_slice(array_unique ($lastproducts), 0, 11);
-        setcookie('lastproducts',json_encode($lastproducts) , time() + (86400 * 30), '/', RexConfig::get('Project', 'cookie_domain'));
-
-        $lastproductsEntity = RexFactory::entity('product');
-        unset($lastproducts[array_search($this->entity->id,$lastproducts)]);
-        $ids=implode($lastproducts,"','");
-        $sql= "SELECT 
-              p.*,
-              pc.`alias` AS palias,
-              pa.`id` AS `pimageid`,
-              pa.`color_sorder`,
-              pa.`image`,
-              s.`sku_article`
-            FROM
-              product AS p 
-              INNER JOIN pcatalog AS pc 
-                ON pc.`id` = p.`category_id` 
-              LEFT JOIN pimage AS pa 
-                ON pa.`product_id` = p.`id` 
-                 LEFT JOIN `sku` AS s ON s.`product_id`=p.`id`
-            WHERE p.id IN ('$ids')
-            AND s.`active`='1'
-            GROUP BY p.`id`
-            ORDER BY FIELD(p.`id`,'$ids')";
-        RexDisplay::assign('lastproduct',  XDatabase::getAll($sql));
-    }
-
-    function getCompareClear()
-    {
-        $prod_id = $this->task;
-
-        if($prod_id === "default") {
-            XSession::set('compare', '');
-            if ($_SERVER['HTTP_REFERER']) {
-                header('Location: '.$_SERVER['HTTP_REFERER']);
-                exit;
-            } else {
-                RexRoute::location('home');
-            }
-        } else {
-            $compare_products = is_array(XSession::get('compare')) ? XSession::get('compare') : null;
-            foreach ($compare_products as $key => $product) {
-                if($product['pid'] === $prod_id) {
-                    unset($compare_products[$key]);
-                }
-            }
-            XSession::set('compare', $compare_products);
-            header('Location: '. '/compare');
-        }
-    }
-
-    function getCompare()
-    {
-        RexPage::setTitle('Сравнение товаров – интернет-магазин спортивных товаров Волеймаг');
-        //RexPage::setTitle(RexLang::get('catalog.compare.title'));
-
-        $compare = XSession::get('compare', false);
-
-        if (!$compare) {
-            return false;
-        }
-
-        if (sizeof($compare) < 1) {
-            return false;
-        }
-
-        $this->manager = RexFactory::manager('product');
-
-        $this->manager->getCompare($compare);
-        if (!$this->manager->_collection or sizeof($this->manager->_collection) < 1) {
-            return false;
-        }
-
-        $productList = $this->manager->getCollection();
-
-        //
-        $gender = RexFactory::manager('attribute');
-        $skuManager = RexFactory::manager('sku');
-
-        foreach ($productList as $key => $val) {
-
-            $sex = $gender->getGenderName($val['id']);
-            $skuManager->getSkusFront($val['id'], 1);
-
-            $productList[$key]['sex'] = $sex;
-            $productList[$key]['attributes'] = $skuManager->attributes;
-        }
-        //
-
-        RexDisplay::assign('productList', $productList);
-
-        $attr2ProdManager = RexFactory::manager('attr2Prod');
-        $attr2ProdManager->productList = $productList;
-        $attr2ProdManager->drawMulti();
-        RexDisplay::assign('attributes', $attr2ProdManager->fetched);
     }
 }

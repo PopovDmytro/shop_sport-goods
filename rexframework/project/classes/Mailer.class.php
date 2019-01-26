@@ -22,11 +22,15 @@ class Mailer
         $validEmails = self::sanitizeEmails($emails); //вырезаем все не валидные email
 
         if (!$validEmails) {
-            mail(
-                self::RECIPIENTS,
-                'VolleyMag. MailGun Error',
-                'Email list is empty' . PHP_EOL . $emails
-            );
+            try {
+                mail(
+                    self::RECIPIENTS,
+                    'VolleyMag. MailGun Error',
+                    'Email list is empty' . PHP_EOL . $emails
+                );
+            } catch (\Exception $exception) {
+                return false;
+            }
 
             return false;
         }
@@ -57,12 +61,12 @@ class Mailer
      */
     protected static function mailGunSendFromCurl($to, $subject, $message)
     {
-        $post_fields = [
+        $post_fields = array(
             'from' => RexConfig::get('Project', 'sysname') . '<' . RexConfig::get('Mailer', 'sender', 'Mailgun', 'default_from') . '>',
             'to' => $to,
             'subject' => $subject,
             'html' => $message
-        ];
+        );
         $ch = curl_init();
         $requestURL = 'https://api.mailgun.net/v2/' . RexConfig::get('Mailer', 'sender', 'Mailgun', 'domain') . '/messages';
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -76,11 +80,15 @@ class Mailer
         curl_close($ch);
 
         if ($responseInfo['http_code'] != 200) {
-            mail(
-                self::RECIPIENTS,
-                'VolleyMag. MailGun CURL Error',
-                $response . PHP_EOL . json_encode($post_fields)
-            );
+            try {
+                mail(
+                    self::RECIPIENTS,
+                    'VolleyMag. MailGun CURL Error',
+                    $response . PHP_EOL . json_encode($post_fields)
+                );
+            } catch (\Exception $exception) {
+                return false;
+            }
 
             return false;
         }

@@ -437,4 +437,100 @@ class ProductAdminController extends \RexShop\ProductAdminController
     {
         return date('Y-m-d H:i:s', strtotime($param['record']['date_update']));
     }
+
+
+    public function getCopy()
+    {
+        if (RexResponse::isRequest()) {
+            RexResponse::init();
+        }
+
+        $mod = $this->_getDatagridMod();
+
+        if (!RexPage::allow($this->datagrid_mod, 'edit')) {
+            if (RexResponse::isRequest()) {
+                RexResponse::error('Permission error');
+            } else {
+                RexPage::addError('Permission error', $mod);
+            }
+        }
+
+        $entity = $this->entity;
+        if (!$this->task or $this->task < 1 or !$entity->get($this->task) || !$entity->{$entity->__uid}) {
+            if (RexResponse::isRequest()) {
+                RexResponse::error('Wrong id');
+            } else {
+                RexPage::addError('Wrong id', $mod);
+            }
+        }
+
+        $productEntity = new ProductEntity();
+
+        $productEntity->set([
+            'name' => $entity->name,
+            'sorder' => $entity->sorder,
+            'title' => $entity->title,
+            'keywords' => $entity->keywords,
+            'description' => $entity->description,
+            'content' => $entity->content,
+            'category_id' => $entity->category_id,
+            'price' => $entity->price,
+            'price_opt' => $entity->price_opt,
+            'price_old' => $entity->price_old,
+            'quantity' => $entity->quantity,
+            'active' => 0,
+            'code' => $entity->code,
+            'visited' => $entity->visited,
+            'in_stock' => $entity->in_stock,
+            'brand_id' => $entity->brand_id,
+            'bestseller' => $entity->bestseller,
+            'new' => $entity->new,
+            'event' => $entity->event,
+            'homepage' => $entity->homepage,
+            'yml' => $entity->yml,
+            'sale' => $entity->sale,
+            'weight' => $entity->weight,
+            'unit' => $entity->unit,
+            'is_common_price' => $entity->is_common_price,
+            'is_common_sale' => $entity->is_common_sale,
+            'youtube' => $entity->youtube
+        ]);
+
+
+        if (!$productEntity->create()) {
+            RexResponse::error('Unable to create ' . ucfirst($this->datagrid_mod));
+        }
+
+        $pimageManager = RexFactory::manager('pImage');
+        $pimageManager->getByWhere('product_id = ' . $this->task);
+        $data = [];
+        $collections = $pimageManager->getCollection();
+        if (!empty($collections)) {
+            foreach ($collections as $collection) {
+                $collection['product_id'] = $productEntity->id;
+                unset($collection['id']);
+                $entity = RexFactory::entity('pImage');
+                $entity->set($collection);
+                $entity->create();
+                unset($entity);
+            }
+        }
+
+        $collections = XDatabase::getAll('SELECT `attribute_id`,`value` FROM `attr2prod` WHERE product_id = ' . $this->task);
+        if (!empty($collections)) {
+            foreach ($collections as $collection) {
+                XDatabase::query("INSERT INTO `attr2prod`( `attribute_id`, `product_id`, `value`) VALUES (" . $collection['attribute_id'] . "," . $productEntity->id . "," . $collection['value'] . ")");
+
+            }
+        }
+        $collections = XDatabase::getAll('SELECT `category_id` FROM `prod2cat` WHERE product_id = ' . $this->task);
+        if (!empty($collections)) {
+            foreach ($collections as $collection) {
+                XDatabase::query("INSERT INTO `prod2cat`( `category_id` , `product_id`) VALUES (" . $collection['category_id'] . "," . $productEntity->id . ")");
+
+            }
+        }
+
+        RexResponse::response($productEntity->id);
+    }
 }

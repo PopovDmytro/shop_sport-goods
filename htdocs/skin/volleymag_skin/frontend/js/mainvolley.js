@@ -549,6 +549,7 @@ function addProdByRexSubmit(divWithForm) {
     if (!cart_button.hasClass('cart-added')) {
         cart_button.html('Добавление..');
         product_form.rexSubmit(function (data) {
+            console.log(data);
             if (data != false) {
                 $.rex('cart', 'cart', {}, function (data) {
                     if (data !== false) {

@@ -52,5 +52,5 @@ class BrandController extends \RexFramework\ParentController
 		$brandManager = RexFactory::manager($this->mod);
 		$brandManager->getByWhere('1=1 ORDER BY `name`');
 		RexDisplay::assign($aParams['saveto'], $brandManager->getCollection());
-	}
+	}	
 }

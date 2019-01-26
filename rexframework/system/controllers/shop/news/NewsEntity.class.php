@@ -35,5 +35,6 @@ class NewsEntity extends RexDBEntity
         static::add('keywords', new RexDBString());
         static::add('description', new RexDBString());
         static::add('icon', new RexDBString());
+        static::add('youtube', new RexDBText());
     }
 }
