@@ -230,7 +230,7 @@ class RexRunner extends RexObject
             
             RexDisplay::fetchWorkspace($mod, $act, $section);
         }
-
+        
         RexDisplay::assign('workspace', $section);
         RexDisplay::assign('workspace_mod', $default_mod);
         RexDisplay::assign('workspace_act', $default_act);

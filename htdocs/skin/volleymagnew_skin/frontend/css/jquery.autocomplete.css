@@ -1,0 +1,27 @@
+.ac_results {
+	padding: 0px;
+	/*border: 1px solid black;*/
+	border: 1px solid #2195ce;
+	background-color: white;
+	overflow: hidden;
+	z-index: 99999;
+	margin-top: 5px;
+	/*margin-left: -107px;*/
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 8px 14px 8px 8px;
+	cursor: default;
+	display: block;
+	overflow: hidden;
+	line-height: 1;
+}

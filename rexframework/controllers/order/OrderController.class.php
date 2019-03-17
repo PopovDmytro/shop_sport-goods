@@ -24,6 +24,7 @@ class OrderController extends \RexShop\OrderController
     {
         $user = XSession::get('user');
         if (!$user or $user->id < 1) {
+            header("Location: /");
             exit;
         }
 
@@ -36,6 +37,25 @@ class OrderController extends \RexShop\OrderController
         RexDisplay::assign('userSale', $this->manager->getUserSale($user->id));
 
         $orderList = $orderManager->getOrderList($user->id);
+
+        //fix for the save price amount
+        $fullPrice = 0;
+        $discountPrice = 0;
+        foreach($orderList as $key => $value ) {
+            if((int)$value["status"] == 3) {
+
+                $price = (int)$value["sale_price"];
+                if($value["sale"]) {
+                    $price = ceil((int)$value["sale_price"] * (1 + (int)$value["sale"]/100));
+                }
+
+                $discountPrice += (int)$value["sale_price"];
+                $fullPrice += (int)$price;
+            }
+        }
+
+        RexDisplay::assign('saveWith', $fullPrice - $discountPrice);
+
 
         if ($orderList and sizeof($orderList) > 0) {
 
@@ -65,11 +85,11 @@ class OrderController extends \RexShop\OrderController
                             if ($skuEntity->price) {
                                 $productEntity->price = $skuEntity->price;
                             }
-                            $skuName = $skuEntity->getClearName(htmlspecialchars('</tr><tr>'),
-                                htmlspecialchars('<td class="cart-attr-l"><b>'),
+                            $skuName = $skuEntity->getClearName(htmlspecialchars('</dl><dl>'),
+                                htmlspecialchars('<b>'),
                                 htmlspecialchars(':&nbsp;</b>'),
-                                htmlspecialchars('<td class="cart-attr-r">'),
-                                htmlspecialchars('</td>'));
+                                htmlspecialchars('<span class="cart-attr-r">'),
+                                htmlspecialchars('</span>'));
                             $orderList[$key]['productList'][$product_key]['sku'] = $skuName;
                             $orderList[$key]['productList'][$product_key]['skuEntity'] = $skuEntity;
                             $orderList[$key]['productList'][$product_key]['prices'] = $orderManager->getProductValues($order['id'], $productEntity->id, $skuEntity->id);
@@ -81,7 +101,6 @@ class OrderController extends \RexShop\OrderController
                         $pCatalog->get($productEntity->category_id);
                         $orderList[$key]['productList'][$product_key]['img_alias'] = $pCatalog->alias;
                         $orderList[$key]['productList'][$product_key]['product'] = $productEntity;
-
 
                     } else {
                         continue;
@@ -245,7 +264,7 @@ class OrderController extends \RexShop\OrderController
             }
 
             $customer = RexFactory::entity('user');
-            $customer->getByWhere('email = "' . $order['email'] . '" LIMIT 1');
+            $isEmailUser = $customer->getByWhere('email = "' . $order['email'] . '" LIMIT 1');
 
             if (sizeof($cart) > 0 and !empty($cart)) {
                 if ((!$user or $user->id < 1) and (!isset($order['phone']) or strlen(trim($order['phone'])) < 4)) {
@@ -342,7 +361,6 @@ class OrderController extends \RexShop\OrderController
                                 RexPage::addError(sprintf(Rexlang::get('order.error.user_error')));
                             }
 
-
                             $orderEntity->user_id = $userEntity->id;
                         } else {
                             $orderEntity->user_id = $customer->id;
@@ -355,12 +373,16 @@ class OrderController extends \RexShop\OrderController
                             $orderEntity->sale = $this->manager->getUserSale($orderEntity->user_id);
                         }
 
-                        if ($userEntity->id and (!isset($orderEntity->phone) or intval($orderEntity->phone) <= 0)) {
+                        /*if ($userEntity->id and (!isset($orderEntity->phone) or intval($orderEntity->phone) <= 0)) {
                             if (strlen(trim($userEntity->phone)) > 0) {
                                 $orderEntity->phone = $userEntity->phone;
                             } else {
                                 $userEntity->phone = $order['phone'];
                             }
+                        }*/
+                        //will take phone number every time from the order form
+                        if($order['phone']) {
+                            $userEntity->phone = $order['phone'];
                         }
 
                         if ($userEntity->id) {
@@ -387,8 +409,16 @@ class OrderController extends \RexShop\OrderController
                             }
                         }
 
-                        $userEntity->update();
-                        $orderEntity->update();
+                        //does not apply discount if a user not logged in
+                        if(!$user) {
+                            $orderEntity["sale"] = 0;
+                        }
+                        //
+
+                        if($isEmailUser) {
+                            $userEntity->update();
+                            $orderEntity->update();
+                        }
 
                         /*try {
                             $orderEntity->update();
@@ -456,7 +486,6 @@ class OrderController extends \RexShop\OrderController
             $html = RexDisplay::fetch('mail/pismo.order.admin.tpl');
             $userManager = RexFactory::manager('user');
             $userManager->getMail($html, RexSettings::get('contact_email'), sprintf(RexLang::get('order.email.new_order_subject'), RexConfig::get('Project', 'sysname')));
-
 
             $orderList = $this->manager->getOrderList($orderEntity->id, true);
 

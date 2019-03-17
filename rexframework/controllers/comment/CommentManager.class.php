@@ -13,8 +13,25 @@ class CommentManager extends \RexShop\CommentManager
 	{
 		parent::__construct('comment', 'id');
 	}
-	function getAbout(){
-        $sql = 'SELECT
+	function getAbout($user_id = null){
+
+	    if($user_id) {
+            $sql = 'SELECT
+                  c.`user_id`,
+                  u.`login`,
+                  u.`name`,
+                  c.`content`,
+                  c.`date_create`,
+                  c.`status`
+                FROM
+                  `comment` c
+                  LEFT JOIN `user` u
+                    ON c.`user_id` = u.`id`
+                WHERE c.`status` = 0 
+                    AND c.`user_id` ='.$user_id;
+            return XDatabase::getAll($sql);
+        } else {
+            $sql = 'SELECT
                   c.`user_id`,
                   u.`login`,
                   u.`name`,
@@ -27,9 +44,10 @@ class CommentManager extends \RexShop\CommentManager
                 WHERE c.`product_id` = 0
                   AND c.`status` = 2
                 ORDER BY c.`date_create` DESC';
-        return XDatabase::getAll($sql);
-
+            return XDatabase::getAll($sql);
+        }
     }
+
 	function getLatest($aCount=2, $aProductID=false, $aUser=false)
 	{
 		if (!$aCount or $aCount < 1) {
@@ -72,6 +90,7 @@ class CommentManager extends \RexShop\CommentManager
         $sql = 'SELECT
                   c.`user_id`,
                   u.`login`,
+                  u.`name`,
                   c.`content`,
                   c.`date_create`,
                   c.`status`
@@ -87,6 +106,7 @@ class CommentManager extends \RexShop\CommentManager
         $sql = 'SELECT
                   c.`user_id`,
                   u.`login`,
+                  u.`name`,
                   c.`content`,
                   c.`date_create`,
                   c.`status`
@@ -102,6 +122,7 @@ class CommentManager extends \RexShop\CommentManager
         $sql = 'SELECT
                   c.`user_id`,
                   u.`login`,
+                  u.`name`,
                   c.`content`,
                   c.`date_create`,
                   c.`status`
@@ -119,6 +140,7 @@ class CommentManager extends \RexShop\CommentManager
         $sql = 'SELECT
                   c.`user_id`,
                   u.`login`,
+                  u.`name`,
                   c.`content`,
                   c.`date_create`,
                   c.`status`

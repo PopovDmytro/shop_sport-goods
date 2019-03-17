@@ -177,6 +177,10 @@ class UserController extends \RexFramework\UserController
             return RexLang::get('user.error.invalid_email');
         }
 
+//        preg_match_all('#\d+#', $arr['phone'], $matches);
+//
+//        $arr['phone'] = implode('',$matches[0]);
+
         $arr['phone'] = (int)($arr['phone']);
         if(!$arr['phone'] || mb_strlen($arr['phone'], 'UTF-8') > 17 ) {
             return RexLang::get('user.error.incorrect_phone');

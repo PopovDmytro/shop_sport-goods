@@ -1,4 +1,5 @@
 <?php
+
 class HomeController extends \RexShop\HomeController
 {
     public static $version = 1.0;
@@ -17,10 +18,13 @@ class HomeController extends \RexShop\HomeController
     function getDefault()
     {
         parent::getDefault();
-            RexDisplay::assign('content', XDatabase::getOne('SELECT `content` FROM staticpage WHERE `alias` = "home"'));
-            RexPage::setTitle('VolleyMAG – интернет-магазин профессиональной спортивной экипировки. Спортивная одежда и обувь в Украине');
-            RexPage::setDescription('Мужская и женская спортивная одежда в Харькове - спортивные товары для занятий футболом, волейболом и другими видами спорта. Купить кроссовки в интернет-магазине Волеймаг с доставкой по Украине');
-            RexPage::setKeywords('Интернет-магазин спортивной обуви, женская спортивная одежда Харьков, спортивные товары, купить кроссовки в интернет-магазине');
+        RexDisplay::assign('content', XDatabase::getOne('SELECT `content` FROM staticpage WHERE `alias` = "home"'));
+
+        RexDisplay::assign('brands', XDatabase::getAssoc('SELECT `id`, `name`,`alias` FROM brand'));
+
+        RexPage::setTitle('VolleyMAG – интернет-магазин профессиональной спортивной экипировки. Спортивная одежда и обувь в Украине');
+        RexPage::setDescription('Мужская и женская спортивная одежда в Харькове - спортивные товары для занятий футболом, волейболом и другими видами спорта. Купить кроссовки в интернет-магазине Волеймаг с доставкой по Украине');
+        RexPage::setKeywords('Интернет-магазин спортивной обуви, женская спортивная одежда Харьков, спортивные товары, купить кроссовки в интернет-магазине');
     }
 
     function getBels()
@@ -30,11 +34,11 @@ class HomeController extends \RexShop\HomeController
         if ($bels and isset($bels['submit'])) {
             RexDisplay::assign('bels', $bels);
             RexDisplay::assign('sysname', RexSettings::get('site_name'));
-            
+
             $html = RexDisplay::fetch('mail/pismo.bels.tpl');
             $userManager = RexFactory::manager('user');
-            $userManager->getMail($html, RexSettings::get('contact_email'), 'Обратный звонок на сайте '.RexSettings::get('site_name'));
-            PHPSender::sendSms(RexSettings::get('contact_phone_code').RexSettings::get('contact_phone'), 'Пользователь '.$bels['name'].' запросил обратный звонок на номер '.$bels['phone']);
+            $userManager->getMail($html, RexSettings::get('contact_email'), 'Обратный звонок на сайте ' . RexSettings::get('site_name'));
+            PHPSender::sendSms(RexSettings::get('contact_phone_code') . RexSettings::get('contact_phone'), 'Пользователь ' . $bels['name'] . ' запросил обратный звонок на номер ' . $bels['phone']);
             RexResponse::response(RexLang::get('complaint.congratulation'));
         }
 
@@ -42,21 +46,21 @@ class HomeController extends \RexShop\HomeController
     }
 
     function getContact()
-    {   
+    {
         RexResponse::init();
         $_REQUEST['task'] = 'contact';
         RexRunner::runController('staticPage', 'default');
 
         $contact = Request::get('contact', false);
         if ($contact and isset($contact['submit'])) {
-            
+
             $captchaCode = XSession::get('xcaptcha');
-            
+
             if (trim(strlen($contact['name'])) < 3) {
                 RexResponse::response(RexLang::get('contact.error.invalid_name'));
             }
 
-            if(!preg_match('/^[\.\-_A-Za-z0-9]+?@[\.\-A-Za-z0-9]+?\.[A-Za-z0-9]{2,6}$/', $contact['email'])) {
+            if (!preg_match('/^[\.\-_A-Za-z0-9]+?@[\.\-A-Za-z0-9]+?\.[A-Za-z0-9]{2,6}$/', $contact['email'])) {
                 RexResponse::response(RexLang::get('contact.error.invalid_email'));
             }
 
@@ -67,7 +71,7 @@ class HomeController extends \RexShop\HomeController
             if (empty($contact['code']) || empty($captchaCode) || strtolower($contact['code']) != strtolower($captchaCode)) {
                 RexResponse::response(RexLang::get('contact.error.invalid_captcha'));
             }
-            
+
             if (RexPage::isError($this->mod)) {
                 RexDisplay::assign('contact', $contact);
             } else {
@@ -79,12 +83,11 @@ class HomeController extends \RexShop\HomeController
                 $html = RexDisplay::fetch('mail/pismo.cont.tpl');
                 $userManager = RexFactory::manager('user');
                 $userManager->getMail($html, RexSettings::get('contact_only_email'), sprintf(RexLang::get('contact.email.subject'), RexConfig::get('Project', 'sysname')));
-
                 RexPage::addMessage(RexLang::get('contact.congratulation'), $this->mod);
                 RexResponse::response('ok');
             }
         }
-        
+
         RexPage::setTitle('Контакты и график работы – интернет-магазин спортивных товаров Волеймаг');
 
         RexRunner::runController('staticPage', 'list');
@@ -124,8 +127,8 @@ class HomeController extends \RexShop\HomeController
             unset($arrcomment['commentsubmit']);
 
             //user
-            $newUser     = RexFactory::entity('user');
-            $user         = RexFactory::entity('user');
+            $newUser = RexFactory::entity('user');
+            $user = RexFactory::entity('user');
             $user = XSession::get('user');
             if (!$user or $user->id < 1) {
                 RexPage::addError(RexLang::get('comment.error.user_error'), $this->mod);
@@ -167,7 +170,7 @@ class HomeController extends \RexShop\HomeController
             $arr = array_merge($arr, $arrcomment);
             RexDisplay::assign('commententity', $arr);
 
-            $user->getByWhere('id ='.$commentEntity->user_id);
+            $user->getByWhere('id =' . $commentEntity->user_id);
             RexDisplay::assign('comment_user', $user->login);
 
             //$to = "info@volleymag.com.ua";
@@ -183,8 +186,15 @@ class HomeController extends \RexShop\HomeController
         $commentsManager = RexFactory::manager('comment');
         $comments = $commentsManager->getAbout();
 
+        $user = XSession::get('user');
+        if ($user) {
+            $userCom = $commentsManager->getAbout($user->id, $user->id);
+            RexDisplay::assign('userCom', $userCom);
+        }
+
         RexDisplay::assign('comments', $commentsManager->getAbout());
         //\sys::dump($comments);exit;
         RexPage::setTitle('Информация об интернет-магазине спортивных товаров Волеймаг');
+
     }
 }

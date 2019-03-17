@@ -83,6 +83,8 @@ class NewsController extends \RexShop\NewsController
                             RexPage::addMessage(RexLang::get('comment.message.create_successfully'), $this->mod);
                         } else {
                             RexPage::addMessage(RexLang::get('comment.message.add_to_moderator'), $this->mod);
+//                          TODO temporary fix resubmit form
+                            header("Location: $this->task.html");
                         }
                     }
                 }
@@ -113,7 +115,7 @@ class NewsController extends \RexShop\NewsController
         if (!$this->entity->description) {
             $str = trim(str_replace('&nbsp;' , '', strip_tags($this->entity->content)));
             $desc = '';
-            if ($str && mb_strlen($str, 'UTF-8') > 2) {
+            if ($str && mb_strlen($str, 'UTF-8') > 2 && strlen($str) > 100) {
                 $desc = substr($str, 0, strpos($str, ' ', 100)).'.. ';
             }
             RexPage::setDescription($desc.'Новости о спортивной одежде, обуви и брендах на сайте интернет-магазина Волеймаг');
@@ -129,5 +131,17 @@ class NewsController extends \RexShop\NewsController
         RexPage::setDescription('Последние новости о спортивной одежде, обуви и сопутствующих товарах на сайте интернет-магазина волейбольных товаров Волеймаг');
         //RexPage::setKeywords('');
     }
-	
+
+    function getLatest() //smarty func
+    {
+        $aParams = array(
+            'saveto' => 'news',
+            'count' => 6
+        );
+
+        $newsManager = RexFactory::manager('news');
+        $newsManager->getByWhere('1=1  ORDER BY `id` DESC LIMIT '.$aParams['count'].'');
+        RexDisplay::assign($aParams['saveto'], $newsManager->getCollection());
+        //\sys::dump($newsManager->getCollection());exit;
+    }
 }

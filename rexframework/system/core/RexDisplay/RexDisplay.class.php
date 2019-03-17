@@ -221,7 +221,7 @@
          XSession::set('skin', $skin);
          setcookie('skin', $skin, time() + 60 * 60 * 24 * 30);
      }
-     
+
      static public function assign($name, $value)
      {
          return static::$engine->assign($name, $value);
